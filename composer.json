@@ -1,7 +1,7 @@
 {
-    "name": "sylius/bundle-skeleton",
+    "name": "lchrusciel/sylius-catalog-promotion-bundle",
     "type": "sylius-bundle",
-    "description": "Acme example bundle for Sylius.",
+    "description": "Catalog promotion extension for Sylius.",
     "license": "MIT",
     "require": {
         "php": "^5.6|^7.0",
