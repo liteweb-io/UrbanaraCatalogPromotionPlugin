@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Acme\ExampleBundle\Behat\Context\Ui\Shop;
+namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Shop;
 
 use Behat\Behat\Context\Context;
-use Tests\Acme\ExampleBundle\Behat\Page\Shop\WelcomePageInterface;
+use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Shop\WelcomePageInterface;
 use Webmozart\Assert\Assert;
 
 final class WelcomeContext implements Context
