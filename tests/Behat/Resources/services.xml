@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="sylius.behat.page.admin.catalog_promotion.create.class">Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\CreatePage</parameter>
+        <parameter key="sylius.behat.page.admin.catalog_promotion.index.class">%sylius.behat.page.admin.crud.index.class%</parameter>
+    </parameters>
     <services>
-        <!-- Put your Behat services here -->
-
-        <service id="acme_example.context.ui.shop.welcome" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Shop\WelcomeContext">
-            <argument type="service" id="acme_example.page.shop.static_welcome" />
-            <argument type="service" id="acme_example.page.shop.dynamic_welcome" />
+        <service id="sylius_catalog_promotion.context.ui.admin.managing" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin\ManagingContext">
+            <argument type="service" id="sylius_catalog_promotion.behat.page.admin.create" />
+            <argument type="service" id="sylius_catalog_promotion.behat.page.admin.index" />
             <tag name="fob.context_service" />
         </service>
 
-        <service id="acme_example.page.shop.static_welcome" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Shop\StaticWelcomePage" parent="sylius.behat.symfony_page" public="false" />
-        <service id="acme_example.page.shop.dynamic_welcome" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Shop\DynamicWelcomePage" parent="sylius.behat.symfony_page" public="false" />
+        <service id="sylius_catalog_promotion.behat.page.admin.create" class="%sylius.behat.page.admin.catalog_promotion.create.class%" parent="sylius.behat.page.admin.crud.create" public="false">
+            <argument type="string">acme_sylius_catalog_promotion_admin_catalog_promotion_create</argument>
+        </service>
+        <service id="sylius_catalog_promotion.behat.page.admin.index" class="%sylius.behat.page.admin.catalog_promotion.index.class%" parent="sylius.behat.page.admin.crud.index" public="false">
+            <argument type="string">acme_sylius_catalog_promotion_admin_catalog_promotion_index</argument>
+        </service>
     </services>
 </container>

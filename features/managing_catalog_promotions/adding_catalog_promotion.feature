@@ -8,7 +8,7 @@ Feature: Adding a new catalog promotion
         Given the store operates on a single channel in "United States"
         And I am logged in as an administrator
 
-    @todo
+    @ui
     Scenario: Adding a new catalog promotion
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"

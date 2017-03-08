@@ -1,0 +1,5 @@
+sylius_resource:
+    resources:
+        acme_sylius_catalog_promotion.catalog_promotion:
+            classes:
+                model: Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotion
