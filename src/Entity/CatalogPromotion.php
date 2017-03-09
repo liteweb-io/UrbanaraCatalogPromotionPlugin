@@ -35,19 +35,21 @@ class CatalogPromotion implements CatalogPromotionInterface
     protected $exclusive = false;
 
     /**
+     * @var \DateTime
+     */
+    protected $startsAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $endsAt;
+
+    /**
      * {@inheritdoc}
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -112,5 +114,37 @@ class CatalogPromotion implements CatalogPromotionInterface
     public function setExclusive($exclusive)
     {
         $this->exclusive = $exclusive;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartsAt()
+    {
+        return $this->startsAt;
+    }
+
+    /**
+     * @param \DateTime $startsAt
+     */
+    public function setStartsAt(\DateTime $startsAt = null)
+    {
+        $this->startsAt = $startsAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEndsAt()
+    {
+        return $this->endsAt;
+    }
+
+    /**
+     * @param \DateTime $endsAt
+     */
+    public function setEndsAt(\DateTime $endsAt = null)
+    {
+        $this->endsAt = $endsAt;
     }
 }

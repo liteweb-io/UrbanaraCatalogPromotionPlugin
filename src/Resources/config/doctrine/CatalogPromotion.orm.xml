@@ -27,6 +27,8 @@
             <field name="name" type="string" />
             <field name="description" type="string" nullable="true" />
             <field name="exclusive" type="boolean" nullable="true" />
+            <field name="startsAt" column="starts_at" type="datetime" nullable="true"/>
+            <field name="endsAt" column="ends_at" type="datetime" nullable="true"/>
 
             <field name="createdAt" column="created_at" type="datetime">
                 <gedmo:timestampable on="create"/>

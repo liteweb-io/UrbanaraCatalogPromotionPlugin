@@ -27,7 +27,7 @@ Feature: Adding a new catalog promotion
         Then I should be notified that it has been successfully created
         And the "Weekend sale!" catalog promotion should be exclusive
 
-    @todo
+    @ui
     Scenario: Adding a new catalog promotion with start and end dates
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
@@ -35,8 +35,7 @@ Feature: Adding a new catalog promotion
         And I make it available from "21.04.2017" to "21.05.2017"
         And I add it
         Then I should be notified that it has been successfully created
-        And the "Weekend sale!" catalog promotion should appear in the registry
-        And this catalog promotion should be available from "21.04.2017" to "21.05.2017"
+        And the "Weekend sale!" catalog promotion should be available from "21.04.2017" to "21.05.2017"
 
     @todo
     Scenario: Adding a new catalog promotion with fixed discount

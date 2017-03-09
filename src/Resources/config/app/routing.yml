@@ -3,7 +3,7 @@ app_catalog_promotion:
         alias: acme_sylius_catalog_promotion.catalog_promotion
         section: admin
         templates: SyliusAdminBundle:Crud
-        only: ['create', 'index']
+        except: ['show']
         grid: acme_sylius_catalog_promotion_catalog_promotion
         vars:
             all:

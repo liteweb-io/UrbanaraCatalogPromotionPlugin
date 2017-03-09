@@ -15,4 +15,26 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         $this->getDocument()->checkField('Exclusive');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setStartsAt(\DateTime $dateTime)
+    {
+        $timestamp = $dateTime->getTimestamp();
+
+        $this->getDocument()->fillField('acme_sylius_catalog_promotion_startsAt_date', date('Y-m-d', $timestamp));
+        $this->getDocument()->fillField('acme_sylius_catalog_promotion_startsAt_time', date('H:i', $timestamp));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEndsAt(\DateTime $dateTime)
+    {
+        $timestamp = $dateTime->getTimestamp();
+
+        $this->getDocument()->fillField('acme_sylius_catalog_promotion_endsAt_date', date('Y-m-d', $timestamp));
+        $this->getDocument()->fillField('acme_sylius_catalog_promotion_endsAt_time', date('H:i', $timestamp));
+    }
 }

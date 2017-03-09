@@ -17,4 +17,14 @@ interface CreatePageInterface extends BaseCreatePageInterface
     public function specifyCode($code);
 
     public function makeExclusive();
+
+    /**
+     * @param \DateTime $dateTime
+     */
+    public function setStartsAt(\DateTime $dateTime);
+
+    /**
+     * @param \DateTime $dateTime
+     */
+    public function setEndsAt(\DateTime $dateTime);
 }

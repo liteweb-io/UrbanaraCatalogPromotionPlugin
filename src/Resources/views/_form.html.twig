@@ -7,7 +7,16 @@
                 {{ form_row(form.name) }}
             </div>
             {{ form_row(form.description) }}
-            {{ form_row(form.exclusive) }}
         </div>
     </div>
+    <div class="column">
+        <h4 class="ui dividing header">{{ 'sylius.ui.start_date'|trans }} & {{ 'sylius.ui.end_date'|trans }}</h4>
+        <div class="ui segment">
+            <div class="two fields">
+                {{ form_row(form.startsAt) }}
+                {{ form_row(form.endsAt) }}
+            </div>
+        </div>
+    </div>
+    {{ form_row(form.exclusive) }}
 </div>

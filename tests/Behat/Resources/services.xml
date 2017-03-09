@@ -4,11 +4,13 @@
     <parameters>
         <parameter key="sylius.behat.page.admin.catalog_promotion.create.class">Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\CreatePage</parameter>
         <parameter key="sylius.behat.page.admin.catalog_promotion.index.class">Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\IndexPage</parameter>
+        <parameter key="sylius.behat.page.admin.catalog_promotion.update.class">Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\UpdatePage</parameter>
     </parameters>
     <services>
         <service id="acme_sylius_catalog_promotion.behat.context.ui.admin.managing" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin\ManagingContext">
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.create" />
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.index" />
+            <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.update" />
             <tag name="fob.context_service" />
         </service>
 
@@ -22,6 +24,9 @@
         </service>
         <service id="acme_sylius_catalog_promotion.behat.page.admin.index" class="%sylius.behat.page.admin.catalog_promotion.index.class%" parent="sylius.behat.page.admin.crud.index" public="false">
             <argument type="string">acme_sylius_catalog_promotion_admin_catalog_promotion_index</argument>
+        </service>
+        <service id="acme_sylius_catalog_promotion.behat.page.admin.update" class="%sylius.behat.page.admin.catalog_promotion.update.class%" parent="sylius.behat.page.admin.crud.update" public="false">
+            <argument type="string">acme_sylius_catalog_promotion_admin_catalog_promotion_update</argument>
         </service>
     </services>
 </container>
