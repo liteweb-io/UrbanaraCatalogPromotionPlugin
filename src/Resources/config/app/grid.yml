@@ -17,6 +17,11 @@ sylius_grid:
                     sortable: ~
                     options:
                         template: "@SyliusUi/Grid/Field/nameAndDescription.html.twig"
+                exclusive:
+                    type: twig
+                    label: acme_sylius_catalog_promotion.ui.exclusive
+                    options:
+                        template: "@SyliusUi/Grid/Field/yesNo.html.twig"
             filters:
                 search:
                     type: string

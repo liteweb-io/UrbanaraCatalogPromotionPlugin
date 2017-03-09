@@ -3,9 +3,9 @@
 namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
-use Sylius\Behat\Behaviour\NamesIt;
-use Sylius\Behat\Page\Admin\Crud\IndexPageInterface;
+use Sylius\Component\Core\Model\PromotionInterface;
 use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\CreatePageInterface;
+use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\IndexPageInterface;
 use Webmozart\Assert\Assert;
 
 final class ManagingContext implements Context
@@ -63,6 +63,14 @@ final class ManagingContext implements Context
     }
 
     /**
+     * @When I make it exclusive
+     */
+    public function iMakeItExclusive()
+    {
+        $this->createPage->makeExclusive();
+    }
+
+    /**
      * @Then the :catalogPromotionName catalog promotion should appear in the registry
      */
     public function theCatalogPromotionShouldAppearInTheRegistry($catalogPromotionName)
@@ -70,5 +78,13 @@ final class ManagingContext implements Context
         $this->indexPage->open();
 
         Assert::true($this->indexPage->isSingleResourceOnPage(['name' => $catalogPromotionName]));
+    }
+
+    /**
+     * @Then the :catalogPromotion catalog promotion should be exclusive
+     */
+    public function thisCatalogPromotionShouldBeExclusive($catalogPromotion)
+    {
+        Assert::true($this->indexPage->isExclusive($catalogPromotion->getCode()));
     }
 }

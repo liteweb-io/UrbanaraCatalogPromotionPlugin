@@ -41,4 +41,14 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
      * @param string $description
      */
     public function setDescription($description);
+
+    /**
+     * @return bool
+     */
+    public function getExclusive();
+
+    /**
+     * @param bool $exclusive
+     */
+    public function setExclusive($exclusive);
 }

@@ -15,4 +15,6 @@ interface CreatePageInterface extends BaseCreatePageInterface
      * @param string $code
      */
     public function specifyCode($code);
+
+    public function makeExclusive();
 }

@@ -9,7 +9,9 @@ default:
                 - sylius.behat.context.setup.channel
                 - sylius.behat.context.setup.admin_security
 
-                - sylius_catalog_promotion.context.ui.admin.managing
+                - acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion
+
+                - acme_sylius_catalog_promotion.behat.context.ui.admin.managing
                 - sylius.behat.context.ui.admin.notification
 
             filters:

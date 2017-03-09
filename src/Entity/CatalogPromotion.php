@@ -30,6 +30,11 @@ class CatalogPromotion implements CatalogPromotionInterface
     protected $description;
 
     /**
+     * @var bool
+     */
+    protected $exclusive = false;
+
+    /**
      * {@inheritdoc}
      */
     public function getId()
@@ -91,5 +96,21 @@ class CatalogPromotion implements CatalogPromotionInterface
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getExclusive()
+    {
+        return $this->exclusive;
+    }
+
+    /**
+     * @param bool $exclusive
+     */
+    public function setExclusive($exclusive)
+    {
+        $this->exclusive = $exclusive;
     }
 }

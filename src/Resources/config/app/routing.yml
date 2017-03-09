@@ -7,7 +7,7 @@ app_catalog_promotion:
         grid: acme_sylius_catalog_promotion_catalog_promotion
         vars:
             all:
-                subheader: sylius.ui.manage_catalog_discounts_and_promotional_campaigns
+                subheader: acme_sylius_catalog_promotion.ui.manage_catalog_discounts_and_promotional_campaigns
                 templates:
                     form: "@SyliusCatalogPromotion/_form.html.twig"
             index:

@@ -16,8 +16,8 @@ final class MenuBuilder
 
         $marketingMenu
             ->addChild('catalog_promotion', ['route' => 'acme_sylius_catalog_promotion_admin_catalog_promotion_index'])
-            ->setLabel('acme_sylius_catalog_promotion.menu.admin.catalog_promotion')
-            ->setLabelAttribute('icon', 'in_cart')
+            ->setLabel('acme_sylius_catalog_promotion.menu.admin.catalog_promotions')
+            ->setLabelAttribute('icon', 'in cart')
         ;
     }
 

@@ -17,7 +17,7 @@ Feature: Adding a new catalog promotion
         Then I should be notified that it has been successfully created
         And the "Weekend sale!" catalog promotion should appear in the registry
 
-    @todo
+    @ui
     Scenario: Adding a new exclusive catalog promotion
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
@@ -25,8 +25,7 @@ Feature: Adding a new catalog promotion
         And I make it exclusive
         And I add it
         Then I should be notified that it has been successfully created
-        And the "Weekend sale!" catalog promotion should appear in the registry
-        And this catalog promotion should be exclusive
+        And the "Weekend sale!" catalog promotion should be exclusive
 
     @todo
     Scenario: Adding a new catalog promotion with start and end dates

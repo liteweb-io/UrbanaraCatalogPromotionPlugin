@@ -10,4 +10,9 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
 {
     use NamesIt;
     use SpecifiesItsCode;
+
+    public function makeExclusive()
+    {
+        $this->getDocument()->checkField('Exclusive');
+    }
 }

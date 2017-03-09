@@ -26,6 +26,7 @@
             <field name="code" type="string" unique="true" />
             <field name="name" type="string" />
             <field name="description" type="string" nullable="true" />
+            <field name="exclusive" type="boolean" nullable="true" />
 
             <field name="createdAt" column="created_at" type="datetime">
                 <gedmo:timestampable on="create"/>
