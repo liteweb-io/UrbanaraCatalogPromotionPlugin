@@ -32,8 +32,6 @@ before_script:
     - (cd tests/Application && bin/console server:run 127.0.0.1:8080 --env=test --quiet > /dev/null 2>&1 &)
 
 script:
-# TODO: Should be reverted when will be possible to bound version constraint
-# Avoid `require.sylius/sylius : unbound version constraints (dev-master) should be avoided` fails
-#    - composer validate --strict
+    - composer validate --strict
 
     - vendor/bin/behat --strict -vvv --no-interaction || vendor/bin/behat --strict -vvv --no-interaction --rerun
