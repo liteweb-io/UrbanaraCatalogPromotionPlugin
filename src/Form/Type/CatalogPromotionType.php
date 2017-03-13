@@ -19,23 +19,23 @@ final class CatalogPromotionType extends AbstractResourceType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'sylius.form.promotion.name',
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.name',
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'sylius.form.promotion.description',
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.description',
                 'required' => false,
             ])
             ->add('exclusive', CheckboxType::class, [
-                'label' => 'sylius.form.promotion.exclusive',
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.exclusive',
             ])
             ->add('startsAt', DateTimeType::class, [
-                'label' => 'sylius.form.promotion.starts_at',
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.starts_at',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
                 'required' => false,
             ])
             ->add('endsAt', DateTimeType::class, [
-                'label' => 'sylius.form.promotion.ends_at',
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.ends_at',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
                 'required' => false,

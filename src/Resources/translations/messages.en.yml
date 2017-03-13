@@ -3,6 +3,15 @@ acme_sylius_catalog_promotion:
         admin:
             catalog_promotions: "Catalog promotions"
 
+    form:
+        catalog_promotion:
+            name: Name
+            code: Code
+            description: Description
+            starts_at: Starts at
+            ends_at: Ends at
+            exclusive: Exclusive
+
     ui:
         catalog_promotions: "Catalog promotions"
         exclusive: "Exclusive"
