@@ -19,4 +19,9 @@ interface UpdatePageInterface extends BaseUpdatePageInterface
      * @return bool
      */
     public function hasEndsAt(\DateTime $dateTime);
+
+    /**
+     * @return string
+     */
+    public function getAmount();
 }

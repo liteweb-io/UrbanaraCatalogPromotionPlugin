@@ -5,15 +5,20 @@ acme_sylius_catalog_promotion:
 
     form:
         catalog_promotion:
-            name: Name
-            code: Code
-            description: Description
-            starts_at: Starts at
-            ends_at: Ends at
-            exclusive: Exclusive
+            amount: "Amount"
+            code: "Code"
+            description: "Description"
+            ends_at: "Ends at"
+            exclusive: "Exclusive"
+            name: "Name"
+            starts_at: "Starts at"
+            type: "Type"
+            percentage: "Percentage"
 
     ui:
+        action_configuration: "Action configuration"
         catalog_promotions: "Catalog promotions"
+        edit_catalog_promotion: "Edit catalog promotions"
         exclusive: "Exclusive"
         manage_catalog_discounts_and_promotional_campaigns: "Manage catalog discounts and promotional campaigns"
         new_catalog_promotion: "New catalog promotions"

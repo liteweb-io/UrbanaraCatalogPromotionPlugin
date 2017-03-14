@@ -48,15 +48,15 @@ Feature: Adding a new catalog promotion
         And the "Weekend sale!" catalog promotion should appear in the registry
         And this catalog promotion should give "$10" discount for "United States" channel
 
-    @todo
+    @ui
     Scenario: Adding a new catalog promotion with percentage discount
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
         And I name it "Weekend sale!"
-        And I add the percentage discount with amount of 10%
+        And I specify the percentage discount with amount of "10%"
         And I add it
         Then I should be notified that it has been successfully created
-        And this catalog promotion should give "10%" discount
+        And the "Weekend sale!" catalog promotion should give "10%" discount
 
     @todo
     Scenario: Adding a new catalog promotion for a channel

@@ -11,10 +11,31 @@
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addCatalogPromotion" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.form.type.promotion" class="Acme\SyliusCatalogPromotionBundle\Form\Type\CatalogPromotionType">
+        <service id="acme_sylius_catalog_promotion.catalog_promotion_action.percentage_discount" class="Acme\SyliusCatalogPromotionBundle\Action\PercentageActionCommand">
+            <tag name="acme_sylius_catalog_promotion.catalog_promotion_action" type="percentage_discount" label="Percentage discount" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" class="Sylius\Component\Registry\ServiceRegistry">
+            <argument>Acme\SyliusCatalogPromotionBundle\Action\CatalogDiscountActionCommandInterface</argument>
+            <argument>catalog promotion action</argument>
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.form.type.catalog_promotion" class="Acme\SyliusCatalogPromotionBundle\Form\Type\CatalogPromotionType">
             <argument>%acme_sylius_catalog_promotion.model.catalog_promotion.class%</argument>
             <argument>%acme_sylius_catalog_promotion.form.type.catalog_promotion.validation_groups%</argument>
+            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
+            <argument type="service" id="acme_sylius_catalog_promotion.form.event_subscriber.build_catalog_promotion_action" />
             <tag name="form.type" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.form.type.catalog_promotion_choice_type" class="Acme\SyliusCatalogPromotionBundle\Form\Type\CatalogActionChoiceType">
+            <argument>%acme_sylius_catalog_promotion.catalog_promotion_actions%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.form.event_subscriber.build_catalog_promotion_action" class="Acme\SyliusCatalogPromotionBundle\Form\EventSubscriber\CatalogPromotionActionConfigurationSubscriber">
+            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
+            <argument type="service" id="form.factory" />
         </service>
     </services>
 </container>

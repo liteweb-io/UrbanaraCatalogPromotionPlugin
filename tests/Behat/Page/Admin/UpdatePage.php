@@ -31,9 +31,18 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     /**
      * {@inheritdoc}
      */
+    public function getAmount()
+    {
+        return $this->getElement('amount')->getValue();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getDefinedElements()
     {
         return [
+            'amount' => '#acme_sylius_catalog_promotion_configuration_percentage',
             'ends_at_date' => '#acme_sylius_catalog_promotion_endsAt_date',
             'ends_at_time' => '#acme_sylius_catalog_promotion_endsAt_time',
             'starts_at_date' => '#acme_sylius_catalog_promotion_startsAt_date',

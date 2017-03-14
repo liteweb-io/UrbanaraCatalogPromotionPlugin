@@ -37,4 +37,20 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
         $this->getDocument()->fillField('acme_sylius_catalog_promotion_endsAt_date', date('Y-m-d', $timestamp));
         $this->getDocument()->fillField('acme_sylius_catalog_promotion_endsAt_time', date('H:i', $timestamp));
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function chooseActionType($type)
+    {
+        $this->getDocument()->selectFieldOption('acme_sylius_catalog_promotion_type', $type);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fillActionAmount($field, $amount)
+    {
+        $this->getDocument()->fillField($field, $amount);
+    }
 }

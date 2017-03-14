@@ -57,4 +57,23 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
      * @param \DateTime $endsAt
      */
     public function setEndsAt(\DateTime $endsAt = null);
+    /**
+     * @return string
+     */
+    public function getType();
+
+    /**
+     * @param string $type
+     */
+    public function setType($type);
+
+    /**
+     * @return array
+     */
+    public function getConfiguration();
+
+    /**
+     * @param array $configuration
+     */
+    public function setConfiguration(array $configuration);
 }

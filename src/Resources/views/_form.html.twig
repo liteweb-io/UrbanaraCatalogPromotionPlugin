@@ -8,15 +8,33 @@
             </div>
             {{ form_row(form.description) }}
         </div>
+        {{ form_row(form.exclusive) }}
     </div>
     <div class="column">
-        <h4 class="ui dividing header">{{ 'sylius.ui.start_date'|trans }} & {{ 'sylius.ui.end_date'|trans }}</h4>
         <div class="ui segment">
-            <div class="two fields">
-                {{ form_row(form.startsAt) }}
-                {{ form_row(form.endsAt) }}
+            <h4 class="ui dividing header">{{ 'sylius.ui.start_date'|trans }} & {{ 'sylius.ui.end_date'|trans }}</h4>
+            <div class="ui segment">
+                <div class="two fields">
+                    {{ form_row(form.startsAt) }}
+                    {{ form_row(form.endsAt) }}
+                </div>
+            </div>
+            <h4 class="ui dividing header">{{ 'acme_sylius_catalog_promotion.ui.action_configuration'|trans }}</h4>
+            <div class="ui segment">
+                {{ form_row(form.type) }}
+                {% for name, configurationPrototype in form.vars.prototypes %}
+                    <div id="{{ form.type.vars.id }}_{{ name }}" data-container=".configuration"
+                         data-prototype="{{ form_widget(configurationPrototype)|e }}">
+                    </div>
+                {% endfor %}
+                <div class="ui segment configuration">
+                    {% if form.configuration is defined %}
+                        {% for field in form.configuration %}
+                            {{ form_row(field) }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-    {{ form_row(form.exclusive) }}
 </div>

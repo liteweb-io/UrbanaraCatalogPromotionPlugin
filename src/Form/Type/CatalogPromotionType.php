@@ -2,16 +2,49 @@
 
 namespace Acme\SyliusCatalogPromotionBundle\Form\Type;
 
+use Acme\SyliusCatalogPromotionBundle\Action\CatalogDiscountActionCommandInterface;
 use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Sylius\Component\Registry\ServiceRegistryInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 
 final class CatalogPromotionType extends AbstractResourceType
 {
+    /**
+     * @var EventSubscriberInterface
+     */
+    private $catalogPromotionActionConfigurationSubscriber;
+
+    /**
+     * @var ServiceRegistryInterface
+     */
+    private $registry;
+
+    /**
+     * @param string $dataClass FQCN
+     * @param string[] $validationGroups
+     * @param ServiceRegistryInterface $registry
+     * @param EventSubscriberInterface $catalogPromotionActionConfigurationSubscriber
+     */
+    public function __construct(
+        $dataClass,
+        array $validationGroups = [],
+        ServiceRegistryInterface $registry,
+        EventSubscriberInterface $catalogPromotionActionConfigurationSubscriber
+    ) {
+        parent::__construct($dataClass, $validationGroups);
+
+        $this->catalogPromotionActionConfigurationSubscriber = $catalogPromotionActionConfigurationSubscriber;
+        $this->registry = $registry;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -40,8 +73,34 @@ final class CatalogPromotionType extends AbstractResourceType
                 'time_widget' => 'single_text',
                 'required' => false,
             ])
+            ->add('type', CatalogActionChoiceType::class, [
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.type',
+            ])
+            ->addEventSubscriber($this->catalogPromotionActionConfigurationSubscriber)
             ->addEventSubscriber(new AddCodeFormSubscriber())
         ;
+
+        $prototypes = [];
+
+        /** @var CatalogDiscountActionCommandInterface $command */
+        foreach ($this->registry->all() as $type => $command) {
+            $prototypes[$type] = $builder->create('prototypeConfiguration', $command->getConfigurationFormType())->getForm();
+        }
+
+        $builder->setAttribute('prototypes', $prototypes);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['prototypes'] = [];
+
+        foreach ($form->getConfig()->getAttribute('prototypes') as $type => $prototype) {
+            /* @var FormInterface $prototype */
+            $view->vars['prototypes'][$type] = $prototype->createView($view);
+        }
     }
 
     /**

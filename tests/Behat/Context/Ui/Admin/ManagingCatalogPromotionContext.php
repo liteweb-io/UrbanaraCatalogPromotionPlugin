@@ -9,7 +9,7 @@ use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\IndexPageInterface;
 use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\UpdatePageInterface;
 use Webmozart\Assert\Assert;
 
-final class ManagingContext implements Context
+final class ManagingCatalogPromotionContext implements Context
 {
     /**
      * @var CreatePageInterface
@@ -115,7 +115,25 @@ final class ManagingContext implements Context
         $this->updatePage->open(['id' => $catalogPromotion->getId()]);
 
         Assert::true($this->updatePage->hasStartsAt($startsDate));
-
         Assert::true($this->updatePage->hasEndsAt($endsDate));
+    }
+
+    /**
+     * @When /^I specify the percentage discount with amount of "([^"]+%)"$/
+     */
+    public function iSpecifyThePercentageDiscountWithAmountOf($amount)
+    {
+        $this->createPage->chooseActionType('Percentage discount');
+        $this->createPage->fillActionAmount('Percentage', $amount);
+    }
+
+    /**
+     * @Then /^the ("[^"]+" catalog promotion) should give "([^"]+)%" discount$/
+     */
+    public function theCatalogPromotionShouldGivePercentageDiscount(CatalogPromotionInterface $catalogPromotion, $amount)
+    {
+        $this->updatePage->open(['id' => $catalogPromotion->getId()]);
+
+        Assert::eq($this->updatePage->getAmount(), $amount);
     }
 }

@@ -27,4 +27,15 @@ interface CreatePageInterface extends BaseCreatePageInterface
      * @param \DateTime $dateTime
      */
     public function setEndsAt(\DateTime $dateTime);
+
+    /**
+     * @param string $type
+     */
+    public function chooseActionType($type);
+
+    /**
+     * @param string $field
+     * @param float $amount
+     */
+    public function fillActionAmount($field, $amount);
 }

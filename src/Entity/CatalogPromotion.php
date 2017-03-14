@@ -2,7 +2,6 @@
 
 namespace Acme\SyliusCatalogPromotionBundle\Entity;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
 class CatalogPromotion implements CatalogPromotionInterface
@@ -45,6 +44,16 @@ class CatalogPromotion implements CatalogPromotionInterface
     protected $endsAt;
 
     /**
+     * @var string
+     */
+    protected $type;
+
+    /**
+     * @var array
+     */
+    protected $configuration = [];
+
+    /**
      * {@inheritdoc}
      */
     public function getId()
@@ -85,7 +94,7 @@ class CatalogPromotion implements CatalogPromotionInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getDescription()
     {
@@ -93,7 +102,7 @@ class CatalogPromotion implements CatalogPromotionInterface
     }
 
     /**
-     * @param mixed $description
+     * {@inheritdoc}
      */
     public function setDescription($description)
     {
@@ -101,7 +110,7 @@ class CatalogPromotion implements CatalogPromotionInterface
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function getExclusive()
     {
@@ -109,7 +118,7 @@ class CatalogPromotion implements CatalogPromotionInterface
     }
 
     /**
-     * @param bool $exclusive
+     * {@inheritdoc}
      */
     public function setExclusive($exclusive)
     {
@@ -117,7 +126,7 @@ class CatalogPromotion implements CatalogPromotionInterface
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getStartsAt()
     {
@@ -125,7 +134,7 @@ class CatalogPromotion implements CatalogPromotionInterface
     }
 
     /**
-     * @param \DateTime $startsAt
+     * {@inheritdoc}
      */
     public function setStartsAt(\DateTime $startsAt = null)
     {
@@ -133,7 +142,7 @@ class CatalogPromotion implements CatalogPromotionInterface
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getEndsAt()
     {
@@ -141,10 +150,42 @@ class CatalogPromotion implements CatalogPromotionInterface
     }
 
     /**
-     * @param \DateTime $endsAt
+     * {@inheritdoc}
      */
     public function setEndsAt(\DateTime $endsAt = null)
     {
         $this->endsAt = $endsAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfiguration()
+    {
+        return $this->configuration;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setConfiguration(array $configuration)
+    {
+        $this->configuration = $configuration;
     }
 }

@@ -24,6 +24,7 @@ final class CatalogPromotionContext implements Context
 
     /**
      * @Transform :catalogPromotion
+     * @Transform /^"([^"]+)" catalog promotion$/
      */
     public function getPromotionByName($catalogPromotionName)
     {

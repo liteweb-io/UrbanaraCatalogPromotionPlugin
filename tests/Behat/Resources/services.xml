@@ -7,7 +7,7 @@
         <parameter key="sylius.behat.page.admin.catalog_promotion.update.class">Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\UpdatePage</parameter>
     </parameters>
     <services>
-        <service id="acme_sylius_catalog_promotion.behat.context.ui.admin.managing" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin\ManagingContext">
+        <service id="acme_sylius_catalog_promotion.behat.context.ui.admin.managing" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin\ManagingCatalogPromotionContext">
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.create" />
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.index" />
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.update" />
