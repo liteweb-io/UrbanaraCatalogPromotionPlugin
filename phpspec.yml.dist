@@ -1,0 +1,4 @@
+suites:
+    default:
+        namespace: Acme\SyliusCatalogPromotionBundle
+        psr4_prefix: Acme\SyliusCatalogPromotionBundle
