@@ -80,6 +80,33 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
+     * @When I make it available from :startsDate to :endsDate
+     */
+    public function iMakeItAvailableFromTo(\DateTime $startsDate, \DateTime $endsDate)
+    {
+        $this->createPage->setStartsAt($startsDate);
+        $this->createPage->setEndsAt($endsDate);
+    }
+
+    /**
+     * @When /^I specify the percentage discount with amount of "([^"]+%)"$/
+     */
+    public function iSpecifyThePercentageDiscountWithAmountOf($amount)
+    {
+        $this->createPage->chooseActionType('Percentage discount');
+        $this->createPage->fillActionAmount('Percentage', $amount);
+    }
+
+    /**
+     * @When /^I add the fixed value discount with amount of "(?:€|£|\$)([^"]+)" for "([^"]+)" channel$/
+     */
+    public function iAddTheFixedValueDiscountWithAmountOfForChannel($amount, $channelName)
+    {
+        $this->createPage->chooseActionType('Fixed discount');
+        $this->createPage->fillActionAmount($channelName, $amount);
+    }
+
+    /**
      * @Then the :catalogPromotionName catalog promotion should appear in the registry
      */
     public function theCatalogPromotionShouldAppearInTheRegistry($catalogPromotionName)
@@ -100,15 +127,6 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
-     * @When I make it available from :startsDate to :endsDate
-     */
-    public function iMakeItAvailableFromTo(\DateTime $startsDate, \DateTime $endsDate)
-    {
-        $this->createPage->setStartsAt($startsDate);
-        $this->createPage->setEndsAt($endsDate);
-    }
-
-    /**
      * @Then the :catalogPromotion catalog promotion should be available from :startsDate to :endsDate
      */
     public function thePromotionShouldBeAvailableFromTo(CatalogPromotionInterface $catalogPromotion, \DateTime $startsDate, \DateTime $endsDate)
@@ -117,15 +135,6 @@ final class ManagingCatalogPromotionContext implements Context
 
         Assert::true($this->updatePage->hasStartsAt($startsDate));
         Assert::true($this->updatePage->hasEndsAt($endsDate));
-    }
-
-    /**
-     * @When /^I specify the percentage discount with amount of "([^"]+%)"$/
-     */
-    public function iSpecifyThePercentageDiscountWithAmountOf($amount)
-    {
-        $this->createPage->chooseActionType('Percentage discount');
-        $this->createPage->fillActionAmount('Percentage', $amount);
     }
 
     /**
@@ -139,17 +148,7 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
-     * @When /^I add the fixed value discount with amount of "(?:€|£|\$)([^"]+)" for "([^"]+)" channel$/
-     */
-    public function iAddTheFixedValueDiscountWithAmountOfForChannel($amount, $channelName)
-    {
-        $this->createPage->chooseActionType('Fixed discount');
-        $this->createPage->fillActionAmount($channelName, $amount);
-    }
-
-    /**
      * @Then /^the ("[^"]+" catalog promotion) should give "(?:€|£|\$)([^"]+)" discount for ("[^"]+" channel)$/
-     * @Then this catalog promotion should give :arg1 discount
      */
     public function thisCatalogPromotionShouldGiveDiscountForChannel(CatalogPromotionInterface $catalogPromotion, $amount, ChannelInterface $channel)
     {
