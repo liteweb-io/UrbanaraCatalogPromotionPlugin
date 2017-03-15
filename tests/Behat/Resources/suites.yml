@@ -6,6 +6,7 @@ default:
             contexts_services:
                 - sylius.behat.context.hook.doctrine_orm
 
+                - acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion
                 - sylius.behat.context.setup.channel
                 - sylius.behat.context.setup.admin_security
 

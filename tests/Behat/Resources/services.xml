@@ -19,6 +19,13 @@
             <tag name="fob.context_service" />
         </service>
 
+        <service id="acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Setup\CatalogPromotionContext">
+            <argument type="service" id="sylius.behat.shared_storage" />
+            <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.factory.catalog_promotion" />
+            <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.repository.catalog_promotion" />
+            <tag name="fob.context_service" />
+        </service>
+
         <service id="acme_sylius_catalog_promotion.behat.page.admin.create" class="%sylius.behat.page.admin.catalog_promotion.create.class%" parent="sylius.behat.page.admin.crud.create" public="false">
             <argument type="string">acme_sylius_catalog_promotion_admin_catalog_promotion_create</argument>
         </service>

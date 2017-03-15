@@ -2,6 +2,7 @@
 
 namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin;
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -118,11 +119,19 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
+     * @When I browse catalog promotions
+     */
+    public function iBrowseCatalogPromotions()
+    {
+        $this->indexPage->open();
+    }
+
+    /**
      * @Then the :catalogPromotionName catalog promotion should appear in the registry
      */
     public function theCatalogPromotionShouldAppearInTheRegistry($catalogPromotionName)
     {
-        $this->openIndexPage();
+        $this->iBrowseCatalogPromotions();
 
         Assert::true($this->indexPage->isSingleResourceOnPage(['name' => $catalogPromotionName]));
     }
@@ -132,7 +141,7 @@ final class ManagingCatalogPromotionContext implements Context
      */
     public function thisCatalogPromotionShouldBeExclusive(CatalogPromotionInterface $catalogPromotion)
     {
-        $this->openIndexPage();
+        $this->iBrowseCatalogPromotions();
 
         Assert::true($this->indexPage->isExclusive($catalogPromotion->getCode()));
     }
@@ -185,15 +194,30 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
+     * @Then there should be a single catalog promotion
+     */
+    public function thereShouldBeASingleCatalogPromotion()
+    {
+        Assert::same(
+            1,
+            $this->indexPage->countItems(),
+            'I should see %s promotions but i see only %2$s'
+        );
+    }
+
+    /**
+     * @Then the :catalogPromotionName catalog promotion should exist in the registry
+     */
+    public function theCatalogPromotionShouldExistInTheRegistry($catalogPromotionName)
+    {
+        Assert::true($this->indexPage->isSingleResourceOnPage(['name' => $catalogPromotionName]));
+    }
+
+    /**
      * @param CatalogPromotionInterface $catalogPromotion
      */
     private function openEditPage(CatalogPromotionInterface $catalogPromotion)
     {
         $this->updatePage->open(['id' => $catalogPromotion->getId()]);
-    }
-
-    private function openIndexPage()
-    {
-        $this->indexPage->open();
     }
 }

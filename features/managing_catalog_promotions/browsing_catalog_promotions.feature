@@ -9,7 +9,7 @@ Feature: Browsing catalog promotions
         And there is a "Basic promotion" catalog promotion
         And I am logged in as an administrator
 
-    @todo
+    @ui
     Scenario: Browsing catalog promotions
         When I browse catalog promotions
         Then there should be a single catalog promotion
