@@ -34,4 +34,5 @@ before_script:
 script:
     - composer validate --strict
 
-    - vendor/bin/behat --strict -vvv --no-interaction || vendor/bin/behat --strict -vvv --no-interaction --rerun
+    # TODO: Temporary remove js features
+    - vendor/bin/behat --strict -vvv --no-interaction --tags ~@javascript|| vendor/bin/behat --strict -vvv --no-interaction --tags ~@javascript --rerun
