@@ -74,4 +74,14 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         $this->getDocument()->checkField($name);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefinedElements()
+    {
+        return [
+            'code' => '#acme_sylius_catalog_promotion_code',
+        ];
+    }
 }

@@ -42,15 +42,23 @@ final class CatalogPromotionContext implements Context
     }
 
     /**
-     * @Given there is a :catalogPromotionName catalog promotion
      */
-    public function thereIsACatalogPromotion($catalogPromotionName)
+    public function thereIsACatalogPromotionIdentifiedByCode($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given there is a :catalogPromotionName catalog promotion
+     * @Given there is a :catalogPromotionName catalog promotion identified by :catalogPromotionCode code
+     */
+    public function thereIsACatalogPromotion($catalogPromotionName, $catalogPromotionCode = null)
     {
         /** @var CatalogPromotionInterface $catalogPromotion */
         $catalogPromotion = $this->catalogPromotionFactory->createNew();
 
         $catalogPromotion->setName($catalogPromotionName);
-        $catalogPromotion->setCode(StringInflector::nameToCode($catalogPromotionName));
+        $catalogPromotion->setCode($catalogPromotionCode ?: StringInflector::nameToCode($catalogPromotionName));
 
         $this->catalogPromotionRepository->add($catalogPromotion);
         $this->sharedStorage->set('catalogPromotion', $catalogPromotion);

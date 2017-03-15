@@ -69,6 +69,7 @@ final class ManagingCatalogPromotionContext implements Context
 
     /**
      * @When I add it
+     * @When I try to add it
      */
     public function iAddIt()
     {
@@ -219,5 +220,23 @@ final class ManagingCatalogPromotionContext implements Context
     private function openEditPage(CatalogPromotionInterface $catalogPromotion)
     {
         $this->updatePage->open(['id' => $catalogPromotion->getId()]);
+    }
+
+    /**
+     * @Then I should be notified that a catalog promotion with this code already exists
+     */
+    public function iShouldBeNotifiedThatACatalogPromotionWithThisCodeAlreadyExists()
+    {
+        Assert::same($this->createPage->getValidationMessage('code'), 'The catalog promotion with given code already exists.');
+    }
+
+    /**
+     * @Then there should still be only one catalog promotion with code :code
+     */
+    public function thereShouldStillBeOnlyOneCatalogPromotionWithCode($code)
+    {
+        $this->iBrowseCatalogPromotions();
+
+        Assert::true($this->indexPage->isSingleResourceOnPage(['code' => $code]));
     }
 }
