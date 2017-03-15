@@ -38,4 +38,11 @@ interface CreatePageInterface extends BaseCreatePageInterface
      * @param float $amount
      */
     public function fillActionAmount($field, $amount);
+
+    /**
+     * @param string $channelName
+     * @param string $option
+     * @param string $value
+     */
+    public function fillActionForChannel($channelName, $option, $value);
 }

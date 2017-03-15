@@ -84,7 +84,7 @@ final class CatalogPromotionType extends AbstractResourceType
 
         /** @var CatalogDiscountActionCommandInterface $command */
         foreach ($this->registry->all() as $type => $command) {
-            $prototypes[$type] = $builder->create('prototypeConfiguration', $command->getConfigurationFormType())->getForm();
+            $prototypes[$type] = $builder->create('actions', $command->getConfigurationFormType())->getForm();
         }
 
         $builder->setAttribute('prototypes', $prototypes);

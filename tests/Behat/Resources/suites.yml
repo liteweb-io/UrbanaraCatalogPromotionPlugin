@@ -10,6 +10,7 @@ default:
                 - sylius.behat.context.setup.admin_security
 
                 - sylius.behat.context.transform.date_time
+                - sylius.behat.context.transform.channel
                 - acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion
 
                 - acme_sylius_catalog_promotion.behat.context.ui.admin.managing

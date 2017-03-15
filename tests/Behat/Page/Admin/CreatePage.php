@@ -53,4 +53,17 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         $this->getDocument()->fillField($field, $amount);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fillActionForChannel($channelName, $option, $value)
+    {
+        $channel = $this
+            ->getDocument()
+            ->find('css', sprintf('.configuration .field:contains("%s")', $channelName))
+        ;
+
+        $channel->fillField($option, $value);
+    }
 }

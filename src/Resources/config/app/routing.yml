@@ -12,4 +12,6 @@ app_catalog_promotion:
                     form: "@SyliusCatalogPromotion/_form.html.twig"
             index:
                 icon: in cart
+            create:
+                javascripts: "@SyliusCatalogPromotion/_javascripts.html.twig"
     type: sylius.resource

@@ -4,6 +4,7 @@ namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin;
 
 use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\CreatePageInterface;
 use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\IndexPageInterface;
 use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\UpdatePageInterface;
@@ -135,5 +136,25 @@ final class ManagingCatalogPromotionContext implements Context
         $this->updatePage->open(['id' => $catalogPromotion->getId()]);
 
         Assert::eq($this->updatePage->getAmount(), $amount);
+    }
+
+    /**
+     * @When /^I add the fixed value discount with amount of "(?:€|£|\$)([^"]+)" for "([^"]+)" channel$/
+     */
+    public function iAddTheFixedValueDiscountWithAmountOfForChannel($amount, $channelName)
+    {
+        $this->createPage->chooseActionType('Fixed discount');
+        $this->createPage->fillActionAmount($channelName, $amount);
+    }
+
+    /**
+     * @Then /^the ("[^"]+" catalog promotion) should give "(?:€|£|\$)([^"]+)" discount for ("[^"]+" channel)$/
+     * @Then this catalog promotion should give :arg1 discount
+     */
+    public function thisCatalogPromotionShouldGiveDiscountForChannel(CatalogPromotionInterface $catalogPromotion, $amount, ChannelInterface $channel)
+    {
+        $this->updatePage->open(['id' => $catalogPromotion->getId()]);
+
+        Assert::eq($this->updatePage->getValueForChannel($channel->getCode()), $amount);
     }
 }

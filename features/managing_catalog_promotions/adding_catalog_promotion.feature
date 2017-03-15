@@ -37,7 +37,7 @@ Feature: Adding a new catalog promotion
         Then I should be notified that it has been successfully created
         And the "Weekend sale!" catalog promotion should be available from "21.04.2017" to "21.05.2017"
 
-    @todo
+    @ui @javascript
     Scenario: Adding a new catalog promotion with fixed discount
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
@@ -45,10 +45,9 @@ Feature: Adding a new catalog promotion
         And I add the fixed value discount with amount of "$10" for "United States" channel
         And I add it
         Then I should be notified that it has been successfully created
-        And the "Weekend sale!" catalog promotion should appear in the registry
-        And this catalog promotion should give "$10" discount for "United States" channel
+        And the "Weekend sale!" catalog promotion should give "$10" discount for "United States" channel
 
-    @ui
+    @ui @javascript
     Scenario: Adding a new catalog promotion with percentage discount
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"

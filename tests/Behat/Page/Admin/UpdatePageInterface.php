@@ -24,4 +24,9 @@ interface UpdatePageInterface extends BaseUpdatePageInterface
      * @return string
      */
     public function getAmount();
+
+    /**
+     * @param string $channelCode
+     */
+    public function getValueForChannel($channelCode);
 }

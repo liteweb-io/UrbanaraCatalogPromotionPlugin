@@ -39,10 +39,19 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     /**
      * {@inheritdoc}
      */
+    public function getValueForChannel($channelCode)
+    {
+        return $this->getElement('channel_value', ['%channel_code%' => $channelCode])->getValue();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getDefinedElements()
     {
         return [
             'amount' => '#acme_sylius_catalog_promotion_configuration_percentage',
+            'channel_value' => '#acme_sylius_catalog_promotion_configuration_values_%channel_code%',
             'ends_at_date' => '#acme_sylius_catalog_promotion_endsAt_date',
             'ends_at_time' => '#acme_sylius_catalog_promotion_endsAt_time',
             'starts_at_date' => '#acme_sylius_catalog_promotion_startsAt_date',
