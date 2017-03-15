@@ -18,25 +18,36 @@
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
                   >
 
-    <entity name="Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotion" table="plugin_sylius_catalog_promotion">
-            <id name="id" type="integer">
-                <generator strategy="AUTO" />
-            </id>
+    <entity name="Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotion" table="acme_catalog_promotion">
+        <id name="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
 
-            <field name="code" type="string" unique="true" />
-            <field name="name" type="string" />
-            <field name="description" type="string" nullable="true" />
-            <field name="exclusive" type="boolean" nullable="true" />
-            <field name="startsAt" column="starts_at" type="datetime" nullable="true"/>
-            <field name="endsAt" column="ends_at" type="datetime" nullable="true"/>
-            <field name="type" column="type" type="string" nullable="true"/>
-            <field name="configuration" column="configuration" type="array" nullable="true"/>
+        <field name="code" type="string" unique="true" />
+        <field name="name" type="string" />
+        <field name="description" type="string" nullable="true" />
+        <field name="exclusive" type="boolean" nullable="true" />
+        <field name="startsAt" column="starts_at" type="datetime" nullable="true"/>
+        <field name="endsAt" column="ends_at" type="datetime" nullable="true"/>
+        <field name="type" column="type" type="string" nullable="true"/>
+        <field name="configuration" column="configuration" type="array" nullable="true"/>
 
-            <field name="createdAt" column="created_at" type="datetime">
-                <gedmo:timestampable on="create"/>
-            </field>
-            <field name="updatedAt" column="updated_at" type="datetime" nullable="true">
-                <gedmo:timestampable on="update"/>
-            </field>
+        <field name="createdAt" column="created_at" type="datetime">
+            <gedmo:timestampable on="create"/>
+        </field>
+        <field name="updatedAt" column="updated_at" type="datetime" nullable="true">
+            <gedmo:timestampable on="update"/>
+        </field>
+
+        <many-to-many field="channels" target-entity="Sylius\Component\Channel\Model\ChannelInterface">
+            <join-table name="acme_catalog_promotion_channels">
+                <join-columns>
+                    <join-column name="promotion_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="channel_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
     </entity>
 </doctrine-mapping>

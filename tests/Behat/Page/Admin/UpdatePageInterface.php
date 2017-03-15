@@ -29,4 +29,9 @@ interface UpdatePageInterface extends BaseUpdatePageInterface
      * @param string $channelCode
      */
     public function getValueForChannel($channelCode);
+
+    /**
+     * {@inheritdoc}
+     */
+    public function checkChannelsState($channelName);
 }

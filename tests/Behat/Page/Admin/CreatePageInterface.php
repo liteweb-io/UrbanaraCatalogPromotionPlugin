@@ -45,4 +45,9 @@ interface CreatePageInterface extends BaseCreatePageInterface
      * @param string $value
      */
     public function fillActionForChannel($channelName, $option, $value);
+
+    /**
+     * @param string $name
+     */
+    public function checkChannel($name);
 }

@@ -47,6 +47,16 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     /**
      * {@inheritdoc}
      */
+    public function checkChannelsState($channelName)
+    {
+        $field = $this->getDocument()->findField($channelName);
+
+        return (bool) $field->getValue();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getDefinedElements()
     {
         return [

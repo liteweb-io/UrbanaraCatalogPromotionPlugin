@@ -2,6 +2,9 @@
 
 namespace Acme\SyliusCatalogPromotionBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
 class CatalogPromotion implements CatalogPromotionInterface
@@ -52,6 +55,16 @@ class CatalogPromotion implements CatalogPromotionInterface
      * @var array
      */
     protected $configuration = [];
+
+    /**
+     * @var ChannelInterface[]|Collection
+     */
+    protected $channels;
+
+    public function __construct()
+    {
+        $this->channels = new ArrayCollection();
+    }
 
     /**
      * {@inheritdoc}
@@ -187,5 +200,41 @@ class CatalogPromotion implements CatalogPromotionInterface
     public function setConfiguration(array $configuration)
     {
         $this->configuration = $configuration;
+    }
+
+    /**
+     * @return ChannelInterface[]|Collection
+     */
+    public function getChannels()
+    {
+        return $this->channels;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addChannel(ChannelInterface $channel)
+    {
+        if (!$this->hasChannel($channel)) {
+            $this->channels->add($channel);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeChannel(ChannelInterface $channel)
+    {
+        if ($this->hasChannel($channel)) {
+            $this->channels->removeElement($channel);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasChannel(ChannelInterface $channel)
+    {
+        return $this->channels->contains($channel);
     }
 }

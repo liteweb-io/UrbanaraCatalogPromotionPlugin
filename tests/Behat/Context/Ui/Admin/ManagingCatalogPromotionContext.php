@@ -32,8 +32,11 @@ final class ManagingCatalogPromotionContext implements Context
      * @param IndexPageInterface $indexPage
      * @param UpdatePageInterface $updatePage
      */
-    public function __construct(CreatePageInterface $createPage, IndexPageInterface $indexPage, UpdatePageInterface $updatePage)
-    {
+    public function __construct(
+        CreatePageInterface $createPage,
+        IndexPageInterface $indexPage,
+        UpdatePageInterface $updatePage
+    ) {
         $this->createPage = $createPage;
         $this->indexPage = $indexPage;
         $this->updatePage = $updatePage;
@@ -107,11 +110,19 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
+     * @When I make it applicable for the :channelName channel
+     */
+    public function iMakeItApplicableForTheChannel($channelName)
+    {
+        $this->createPage->checkChannel($channelName);
+    }
+
+    /**
      * @Then the :catalogPromotionName catalog promotion should appear in the registry
      */
     public function theCatalogPromotionShouldAppearInTheRegistry($catalogPromotionName)
     {
-        $this->indexPage->open();
+        $this->openIndexPage();
 
         Assert::true($this->indexPage->isSingleResourceOnPage(['name' => $catalogPromotionName]));
     }
@@ -121,7 +132,7 @@ final class ManagingCatalogPromotionContext implements Context
      */
     public function thisCatalogPromotionShouldBeExclusive(CatalogPromotionInterface $catalogPromotion)
     {
-        $this->indexPage->open();
+        $this->openIndexPage();
 
         Assert::true($this->indexPage->isExclusive($catalogPromotion->getCode()));
     }
@@ -129,9 +140,12 @@ final class ManagingCatalogPromotionContext implements Context
     /**
      * @Then the :catalogPromotion catalog promotion should be available from :startsDate to :endsDate
      */
-    public function thePromotionShouldBeAvailableFromTo(CatalogPromotionInterface $catalogPromotion, \DateTime $startsDate, \DateTime $endsDate)
-    {
-        $this->updatePage->open(['id' => $catalogPromotion->getId()]);
+    public function thePromotionShouldBeAvailableFromTo(
+        CatalogPromotionInterface $catalogPromotion,
+        \DateTime $startsDate,
+        \DateTime $endsDate
+    ) {
+        $this->openEditPage($catalogPromotion);
 
         Assert::true($this->updatePage->hasStartsAt($startsDate));
         Assert::true($this->updatePage->hasEndsAt($endsDate));
@@ -142,7 +156,7 @@ final class ManagingCatalogPromotionContext implements Context
      */
     public function theCatalogPromotionShouldGivePercentageDiscount(CatalogPromotionInterface $catalogPromotion, $amount)
     {
-        $this->updatePage->open(['id' => $catalogPromotion->getId()]);
+        $this->openEditPage($catalogPromotion);
 
         Assert::eq($this->updatePage->getAmount(), $amount);
     }
@@ -150,10 +164,36 @@ final class ManagingCatalogPromotionContext implements Context
     /**
      * @Then /^the ("[^"]+" catalog promotion) should give "(?:€|£|\$)([^"]+)" discount for ("[^"]+" channel)$/
      */
-    public function thisCatalogPromotionShouldGiveDiscountForChannel(CatalogPromotionInterface $catalogPromotion, $amount, ChannelInterface $channel)
-    {
-        $this->updatePage->open(['id' => $catalogPromotion->getId()]);
+    public function thisCatalogPromotionShouldGiveDiscountForChannel(
+        CatalogPromotionInterface $catalogPromotion,
+        $amount,
+        ChannelInterface $channel
+    ) {
+        $this->openEditPage($catalogPromotion);
 
         Assert::eq($this->updatePage->getValueForChannel($channel->getCode()), $amount);
+    }
+
+    /**
+     * @Then the :catalogPromotion catalog promotion should be applicable for the :channelName channel
+     */
+    public function thePromotionShouldBeApplicableForTheChannel(CatalogPromotionInterface $catalogPromotion, $channelName)
+    {
+        $this->openEditPage($catalogPromotion);
+
+        Assert::true($this->updatePage->checkChannelsState($channelName));
+    }
+
+    /**
+     * @param CatalogPromotionInterface $catalogPromotion
+     */
+    private function openEditPage(CatalogPromotionInterface $catalogPromotion)
+    {
+        $this->updatePage->open(['id' => $catalogPromotion->getId()]);
+    }
+
+    private function openIndexPage()
+    {
+        $this->indexPage->open();
     }
 }

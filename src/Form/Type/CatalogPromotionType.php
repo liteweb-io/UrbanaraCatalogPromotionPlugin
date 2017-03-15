@@ -3,6 +3,7 @@
 namespace Acme\SyliusCatalogPromotionBundle\Form\Type;
 
 use Acme\SyliusCatalogPromotionBundle\Action\CatalogDiscountActionCommandInterface;
+use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Registry\ServiceRegistryInterface;
@@ -75,6 +76,11 @@ final class CatalogPromotionType extends AbstractResourceType
             ])
             ->add('type', CatalogActionChoiceType::class, [
                 'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.type',
+            ])
+            ->add('channels', ChannelChoiceType::class, [
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.channels',
             ])
             ->addEventSubscriber($this->catalogPromotionActionConfigurationSubscriber)
             ->addEventSubscriber(new AddCodeFormSubscriber())

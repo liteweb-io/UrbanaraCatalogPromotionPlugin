@@ -2,6 +2,8 @@
 
 namespace Acme\SyliusCatalogPromotionBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
@@ -76,4 +78,9 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
      * @param array $configuration
      */
     public function setConfiguration(array $configuration);
+
+    /**
+     * @return ChannelInterface[]|Collection
+     */
+    public function getChannels();
 }

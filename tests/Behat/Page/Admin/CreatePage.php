@@ -66,4 +66,12 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
 
         $channel->fillField($option, $value);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function checkChannel($name)
+    {
+        $this->getDocument()->checkField($name);
+    }
 }

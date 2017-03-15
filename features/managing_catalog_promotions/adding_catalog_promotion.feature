@@ -57,7 +57,7 @@ Feature: Adding a new catalog promotion
         Then I should be notified that it has been successfully created
         And the "Weekend sale!" catalog promotion should give "10%" discount
 
-    @todo
+    @ui
     Scenario: Adding a new catalog promotion for a channel
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
@@ -65,4 +65,4 @@ Feature: Adding a new catalog promotion
         And I make it applicable for the "United States" channel
         And I add it
         Then I should be notified that it has been successfully created
-        And this catalog promotion should be applicable in the "United States" channel
+        And the "Weekend sale!" catalog promotion should be applicable for the "United States" channel

@@ -1,14 +1,23 @@
 <div class="ui two column stackable grid">
     <div class="column">
-        {{ form_errors(form) }}
         <div class="ui segment">
-            <div class="two fields">
-                {{ form_row(form.code) }}
-                {{ form_row(form.name) }}
+            {{ form_errors(form) }}
+            <div class="ui segment">
+                <div class="two fields">
+                    {{ form_row(form.code) }}
+                    {{ form_row(form.name) }}
+                </div>
+                {{ form_row(form.description) }}
             </div>
-            {{ form_row(form.description) }}
+            <div class="ui two column stackable grid">
+                <div class="column">
+                    {{ form_row(form.exclusive) }}
+                </div>
+                <div class="column">
+                    {{ form_row(form.channels) }}
+                </div>
+            </div>
         </div>
-        {{ form_row(form.exclusive) }}
     </div>
     <div class="column">
         <div class="ui segment">
