@@ -5,6 +5,7 @@ namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin;
 use Behat\Behat\Tester\Exception\PendingException;
 use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
+use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\CreatePageInterface;
 use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\IndexPageInterface;
@@ -13,6 +14,11 @@ use Webmozart\Assert\Assert;
 
 final class ManagingCatalogPromotionContext implements Context
 {
+    /**
+     * @var SharedStorageInterface
+     */
+    private $sharedStorage;
+
     /**
      * @var CreatePageInterface
      */
@@ -29,15 +35,18 @@ final class ManagingCatalogPromotionContext implements Context
     private $updatePage;
 
     /**
+     * @param SharedStorageInterface $sharedStorage
      * @param CreatePageInterface $createPage
      * @param IndexPageInterface $indexPage
      * @param UpdatePageInterface $updatePage
      */
     public function __construct(
+        SharedStorageInterface $sharedStorage,
         CreatePageInterface $createPage,
         IndexPageInterface $indexPage,
         UpdatePageInterface $updatePage
     ) {
+        $this->sharedStorage = $sharedStorage;
         $this->createPage = $createPage;
         $this->indexPage = $indexPage;
         $this->updatePage = $updatePage;
@@ -154,6 +163,17 @@ final class ManagingCatalogPromotionContext implements Context
     public function iBrowseCatalogPromotions()
     {
         $this->indexPage->open();
+    }
+
+    /**
+     * @When I delete the :catalogPromotion catalog promotion
+     */
+    public function iDeleteTheCatalogPromotion(CatalogPromotionInterface $catalogPromotion)
+    {
+        $this->sharedStorage->set('catalog_promotion', $catalogPromotion);
+
+        $this->indexPage->open();
+        $this->indexPage->deleteResourceOnPage(['name' => $catalogPromotion->getName()]);
     }
 
     /**
@@ -305,5 +325,23 @@ final class ManagingCatalogPromotionContext implements Context
             $this->createPage->getValidationMessage('price_for_channel'),
             'The catalog promotion cannot be lower than 0.'
         );
+    }
+
+    /**
+     * @Then /^(this catalog promotion) should no longer exist in the promotion registry$/
+     */
+    public function thisCatalogPromotionShouldNoLongerExistInThePromotionRegistry(CatalogPromotionInterface $catalogPromotion)
+    {
+        $this->iBrowseCatalogPromotions();
+
+        Assert::false($this->indexPage->isSingleResourceOnPage(['code' => $catalogPromotion->getCode()]));
+    }
+
+    /**
+     * @Then the code field should be disabled
+     */
+    public function theCodeFieldShouldBeDisabled()
+    {
+        Assert::true($this->updatePage->isCodeDisabled());
     }
 }

@@ -2,10 +2,13 @@
 
 namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin;
 
+use Sylius\Behat\Behaviour\ChecksCodeImmutability;
 use Sylius\Behat\Page\Admin\Crud\UpdatePage as BaseUpdatePage;
 
 class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
 {
+    use ChecksCodeImmutability;
+
     /**
      * {@inheritdoc}
      */
@@ -52,6 +55,14 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
         $field = $this->getDocument()->findField($channelName);
 
         return (bool) $field->getValue();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getCodeElement()
+    {
+        return $this->getElement('code');
     }
 
     /**

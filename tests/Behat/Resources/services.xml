@@ -8,6 +8,7 @@
     </parameters>
     <services>
         <service id="acme_sylius_catalog_promotion.behat.context.ui.admin.managing" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin\ManagingCatalogPromotionContext">
+            <argument type="service" id="sylius.behat.shared_storage" />
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.create" />
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.index" />
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.update" />

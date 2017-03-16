@@ -34,4 +34,9 @@ interface UpdatePageInterface extends BaseUpdatePageInterface
      * {@inheritdoc}
      */
     public function checkChannelsState($channelName);
+
+    /**
+     * @return bool
+     */
+    public function isCodeDisabled();
 }

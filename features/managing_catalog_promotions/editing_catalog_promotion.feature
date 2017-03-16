@@ -9,30 +9,31 @@ Feature: Editing a catalog promotion
         And there is a "Christmas sale" catalog promotion
         And I am logged in as an administrator
 
-    @todo
+    @ui
     Scenario: Seeing disabled code field when editing a catalog promotion
-        When I want to modify the "Christmas sale" catalog promotion
+        When I modify this catalog promotion
         Then the code field should be disabled
 
-    @todo
+    @ui
     Scenario: Editing a catalog promotion's exclusiveness
-        When I modifythe "Christmas sale" catalog promotion
+        When I modify this catalog promotion
         And I make it exclusive
         And I save my changes
         Then I should be notified that it has been successfully edited
         And the "Christmas sale" catalog promotion should be exclusive
 
-    @todo
+    @ui
     Scenario: Editing a catalog promotion's channels
-        When I modifythe "Christmas sale" catalog promotion
+        When I modify this catalog promotion
         And I make it applicable for the "United States" channel
+        And I add the fixed value discount with amount of "$10" for "United States" channel
         And I save my changes
         Then I should be notified that it has been successfully edited
-        And the "Christmas sale" catalog promotion should be applicable in the "United States" channel
+        And the "Christmas sale" catalog promotion should be applicable for the "United States" channel
 
-    @todo
+    @ui
     Scenario: Changing the promotion start and end dates
-        When I modifythe "Christmas sale" catalog promotion
+        When I modify this catalog promotion
         And I make it available from "12.12.2017" to "24.12.2017"
         And I save my changes
         Then I should be notified that it has been successfully edited

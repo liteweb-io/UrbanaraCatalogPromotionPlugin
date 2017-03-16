@@ -9,7 +9,7 @@ Feature: Deleting a catalog promotion
         And there is a "Christmas sale" catalog promotion
         And I am logged in as an administrator
 
-    @todo
+    @ui
     Scenario: Deleted promotion should disappear from the registry
         When I delete the "Christmas sale" catalog promotion
         Then I should be notified that it has been successfully deleted
