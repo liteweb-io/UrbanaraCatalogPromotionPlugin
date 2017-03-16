@@ -8,7 +8,7 @@ use Acme\SyliusCatalogPromotionBundle\Form\Type\Action\FixedCatalogDiscountType;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class FixedCatalogDiscountCommandSpec extends ObjectBehavior
+final class FixedCatalogDiscountCommandSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {

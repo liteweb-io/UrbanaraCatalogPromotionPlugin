@@ -8,7 +8,7 @@ use Acme\SyliusCatalogPromotionBundle\Form\Type\Action\PercentageCatalogDiscount
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class PercentageCatalogDiscountCommandSpec extends ObjectBehavior
+final class PercentageCatalogDiscountCommandSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
