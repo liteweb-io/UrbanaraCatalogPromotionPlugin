@@ -61,6 +61,6 @@ final class CatalogPromotionContext implements Context
         $catalogPromotion->setCode($catalogPromotionCode ?: StringInflector::nameToCode($catalogPromotionName));
 
         $this->catalogPromotionRepository->add($catalogPromotion);
-        $this->sharedStorage->set('catalogPromotion', $catalogPromotion);
+        $this->sharedStorage->set('catalog_promotion', $catalogPromotion);
     }
 }

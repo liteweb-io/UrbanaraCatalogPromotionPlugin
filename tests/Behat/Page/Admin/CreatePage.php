@@ -2,6 +2,7 @@
 
 namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin;
 
+use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Behaviour\NamesIt;
 use Sylius\Behat\Behaviour\SpecifiesItsCode;
 use Sylius\Behat\Page\Admin\Crud\CreatePage as BaseCreatePage;
@@ -51,7 +52,9 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
      */
     public function fillActionAmount($field, $amount)
     {
-        $this->getDocument()->fillField($field, $amount);
+        /** @var NodeElement $element */
+        $element = $this->getDocument()->find('css', '#acme_sylius_catalog_promotion_configuration_values');
+        $element->fillField($field, $amount);
     }
 
     /**
@@ -82,6 +85,9 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         return [
             'code' => '#acme_sylius_catalog_promotion_code',
+            'price_for_channel' => '#acme_sylius_catalog_promotion_configuration_values',
+            'ends_at' => '#acme_sylius_catalog_promotion_endsAt',
+            'name' => '#acme_sylius_catalog_promotion_name',
         ];
     }
 }

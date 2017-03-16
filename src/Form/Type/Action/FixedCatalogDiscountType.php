@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints\Range;
 
 final class FixedCatalogDiscountType extends AbstractType
 {
@@ -47,6 +48,13 @@ final class FixedCatalogDiscountType extends AbstractType
                     'block_name' => 'entry',
                     'currency' => $channel->getBaseCurrency()->getCode(),
                     'label' => $channel->getName(),
+                    'constraints' => [
+                        new Range([
+                            'groups' => ['sylius'],
+                            'min' => 0,
+                            'minMessage' => 'acme_sylius_catalog_promotion.catalog_promotion.configuration.discounts.min',
+                        ]),
+                    ],
                 ]);
             }
         });

@@ -18,6 +18,14 @@
             <option name="message">acme_sylius_catalog_promotion.catalog_promotion.code.unique</option>
             <option name="groups">sylius</option>
         </constraint>
+        <constraint name="Acme\SyliusCatalogPromotionBundle\Validator\Constraints\CatalogPromotionDateRange">
+            <option name="message">acme_sylius_catalog_promotion.catalog_promotion.end_date_cannot_be_set_prior_start_date</option>
+            <option name="groups">sylius</option>
+        </constraint>
+        <constraint name="Acme\SyliusCatalogPromotionBundle\Validator\Constraints\CatalogPromotionDiscountForEnabledChannel">
+            <option name="message">acme_sylius_catalog_promotion.catalog_promotion.configuration.discounts.cannot_be_empty_for_enabled_channel</option>
+            <option name="groups">sylius</option>
+        </constraint>
         <property name="code">
             <constraint name="NotBlank">
                 <option name="message">acme_sylius_catalog_promotion.catalog_promotion.code.not_blank</option>
@@ -50,6 +58,9 @@
                 <option name="maxMessage">acme_sylius_catalog_promotion.catalog_promotion.description.max_length</option>
                 <option name="groups">sylius</option>
             </constraint>
+        </property>
+        <property name="configuration">
+            <constraint name="Valid" />
         </property>
     </class>
 </constraint-mapping>

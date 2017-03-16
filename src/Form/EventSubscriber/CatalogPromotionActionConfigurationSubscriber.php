@@ -51,6 +51,8 @@ final class CatalogPromotionActionConfigurationSubscriber implements EventSubscr
     {
         return [
             FormEvents::PRE_SET_DATA => 'preSetData',
+            FormEvents::POST_SET_DATA => 'postSetData',
+            FormEvents::PRE_SUBMIT => 'preSubmit',
         ];
     }
 
@@ -68,6 +70,34 @@ final class CatalogPromotionActionConfigurationSubscriber implements EventSubscr
         }
 
         $this->addConfigurationFields($event->getForm(), $type, $catalogPromotion->getConfiguration());
+    }
+
+    /**
+     * @param FormEvent $event
+     */
+    public function postSetData(FormEvent $event)
+    {
+        $data = $event->getData();
+
+        if (null === $type = $this->getRegistryIdentifier($data)) {
+            return;
+        }
+
+        $event->getForm()->get('type')->setData($type);
+    }
+
+    /**
+     * @param FormEvent $event
+     */
+    public function preSubmit(FormEvent $event)
+    {
+        $data = $event->getData();
+
+        if (empty($data) || !array_key_exists('type', $data)) {
+            return;
+        }
+
+        $this->addConfigurationFields($event->getForm(), $data['type']);
     }
 
     /**

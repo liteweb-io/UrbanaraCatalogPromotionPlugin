@@ -7,12 +7,13 @@ default:
                 - sylius.behat.context.hook.doctrine_orm
 
                 - acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion
-                - sylius.behat.context.setup.channel
                 - sylius.behat.context.setup.admin_security
+                - sylius.behat.context.setup.channel
 
-                - sylius.behat.context.transform.date_time
-                - sylius.behat.context.transform.channel
                 - acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion
+                - sylius.behat.context.transform.channel
+                - sylius.behat.context.transform.date_time
+                - sylius.behat.context.transform.shared_storage
 
                 - acme_sylius_catalog_promotion.behat.context.ui.admin.managing
                 - sylius.behat.context.ui.admin.notification

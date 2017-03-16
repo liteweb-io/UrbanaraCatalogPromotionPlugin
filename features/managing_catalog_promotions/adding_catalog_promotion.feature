@@ -37,7 +37,8 @@ Feature: Adding a new catalog promotion
         Then I should be notified that it has been successfully created
         And the "Weekend sale!" catalog promotion should be available from "21.04.2017" to "21.05.2017"
 
-    @ui @javascript
+    #This scenario should be run as a juvascript, but there is a problem with running them so temporary can be run headless
+    @ui
     Scenario: Adding a new catalog promotion with fixed discount
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
@@ -63,6 +64,7 @@ Feature: Adding a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
         And I name it "Weekend sale!"
         And I make it applicable for the "United States" channel
+        And I add the fixed value discount with amount of "$10" for "United States" channel
         And I add it
         Then I should be notified that it has been successfully created
         And the "Weekend sale!" catalog promotion should be applicable for the "United States" channel

@@ -52,7 +52,26 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
+     * @When /^I modify (this catalog promotion)$/
+     */
+    public function iWantToModifyThisPromotion(CatalogPromotionInterface $catalogPromotion)
+    {
+        $this->updatePage->open(['id' => $catalogPromotion->getId()]);
+    }
+
+    /**
+     * @When I save my changes
+     * @When I try to save my changes
+     */
+    public function iSaveMyChanges()
+    {
+        $this->updatePage->saveChanges();
+    }
+
+    /**
      * @When I name it :name
+     * @When I do not name it
+     * @When I remove its name
      */
     public function iNameIt($name = null)
     {
@@ -61,6 +80,7 @@ final class ManagingCatalogPromotionContext implements Context
 
     /**
      * @When I specify its code as :code
+     * @When I do not specify its code
      */
     public function iSpecifyItsCodeAs($code = null)
     {
@@ -105,10 +125,19 @@ final class ManagingCatalogPromotionContext implements Context
     /**
      * @When /^I add the fixed value discount with amount of "(?:€|£|\$)([^"]+)" for "([^"]+)" channel$/
      */
-    public function iAddTheFixedValueDiscountWithAmountOfForChannel($amount, $channelName)
+    public function iAddTheFixedValueDiscountWithAmountOfForChannel($amount = null, $channelName)
     {
         $this->createPage->chooseActionType('Fixed discount');
         $this->createPage->fillActionAmount($channelName, $amount);
+    }
+
+    /**
+     * @When I don't add the price for fixed value discount for the :channelName channel
+     */
+    public function iDontAddThePriceForFixedValueDiscountWithForTheChannel($channelName)
+    {
+        $this->createPage->chooseActionType('Fixed discount');
+        $this->createPage->fillActionAmount($channelName, null);
     }
 
     /**
@@ -129,6 +158,8 @@ final class ManagingCatalogPromotionContext implements Context
 
     /**
      * @Then the :catalogPromotionName catalog promotion should appear in the registry
+     * @Then this catalog promotion should still be named :catalogPromotionName
+     * @Then the :catalogPromotionName catalog promotion should exist in the registry
      */
     public function theCatalogPromotionShouldAppearInTheRegistry($catalogPromotionName)
     {
@@ -155,7 +186,7 @@ final class ManagingCatalogPromotionContext implements Context
         \DateTime $startsDate,
         \DateTime $endsDate
     ) {
-        $this->openEditPage($catalogPromotion);
+        $this->iWantToModifyThisPromotion($catalogPromotion);
 
         Assert::true($this->updatePage->hasStartsAt($startsDate));
         Assert::true($this->updatePage->hasEndsAt($endsDate));
@@ -166,7 +197,7 @@ final class ManagingCatalogPromotionContext implements Context
      */
     public function theCatalogPromotionShouldGivePercentageDiscount(CatalogPromotionInterface $catalogPromotion, $amount)
     {
-        $this->openEditPage($catalogPromotion);
+        $this->iWantToModifyThisPromotion($catalogPromotion);
 
         Assert::eq($this->updatePage->getAmount(), $amount);
     }
@@ -179,7 +210,7 @@ final class ManagingCatalogPromotionContext implements Context
         $amount,
         ChannelInterface $channel
     ) {
-        $this->openEditPage($catalogPromotion);
+        $this->iWantToModifyThisPromotion($catalogPromotion);
 
         Assert::eq($this->updatePage->getValueForChannel($channel->getCode()), $amount);
     }
@@ -189,7 +220,7 @@ final class ManagingCatalogPromotionContext implements Context
      */
     public function thePromotionShouldBeApplicableForTheChannel(CatalogPromotionInterface $catalogPromotion, $channelName)
     {
-        $this->openEditPage($catalogPromotion);
+        $this->iWantToModifyThisPromotion($catalogPromotion);
 
         Assert::true($this->updatePage->checkChannelsState($channelName));
     }
@@ -204,22 +235,6 @@ final class ManagingCatalogPromotionContext implements Context
             $this->indexPage->countItems(),
             'I should see %s promotions but i see only %2$s'
         );
-    }
-
-    /**
-     * @Then the :catalogPromotionName catalog promotion should exist in the registry
-     */
-    public function theCatalogPromotionShouldExistInTheRegistry($catalogPromotionName)
-    {
-        Assert::true($this->indexPage->isSingleResourceOnPage(['name' => $catalogPromotionName]));
-    }
-
-    /**
-     * @param CatalogPromotionInterface $catalogPromotion
-     */
-    private function openEditPage(CatalogPromotionInterface $catalogPromotion)
-    {
-        $this->updatePage->open(['id' => $catalogPromotion->getId()]);
     }
 
     /**
@@ -238,5 +253,57 @@ final class ManagingCatalogPromotionContext implements Context
         $this->iBrowseCatalogPromotions();
 
         Assert::true($this->indexPage->isSingleResourceOnPage(['code' => $code]));
+    }
+
+    /**
+     * @Then /^I should be notified that a ([^"]+) is required$/
+     */
+    public function iShouldBeNotifiedThatIsRequired($element)
+    {
+        Assert::same(
+            $this->createPage->getValidationMessage($element),
+            sprintf('Please enter catalog promotion %s.', $element)
+        );
+    }
+
+    /**
+     * @Then the catalog promotion with :element :name should not be added
+     */
+    public function promotionWithElementValueShouldNotBeAdded($element, $name)
+    {
+        $this->iBrowseCatalogPromotions();
+
+        Assert::false($this->indexPage->isSingleResourceOnPage([$element => $name]));
+    }
+
+    /**
+     * @Then I should be notified that the catalog promotion cannot ends before it starts
+     * @Then I should be notified that a catalog promotion cannot end before it starts
+     */
+    public function iShouldBeNotifiedThatPromotionCannotEndBeforeItsEvenStart()
+    {
+        Assert::same($this->createPage->getValidationMessage('ends_at'), 'End date cannot be set prior start date.');
+    }
+
+    /**
+     * @Then I should be notified that a catalog promotion cannot be created without price for enabled channel
+     */
+    public function iShouldBeNotifiedThatPricesInAllChannelsMustBeDefined()
+    {
+        Assert::contains(
+            $this->createPage->getValidationMessage('price_for_channel'),
+            'Discounts cannot be empty for enabled channels.'
+        );
+    }
+
+    /**
+     * @Then I should be notified that a catalog promotion cannot be created with negative fixed discount
+     */
+    public function iShouldBeNotifiedThatPricesCannotBeNegative()
+    {
+        Assert::contains(
+            $this->createPage->getValidationMessage('price_for_channel'),
+            'The catalog promotion cannot be lower than 0.'
+        );
     }
 }

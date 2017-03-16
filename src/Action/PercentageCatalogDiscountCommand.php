@@ -6,6 +6,8 @@ use Acme\SyliusCatalogPromotionBundle\Form\Type\Action\PercentageCatalogDiscount
 
 final class PercentageCatalogDiscountCommand implements CatalogDiscountActionCommandInterface
 {
+    const TYPE = 'catalog_promotion_percentage_discount';
+
     /**
      * {@inheritdoc}
      */

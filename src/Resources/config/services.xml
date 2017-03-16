@@ -24,6 +24,14 @@
             <argument>catalog promotion action</argument>
         </service>
 
+        <service id="acme_sylius_catalog_promotion.validator.date_range" class="Acme\SyliusCatalogPromotionBundle\Validator\CatalogPromotionDateRangeValidator">
+            <tag name="validator.constraint_validator" alias="acme_sylius_catalog_promotion_date_range_validator" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.validator.discount_for_enabled_channel" class="Acme\SyliusCatalogPromotionBundle\Validator\CatalogPromotionDiscountForEnabledChannelValidator">
+            <tag name="validator.constraint_validator" alias="acme_sylius_catalog_promotion_discount_for_enabled_channel_validator" />
+        </service>
+
         <service id="acme_sylius_catalog_promotion.form.type.catalog_promotion" class="Acme\SyliusCatalogPromotionBundle\Form\Type\CatalogPromotionType">
             <argument>%acme_sylius_catalog_promotion.model.catalog_promotion.class%</argument>
             <argument>%acme_sylius_catalog_promotion.form.type.catalog_promotion.validation_groups%</argument>
