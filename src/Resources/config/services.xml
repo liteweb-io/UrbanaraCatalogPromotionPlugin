@@ -11,12 +11,23 @@
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addCatalogPromotion" />
         </service>
 
+        <service id="acme_sylius_catalog_promotion.applicator" class="Acme\SyliusCatalogPromotionBundle\Applicator\CatalogPromotionApplicator">
+            <argument type="service" id="sylius.factory.adjustment" />
+        </service>
+
         <service id="acme_sylius_catalog_promotion.catalog_promotion_action.percentage_discount" class="Acme\SyliusCatalogPromotionBundle\Action\PercentageCatalogDiscountCommand">
             <tag name="acme_sylius_catalog_promotion.catalog_promotion_action" type="percentage_discount" label="Percentage discount" />
         </service>
 
         <service id="acme_sylius_catalog_promotion.catalog_promotion_action.fixed_discount" class="Acme\SyliusCatalogPromotionBundle\Action\FixedCatalogDiscountCommand">
             <tag name="acme_sylius_catalog_promotion.catalog_promotion_action" type="fixed_discount" label="Fixed discount" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.order_processing.catalog_promotion_recalculator" class="Acme\SyliusCatalogPromotionBundle\OrderProcessing\CatalogPromotionProcessor">
+            <argument type="service" id="acme_sylius_catalog_promotion.repository.catalog_promotion" />
+            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
+            <argument type="service" id="acme_sylius_catalog_promotion.applicator" />
+            <tag name="sylius.order_processor" priority="35" />
         </service>
 
         <service id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" class="Sylius\Component\Registry\ServiceRegistry">

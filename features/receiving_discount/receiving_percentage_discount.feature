@@ -7,15 +7,15 @@ Feature: Receiving fixed discount
     Background:
         Given the store operates on a single channel in "United States"
         And the store has a product "PHP T-Shirt" priced at "$100.00"
-        And there is a catalog promotion "Holiday SALE"
+        And there is a "Holiday SALE" catalog promotion
         And it gives 10% discount on every product
 
-    @todo
+    @ui
     Scenario: Receiving percentage discount for my product
         When I add product "PHP T-Shirt" to the cart
-        Then the "PHP T-Shirt" item should cost "$90.00"
+        Then I should see "PHP T-Shirt" with unit price "$90.00" in my cart
 
-    @todo
+    @ui
     Scenario: Receiving percentage discount does not affect the shipping fee
         Given the store has "DHL" shipping method with "$10.00" fee
         And I am a logged in customer

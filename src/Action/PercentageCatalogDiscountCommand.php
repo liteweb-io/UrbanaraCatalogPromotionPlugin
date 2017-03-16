@@ -3,10 +3,11 @@
 namespace Acme\SyliusCatalogPromotionBundle\Action;
 
 use Acme\SyliusCatalogPromotionBundle\Form\Type\Action\PercentageCatalogDiscountType;
+use Sylius\Component\Core\Model\OrderItemInterface;
 
 final class PercentageCatalogDiscountCommand implements CatalogDiscountActionCommandInterface
 {
-    const TYPE = 'catalog_promotion_percentage_discount';
+    const TYPE = 'percentage_discount';
 
     /**
      * {@inheritdoc}
@@ -14,5 +15,30 @@ final class PercentageCatalogDiscountCommand implements CatalogDiscountActionCom
     public function getConfigurationFormType()
     {
         return PercentageCatalogDiscountType::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function calculate(OrderItemInterface $orderItem, array $configuration)
+    {
+        $this->isConfigurationValid($configuration);
+
+        $promotionDiscount = $configuration['percentage'];
+        $currentPrice = $orderItem->getUnitPrice();
+
+        return (int) ($currentPrice * $promotionDiscount);
+    }
+
+    /**
+     * @param array $configuration
+     *
+     * @throws \InvalidArgumentException
+     */
+    private function isConfigurationValid(array $configuration)
+    {
+        if (!isset($configuration['percentage']) || !is_float($configuration['percentage'])) {
+            throw new \InvalidArgumentException('"percentage" must be set and must be a float.');
+        }
     }
 }

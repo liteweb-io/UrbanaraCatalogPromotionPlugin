@@ -24,6 +24,7 @@
             <argument type="service" id="sylius.behat.shared_storage" />
             <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.factory.catalog_promotion" />
             <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.repository.catalog_promotion" />
+            <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.manager.catalog_promotion" />
             <tag name="fob.context_service" />
         </service>
 

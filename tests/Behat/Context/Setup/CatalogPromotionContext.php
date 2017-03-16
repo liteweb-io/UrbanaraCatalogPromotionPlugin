@@ -2,8 +2,12 @@
 
 namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Setup;
 
+use Acme\SyliusCatalogPromotionBundle\Action\PercentageCatalogDiscountCommand;
+use Behat\Behat\Tester\Exception\PendingException;
+use Acme\SyliusCatalogPromotionBundle\Action\FixedCatalogDiscountCommand;
 use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
+use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Component\Core\Formatter\StringInflector;
 use Sylius\Component\Resource\Factory\FactoryInterface;
@@ -27,25 +31,26 @@ final class CatalogPromotionContext implements Context
     private $catalogPromotionRepository;
 
     /**
+     * @var ObjectManager
+     */
+    private $manager;
+
+    /**
      * @param SharedStorageInterface $sharedStorage
      * @param FactoryInterface $catalogPromotionFactory
      * @param RepositoryInterface $catalogPromotionRepository
+     * @param ObjectManager $manager
      */
     public function __construct(
         SharedStorageInterface $sharedStorage,
         FactoryInterface $catalogPromotionFactory,
-        RepositoryInterface $catalogPromotionRepository
+        RepositoryInterface $catalogPromotionRepository,
+        ObjectManager $manager
     ) {
         $this->sharedStorage = $sharedStorage;
         $this->catalogPromotionRepository = $catalogPromotionRepository;
         $this->catalogPromotionFactory = $catalogPromotionFactory;
-    }
-
-    /**
-     */
-    public function thereIsACatalogPromotionIdentifiedByCode($arg1, $arg2)
-    {
-        throw new PendingException();
+        $this->manager = $manager;
     }
 
     /**
@@ -62,5 +67,27 @@ final class CatalogPromotionContext implements Context
 
         $this->catalogPromotionRepository->add($catalogPromotion);
         $this->sharedStorage->set('catalog_promotion', $catalogPromotion);
+    }
+
+    /**
+     * @Given /^(it) gives ("(?:€|£|\$)[^"]+") discount on every product$/
+     */
+    public function itGivesDiscountOnEveryProduct(CatalogPromotionInterface $catalogPromotion, $discount)
+    {
+        $catalogPromotion->setConfiguration(array_merge($catalogPromotion->getConfiguration(), ['values' => [$this->sharedStorage->get('channel')->getCode() => $discount]]));
+        $catalogPromotion->setType(FixedCatalogDiscountCommand::TYPE);
+
+        $this->manager->flush();
+    }
+
+    /**
+     * @Given /^(it) gives (\d+)% discount on every product$/
+     */
+    public function itGivesDiscountOnEveryProduct2(CatalogPromotionInterface $catalogPromotion, $discount)
+    {
+        $catalogPromotion->setConfiguration(array_merge($catalogPromotion->getConfiguration(), ['percentage' => $discount / 100]));
+        $catalogPromotion->setType(PercentageCatalogDiscountCommand::TYPE);
+
+        $this->manager->flush();
     }
 }
