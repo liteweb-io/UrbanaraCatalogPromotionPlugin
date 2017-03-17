@@ -65,5 +65,10 @@
             <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
             <argument type="service" id="form.factory" />
         </service>
+
+        <service id="acme_sylius_catalog_promotion.block.js_block" class="Sylius\Bundle\UiBundle\Block\BlockEventListener">
+            <argument>@SyliusCatalogPromotion/_javascripts.html.twig</argument>
+            <tag name="kernel.event_listener" event="sonata.block.event.sylius.admin.layout.javascript" method="onBlockEvent" />
+        </service>
     </services>
 </container>
