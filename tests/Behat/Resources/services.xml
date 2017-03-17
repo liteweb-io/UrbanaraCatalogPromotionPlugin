@@ -2,12 +2,12 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="sylius.behat.page.admin.catalog_promotion.create.class">Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\CreatePage</parameter>
-        <parameter key="sylius.behat.page.admin.catalog_promotion.index.class">Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\IndexPage</parameter>
-        <parameter key="sylius.behat.page.admin.catalog_promotion.update.class">Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\UpdatePage</parameter>
+        <parameter key="sylius.behat.page.admin.catalog_promotion.create.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\CreatePage</parameter>
+        <parameter key="sylius.behat.page.admin.catalog_promotion.index.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\IndexPage</parameter>
+        <parameter key="sylius.behat.page.admin.catalog_promotion.update.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\UpdatePage</parameter>
     </parameters>
     <services>
-        <service id="acme_sylius_catalog_promotion.behat.context.ui.admin.managing" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin\ManagingCatalogPromotionContext">
+        <service id="acme_sylius_catalog_promotion.behat.context.ui.admin.managing" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Ui\Admin\ManagingCatalogPromotionContext">
             <argument type="service" id="sylius.behat.shared_storage" />
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.create" />
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.index" />
@@ -15,12 +15,12 @@
             <tag name="fob.context_service" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Transform\CatalogPromotionContext">
+        <service id="acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Transform\CatalogPromotionContext">
             <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.repository.catalog_promotion" />
             <tag name="fob.context_service" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Setup\CatalogPromotionContext">
+        <service id="acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Setup\CatalogPromotionContext">
             <argument type="service" id="sylius.behat.shared_storage" />
             <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.factory.catalog_promotion" />
             <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.repository.catalog_promotion" />

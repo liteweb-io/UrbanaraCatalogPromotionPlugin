@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\DependencyInjection;
+namespace Acme\SyliusCatalogPromotionPlugin\DependencyInjection;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;

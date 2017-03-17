@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\Action;
+namespace Acme\SyliusCatalogPromotionPlugin\Action;
 
-use Acme\SyliusCatalogPromotionBundle\Form\Type\Action\FixedCatalogDiscountType;
+use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType;
 use Sylius\Component\Core\Model\OrderItemInterface;
 
 final class FixedCatalogDiscountCommand implements CatalogDiscountActionCommandInterface

@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\Validator\Constraints;
+namespace Acme\SyliusCatalogPromotionPlugin\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 

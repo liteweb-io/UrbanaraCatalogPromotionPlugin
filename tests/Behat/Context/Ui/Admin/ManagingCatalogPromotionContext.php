@@ -1,15 +1,15 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Ui\Admin;
+namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Tester\Exception\PendingException;
-use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotionInterface;
+use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
-use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\CreatePageInterface;
-use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\IndexPageInterface;
-use Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin\UpdatePageInterface;
+use Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\CreatePageInterface;
+use Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\IndexPageInterface;
+use Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\UpdatePageInterface;
 use Webmozart\Assert\Assert;
 
 final class ManagingCatalogPromotionContext implements Context

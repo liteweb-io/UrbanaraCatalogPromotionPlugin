@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionBundle\Action;
+namespace spec\Acme\SyliusCatalogPromotionPlugin\Action;
 
-use Acme\SyliusCatalogPromotionBundle\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionBundle\Action\PercentageCatalogDiscountCommand;
-use Acme\SyliusCatalogPromotionBundle\Form\Type\Action\PercentageCatalogDiscountType;
+use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Acme\SyliusCatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand;
+use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\PercentageCatalogDiscountType;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\OrderItemInterface;
 

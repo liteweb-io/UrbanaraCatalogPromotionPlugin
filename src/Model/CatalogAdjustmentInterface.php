@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\Model;
+namespace Acme\SyliusCatalogPromotionPlugin\Model;
 
 interface CatalogAdjustmentInterface
 {

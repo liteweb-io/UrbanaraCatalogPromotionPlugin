@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\Action;
+namespace Acme\SyliusCatalogPromotionPlugin\Action;
 
 use Sylius\Component\Core\Model\OrderItemInterface;
 

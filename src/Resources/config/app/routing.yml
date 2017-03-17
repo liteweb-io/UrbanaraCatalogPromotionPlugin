@@ -9,7 +9,7 @@ app_catalog_promotion:
             all:
                 subheader: acme_sylius_catalog_promotion.ui.manage_catalog_discounts_and_promotional_campaigns
                 templates:
-                    form: "@SyliusCatalogPromotion/_form.html.twig"
+                    form: "@SyliusCatalogPromotionPlugin/_form.html.twig"
             index:
                 icon: in cart
     type: sylius.resource

@@ -1,5 +1,5 @@
 {
-    "name": "lchrusciel/sylius-catalog-promotion-bundle",
+    "name": "lchrusciel/sylius-catalog-promotion-plugin",
     "type": "sylius-bundle",
     "description": "Catalog promotion extension for Sylius.",
     "license": "MIT",
@@ -26,8 +26,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Acme\\SyliusCatalogPromotionBundle\\": "src/",
-            "Tests\\Acme\\SyliusCatalogPromotionBundle\\": "tests/"
+            "Acme\\SyliusCatalogPromotionPlugin\\": "src/",
+            "Tests\\Acme\\SyliusCatalogPromotionPlugin\\": "tests/"
         }
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\OrderProcessing;
+namespace Acme\SyliusCatalogPromotionPlugin\OrderProcessing;
 
-use Acme\SyliusCatalogPromotionBundle\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionBundle\Applicator\CatalogPromotionApplicatorInterface;
-use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotionInterface;
+use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
+use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;

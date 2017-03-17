@@ -1,9 +1,9 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\DependencyInjection;
+namespace Acme\SyliusCatalogPromotionPlugin\DependencyInjection;
 
-use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotion;
-use Acme\SyliusCatalogPromotionBundle\Form\Type\CatalogPromotionType;
+use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotion;
+use Acme\SyliusCatalogPromotionPlugin\Form\Type\CatalogPromotionType;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
 use Sylius\Component\Resource\Factory\Factory;

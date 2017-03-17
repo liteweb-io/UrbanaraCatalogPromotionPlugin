@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionBundle\Action;
+namespace spec\Acme\SyliusCatalogPromotionPlugin\Action;
 
-use Acme\SyliusCatalogPromotionBundle\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionBundle\Action\FixedCatalogDiscountCommand;
-use Acme\SyliusCatalogPromotionBundle\Form\Type\Action\FixedCatalogDiscountType;
+use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Acme\SyliusCatalogPromotionPlugin\Action\FixedCatalogDiscountCommand;
+use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\ChannelInterface;

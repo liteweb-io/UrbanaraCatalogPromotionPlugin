@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Acme\SyliusCatalogPromotionBundle\Form\EventSubscriber;
+namespace Acme\SyliusCatalogPromotionPlugin\Form\EventSubscriber;
 
-use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotionInterface;
+use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;

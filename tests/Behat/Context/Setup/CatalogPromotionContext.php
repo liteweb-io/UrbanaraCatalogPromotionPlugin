@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Context\Setup;
+namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Setup;
 
-use Acme\SyliusCatalogPromotionBundle\Action\PercentageCatalogDiscountCommand;
+use Acme\SyliusCatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand;
 use Behat\Behat\Tester\Exception\PendingException;
-use Acme\SyliusCatalogPromotionBundle\Action\FixedCatalogDiscountCommand;
-use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotionInterface;
+use Acme\SyliusCatalogPromotionPlugin\Action\FixedCatalogDiscountCommand;
+use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Behat\Service\SharedStorageInterface;

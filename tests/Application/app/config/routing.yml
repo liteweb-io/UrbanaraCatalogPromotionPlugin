@@ -4,5 +4,5 @@ sylius:
 # Put your own routes here
 
 sylius_catalog_promotion:
-    resource: "@SyliusCatalogPromotionBundle/Resources/config/app/routing.yml"
+    resource: "@SyliusCatalogPromotionPlugin/Resources/config/app/routing.yml"
     prefix: /admin

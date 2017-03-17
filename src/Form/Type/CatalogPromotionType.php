@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\Form\Type;
+namespace Acme\SyliusCatalogPromotionPlugin\Form\Type;
 
-use Acme\SyliusCatalogPromotionBundle\Action\CatalogDiscountActionCommandInterface;
+use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;

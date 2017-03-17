@@ -18,7 +18,7 @@
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
                   >
 
-    <entity name="Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotion" table="acme_catalog_promotion">
+    <entity name="Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotion" table="acme_catalog_promotion">
         <id name="id" type="integer">
             <generator strategy="AUTO" />
         </id>

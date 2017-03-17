@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\Form\Type\Action;
+namespace Acme\SyliusCatalogPromotionPlugin\Form\Type\Action;
 
 use Sylius\Bundle\MoneyBundle\Form\Type\MoneyType;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;

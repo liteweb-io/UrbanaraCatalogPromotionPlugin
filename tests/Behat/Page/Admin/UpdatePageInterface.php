@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionBundle\Behat\Page\Admin;
+namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin;
 
 use Sylius\Behat\Page\Admin\Crud\UpdatePageInterface as BaseUpdatePageInterface;
 

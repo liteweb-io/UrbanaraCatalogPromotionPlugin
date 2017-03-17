@@ -12,17 +12,17 @@
 -->
 
 <constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
-    <class name="Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotion">
+    <class name="Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotion">
         <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
             <option name="fields">code</option>
             <option name="message">acme_sylius_catalog_promotion.catalog_promotion.code.unique</option>
             <option name="groups">sylius</option>
         </constraint>
-        <constraint name="Acme\SyliusCatalogPromotionBundle\Validator\Constraints\CatalogPromotionDateRange">
+        <constraint name="Acme\SyliusCatalogPromotionPlugin\Validator\Constraints\CatalogPromotionDateRange">
             <option name="message">acme_sylius_catalog_promotion.catalog_promotion.end_date_cannot_be_set_prior_start_date</option>
             <option name="groups">sylius</option>
         </constraint>
-        <constraint name="Acme\SyliusCatalogPromotionBundle\Validator\Constraints\CatalogPromotionDiscountForEnabledChannel">
+        <constraint name="Acme\SyliusCatalogPromotionPlugin\Validator\Constraints\CatalogPromotionDiscountForEnabledChannel">
             <option name="message">acme_sylius_catalog_promotion.catalog_promotion.configuration.discounts.cannot_be_empty_for_enabled_channel</option>
             <option name="groups">sylius</option>
         </constraint>

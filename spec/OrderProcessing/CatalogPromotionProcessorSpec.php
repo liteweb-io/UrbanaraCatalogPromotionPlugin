@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionBundle\OrderProcessing;
+namespace spec\Acme\SyliusCatalogPromotionPlugin\OrderProcessing;
 
-use Acme\SyliusCatalogPromotionBundle\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionBundle\Applicator\CatalogPromotionApplicatorInterface;
-use Acme\SyliusCatalogPromotionBundle\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionBundle\OrderProcessing\CatalogPromotionProcessor;
+use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
+use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Acme\SyliusCatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

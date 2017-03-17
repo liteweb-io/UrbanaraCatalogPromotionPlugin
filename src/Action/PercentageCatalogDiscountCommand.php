@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionBundle\Action;
+namespace Acme\SyliusCatalogPromotionPlugin\Action;
 
-use Acme\SyliusCatalogPromotionBundle\Form\Type\Action\PercentageCatalogDiscountType;
+use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\PercentageCatalogDiscountType;
 use Sylius\Component\Core\Model\OrderItemInterface;
 
 final class PercentageCatalogDiscountCommand implements CatalogDiscountActionCommandInterface
