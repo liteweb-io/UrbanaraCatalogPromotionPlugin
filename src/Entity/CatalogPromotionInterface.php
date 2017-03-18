@@ -33,7 +33,7 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
     /**
      * @return bool
      */
-    public function getExclusive();
+    public function isExclusive();
 
     /**
      * @param bool $exclusive
@@ -83,4 +83,19 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
      * @return ChannelInterface[]|Collection
      */
     public function getChannels();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addChannel(ChannelInterface $channel);
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeChannel(ChannelInterface $channel);
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasChannel(ChannelInterface $channel);
 }

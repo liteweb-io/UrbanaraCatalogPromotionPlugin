@@ -26,6 +26,7 @@ default:
             contexts_services:
                 - sylius.behat.context.hook.doctrine_orm
 
+                - acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion
                 - sylius.behat.context.transform.shared_storage
                 - sylius.behat.context.transform.product
                 - sylius.behat.context.transform.lexical

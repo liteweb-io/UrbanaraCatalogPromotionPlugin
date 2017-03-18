@@ -125,7 +125,7 @@ class CatalogPromotion implements CatalogPromotionInterface
     /**
      * {@inheritdoc}
      */
-    public function getExclusive()
+    public function isExclusive()
     {
         return $this->exclusive;
     }

@@ -15,6 +15,10 @@
             <argument type="service" id="sylius.factory.adjustment" />
         </service>
 
+        <service id="acme_sylius_catalog_promotion.provider" class="Acme\SyliusCatalogPromotionPlugin\Provider\PreQualifiedCatalogPromotionProvider">
+            <argument type="service" id="acme_sylius_catalog_promotion.repository.catalog_promotion" />
+        </service>
+
         <service id="acme_sylius_catalog_promotion.catalog_promotion_action.percentage_discount" class="Acme\SyliusCatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand">
             <tag name="acme_sylius_catalog_promotion.catalog_promotion_action" type="percentage_discount" label="Percentage discount" />
         </service>
@@ -24,7 +28,7 @@
         </service>
 
         <service id="acme_sylius_catalog_promotion.order_processing.catalog_promotion_recalculator" class="Acme\SyliusCatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor">
-            <argument type="service" id="acme_sylius_catalog_promotion.repository.catalog_promotion" />
+            <argument type="service" id="acme_sylius_catalog_promotion.provider" />
             <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
             <argument type="service" id="acme_sylius_catalog_promotion.applicator" />
             <tag name="sylius.order_processor" priority="35" />

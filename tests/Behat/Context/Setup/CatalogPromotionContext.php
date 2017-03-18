@@ -55,18 +55,34 @@ final class CatalogPromotionContext implements Context
 
     /**
      * @Given there is a :catalogPromotionName catalog promotion
+     */
+    public function thereIsACatalogPromotion($catalogPromotionName)
+    {
+        $catalogPromotion = $this->createPromotion($catalogPromotionName);
+
+        $this->saveCatalogPromotion($catalogPromotion);
+    }
+
+    /**
      * @Given there is a :catalogPromotionName catalog promotion identified by :catalogPromotionCode code
      */
-    public function thereIsACatalogPromotion($catalogPromotionName, $catalogPromotionCode = null)
+    public function thereIsACatalogPromotionIdentifiedByCode($catalogPromotionName, $catalogPromotionCode)
     {
-        /** @var CatalogPromotionInterface $catalogPromotion */
-        $catalogPromotion = $this->catalogPromotionFactory->createNew();
+        $catalogPromotion = $this->createPromotion($catalogPromotionName);
+        $catalogPromotion->setCode($catalogPromotionCode);
 
-        $catalogPromotion->setName($catalogPromotionName);
-        $catalogPromotion->setCode($catalogPromotionCode ?: StringInflector::nameToCode($catalogPromotionName));
+        $this->saveCatalogPromotion($catalogPromotion);
+    }
 
-        $this->catalogPromotionRepository->add($catalogPromotion);
-        $this->sharedStorage->set('catalog_promotion', $catalogPromotion);
+    /**
+     * @Given there is an exclusive :catalogPromotionName catalog promotion
+     */
+    public function thereIsAnExclusiveCatalogPromotion($catalogPromotionName)
+    {
+        $catalogPromotion = $this->createPromotion($catalogPromotionName);
+        $catalogPromotion->setExclusive(true);
+
+        $this->saveCatalogPromotion($catalogPromotion);
     }
 
     /**
@@ -74,7 +90,10 @@ final class CatalogPromotionContext implements Context
      */
     public function itGivesDiscountOnEveryProduct(CatalogPromotionInterface $catalogPromotion, $discount)
     {
-        $catalogPromotion->setConfiguration(array_merge($catalogPromotion->getConfiguration(), ['values' => [$this->sharedStorage->get('channel')->getCode() => $discount]]));
+        $channel = $this->sharedStorage->get('channel');
+
+        $catalogPromotion->addChannel($channel);
+        $catalogPromotion->setConfiguration(array_merge($catalogPromotion->getConfiguration(), ['values' => [$channel->getCode() => $discount]]));
         $catalogPromotion->setType(FixedCatalogDiscountCommand::TYPE);
 
         $this->manager->flush();
@@ -89,5 +108,71 @@ final class CatalogPromotionContext implements Context
         $catalogPromotion->setType(PercentageCatalogDiscountCommand::TYPE);
 
         $this->manager->flush();
+    }
+
+    /**
+     * @Given /^(it) is currently available$/
+     */
+    public function itIsCurrentlyAvailable(CatalogPromotionInterface $catalogPromotion)
+    {
+        $catalogPromotion->setStartsAt(new \DateTime('-3 days'));
+        $catalogPromotion->setEndsAt(new \DateTime('3 days'));
+
+        $this->manager->flush();
+    }
+
+    /**
+     * @Given the :catalogPromotion catalog promotion has already expired
+     */
+    public function theCatalogPromotionHasAlreadyExpired(CatalogPromotionInterface $catalogPromotion)
+    {
+        $catalogPromotion->setEndsAt(new \DateTime('-3 days'));
+
+        $this->manager->flush();
+    }
+
+    /**
+     * @Given the :catalogPromotion catalog promotion has not started yet
+     */
+    public function theCatalogPromotionHasNotStartedYet(CatalogPromotionInterface $catalogPromotion)
+    {
+        $catalogPromotion->setStartsAt(new \DateTime('3 days'));
+
+        $this->manager->flush();
+    }
+
+    /**
+     * @Given the :catalogPromotion catalog promotion has been disabled
+     */
+    public function theCatalogPromotionHasBeenDisabled(CatalogPromotionInterface $catalogPromotion)
+    {
+        $catalogPromotion->removeChannel($this->sharedStorage->get('channel'));
+
+        $this->manager->flush();
+    }
+
+    /**
+     * @param string $catalogPromotionName
+     *
+     * @return CatalogPromotionInterface
+     */
+    private function createPromotion($catalogPromotionName)
+    {
+        /** @var CatalogPromotionInterface $catalogPromotion */
+        $catalogPromotion = $this->catalogPromotionFactory->createNew();
+
+        $catalogPromotion->setName($catalogPromotionName);
+        $catalogPromotion->setCode(StringInflector::nameToCode($catalogPromotionName));
+
+        return $catalogPromotion;
+    }
+
+    /**
+     * @param CatalogPromotionInterface $catalogPromotion
+     */
+    private function saveCatalogPromotion(CatalogPromotionInterface $catalogPromotion)
+    {
+        $this->catalogPromotionRepository->add($catalogPromotion);
+        $this->sharedStorage->set('catalog_promotion', $catalogPromotion);
     }
 }

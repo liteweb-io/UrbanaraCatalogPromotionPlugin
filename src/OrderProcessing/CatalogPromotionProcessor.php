@@ -5,6 +5,7 @@ namespace Acme\SyliusCatalogPromotionPlugin\OrderProcessing;
 use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
 use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Acme\SyliusCatalogPromotionPlugin\Provider\PreQualifiedCatalogPromotionProviderInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
@@ -15,9 +16,9 @@ use Webmozart\Assert\Assert;
 final class CatalogPromotionProcessor implements OrderProcessorInterface
 {
     /**
-     * @var RepositoryInterface
+     * @var PreQualifiedCatalogPromotionProviderInterface
      */
-    private $catalogPromotionRepository;
+    private $catalogPromotionProvider;
 
     /**
      * @var ServiceRegistryInterface
@@ -30,16 +31,16 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
     private $catalogPromotionApplicator;
 
     /**
-     * @param RepositoryInterface $catalogPromotionRepository
+     * @param PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider
      * @param ServiceRegistryInterface $serviceRegistry
      * @param CatalogPromotionApplicatorInterface $catalogPromotionApplicator
      */
     public function __construct(
-        RepositoryInterface $catalogPromotionRepository,
+        PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider,
         ServiceRegistryInterface $serviceRegistry,
         CatalogPromotionApplicatorInterface $catalogPromotionApplicator
     ) {
-        $this->catalogPromotionRepository = $catalogPromotionRepository;
+        $this->catalogPromotionProvider = $catalogPromotionProvider;
         $this->serviceRegistry = $serviceRegistry;
         $this->catalogPromotionApplicator = $catalogPromotionApplicator;
     }
@@ -58,7 +59,7 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
             }
 
             /** @var CatalogPromotionInterface $catalogPromotion */
-            foreach ($this->catalogPromotionRepository->findAll() as $catalogPromotion) {
+            foreach ($this->catalogPromotionProvider->provide($order->getChannel()) as $catalogPromotion) {
                 /** @var CatalogDiscountActionCommandInterface $command */
                 $command = $this->serviceRegistry->get($catalogPromotion->getType());
 

@@ -4,6 +4,7 @@ namespace Acme\SyliusCatalogPromotionPlugin\DependencyInjection;
 
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotion;
 use Acme\SyliusCatalogPromotionPlugin\Form\Type\CatalogPromotionType;
+use Acme\SyliusCatalogPromotionPlugin\Repository\CatalogPromotionRepository;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
 use Sylius\Component\Resource\Factory\Factory;
@@ -43,7 +44,7 @@ final class Configuration implements ConfigurationInterface
                             ->children()
                                 ->scalarNode('model')->defaultValue(CatalogPromotion::class)->cannotBeEmpty()->end()
                                 ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
-                                ->scalarNode('repository')->cannotBeEmpty()->end()
+                                ->scalarNode('repository')->defaultValue(CatalogPromotionRepository::class)->cannotBeEmpty()->end()
                                 ->scalarNode('form')->defaultValue(CatalogPromotionType::class)->cannotBeEmpty()->end()
                                 ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
         ;
