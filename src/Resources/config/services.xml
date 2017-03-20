@@ -56,7 +56,6 @@
         </service>
 
         <service id="acme_sylius_catalog_promotion.form.type.action.fixed_catalog_discount" class="Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType">
-            <argument type="service" id="sylius.repository.channel" />
             <tag name="form.type" />
         </service>
 
