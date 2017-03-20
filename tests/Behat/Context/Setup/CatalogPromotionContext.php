@@ -86,6 +86,29 @@ final class CatalogPromotionContext implements Context
     }
 
     /**
+     * @Given /^there is a "([^"]+)" catalog promotion with priority (\-?\d+)$/
+     */
+    public function thereIsACatalogPromotionWithPriority($catalogPromotionName, $priority)
+    {
+        $catalogPromotion = $this->createPromotion($catalogPromotionName);
+        $catalogPromotion->setPriority($priority);
+
+        $this->saveCatalogPromotion($catalogPromotion);
+    }
+
+    /**
+     * @Given there is an exclusive catalog promotion :catalogPromotionName with priority :priority
+     */
+    public function thereIsAnExclusiveCatalogPromotionWithPriority($catalogPromotionName, $priority)
+    {
+        $catalogPromotion = $this->createPromotion($catalogPromotionName);
+        $catalogPromotion->setPriority($priority);
+        $catalogPromotion->setExclusive(true);
+
+        $this->saveCatalogPromotion($catalogPromotion);
+    }
+
+    /**
      * @Given /^(it) gives ("(?:€|£|\$)[^"]+") discount on every product$/
      */
     public function itGivesDiscountOnEveryProduct(CatalogPromotionInterface $catalogPromotion, $discount)
@@ -104,6 +127,9 @@ final class CatalogPromotionContext implements Context
      */
     public function itGivesDiscountOnEveryProduct2(CatalogPromotionInterface $catalogPromotion, $discount)
     {
+        $channel = $this->sharedStorage->get('channel');
+
+        $catalogPromotion->addChannel($channel);
         $catalogPromotion->setConfiguration(array_merge($catalogPromotion->getConfiguration(), ['percentage' => $discount / 100]));
         $catalogPromotion->setType(PercentageCatalogDiscountCommand::TYPE);
 

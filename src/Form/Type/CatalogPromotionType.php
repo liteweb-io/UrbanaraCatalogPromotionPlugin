@@ -10,6 +10,7 @@ use Sylius\Component\Registry\ServiceRegistryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -61,6 +62,9 @@ final class CatalogPromotionType extends AbstractResourceType
             ])
             ->add('exclusive', CheckboxType::class, [
                 'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.exclusive',
+            ])
+            ->add('priority', IntegerType::class, [
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.priority',
             ])
             ->add('startsAt', DateTimeType::class, [
                 'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.starts_at',

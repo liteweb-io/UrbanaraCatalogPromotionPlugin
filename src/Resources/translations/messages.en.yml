@@ -15,6 +15,7 @@ acme_sylius_catalog_promotion:
             type: "Type"
             percentage: "Percentage"
             channels: "Channels"
+            priority: "Priority"
 
     ui:
         action_configuration: "Action configuration"

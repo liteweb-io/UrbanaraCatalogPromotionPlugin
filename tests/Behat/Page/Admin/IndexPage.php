@@ -17,4 +17,16 @@ class IndexPage extends BaseIndexPage implements IndexPageInterface
 
         return 'Yes' === $fields->getText();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPriority($promotionCode)
+    {
+        $tableAccessor = $this->getTableAccessor();
+        $table = $this->getElement('table');
+        $fields = $tableAccessor->getFieldFromRow($table, $tableAccessor->getRowWithFields($table, ['code' => $promotionCode]), 'priority');
+
+        return $fields->getText();
+    }
 }

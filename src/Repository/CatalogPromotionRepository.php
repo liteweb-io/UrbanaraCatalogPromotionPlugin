@@ -18,6 +18,7 @@ class CatalogPromotionRepository extends EntityRepository implements CatalogProm
             ->andWhere(':channel MEMBER OF o.channels')
             ->setParameter('channel', $channel)
             ->setParameter('date', $date ?: new \DateTime())
+            ->addOrderBy('o.priority', 'DESC')
             ->getQuery()
             ->getResult()
         ;

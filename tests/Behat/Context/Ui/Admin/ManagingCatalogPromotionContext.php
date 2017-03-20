@@ -344,4 +344,66 @@ final class ManagingCatalogPromotionContext implements Context
     {
         Assert::true($this->updatePage->isCodeDisabled());
     }
+
+    /**
+     * @When I set its priority to :priority
+     */
+    public function iSetItsPriorityTo($priority)
+    {
+        $this->createPage->setItsPriority($priority);
+    }
+
+    /**
+     * @Then the :catalogPromotion catalog promotion should have priority set to :arg2
+     */
+    public function theCatalogPromotionShouldHavePrioritySetTo(CatalogPromotionInterface $catalogPromotion, $priority)
+    {
+        $this->iBrowseCatalogPromotions();
+
+        Assert::same($this->indexPage->getPriority($catalogPromotion->getCode()), $priority);
+    }
+
+    /**
+     * @Then I should see :count catalog promotions on the list
+     */
+    public function iShouldSeePromotionsOnTheList($count)
+    {
+        $actualCount = $this->indexPage->countItems();
+
+        Assert::same(
+            (int) $count,
+            $actualCount,
+            'There should be %s catalog promotion, but there\'s %2$s.'
+        );
+    }
+
+    /**
+     * @Then the first catalog promotion on the list should have :field :value
+     */
+    public function theFirstPromotionOnTheListShouldHave($field, $value)
+    {
+        $fields = $this->indexPage->getColumnFields($field);
+        $actualValue = reset($fields);
+
+        Assert::same(
+            $actualValue,
+            $value,
+            sprintf('Expected first catalog promotion\'s %s to be "%s", but it is "%s".', $field, $value, $actualValue)
+        );
+    }
+
+    /**
+     * @Then the last catalog promotion on the list should have :field :value
+     */
+    public function theLastPromotionOnTheListShouldHave($field, $value)
+    {
+        $fields = $this->indexPage->getColumnFields($field);
+        $actualValue = end($fields);
+
+        Assert::same(
+            $actualValue,
+            $value,
+            sprintf('Expected last catalog promotion\'s %s to be "%s", but it is "%s".', $field, $value, $actualValue)
+        );
+    }
 }

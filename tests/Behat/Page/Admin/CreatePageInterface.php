@@ -50,4 +50,9 @@ interface CreatePageInterface extends BaseCreatePageInterface
      * @param string $name
      */
     public function checkChannel($name);
+
+    /**
+     * @param int $priority
+     */
+    public function setItsPriority($priority);
 }

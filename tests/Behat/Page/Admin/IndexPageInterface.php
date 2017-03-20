@@ -12,4 +12,11 @@ interface IndexPageInterface extends BaseIndexPageInterface
      * @return bool
      */
     public function isExclusive($promotionName);
+
+    /**
+     * @param string $promotionCode
+     *
+     * @return string
+     */
+    public function getPriority($promotionCode);
 }

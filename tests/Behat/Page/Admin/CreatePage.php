@@ -81,6 +81,14 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     /**
      * {@inheritdoc}
      */
+    public function setItsPriority($priority)
+    {
+        $this->getDocument()->fillField('Priority', $priority);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getDefinedElements()
     {
         return [

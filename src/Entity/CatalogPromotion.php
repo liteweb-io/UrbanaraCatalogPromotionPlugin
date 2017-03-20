@@ -37,6 +37,13 @@ class CatalogPromotion implements CatalogPromotionInterface
     protected $exclusive = false;
 
     /**
+     * When exclusive, promotion with top priority will be applied
+     *
+     * @var int
+     */
+    protected $priority = 0;
+
+    /**
      * @var \DateTime
      */
     protected $startsAt;
@@ -236,5 +243,21 @@ class CatalogPromotion implements CatalogPromotionInterface
     public function hasChannel(ChannelInterface $channel)
     {
         return $this->channels->contains($channel);
+    }
+
+    /**
+     * @return int
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @param int $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
     }
 }

@@ -98,4 +98,14 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
      * {@inheritdoc}
      */
     public function hasChannel(ChannelInterface $channel);
+
+    /**
+     * @return int
+     */
+    public function getPriority();
+
+    /**
+     * @param int $priority
+     */
+    public function setPriority($priority);
 }
