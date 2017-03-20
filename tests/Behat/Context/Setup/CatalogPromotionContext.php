@@ -116,8 +116,8 @@ final class CatalogPromotionContext implements Context
         $channel = $this->sharedStorage->get('channel');
 
         $catalogPromotion->addChannel($channel);
-        $catalogPromotion->setConfiguration(array_merge($catalogPromotion->getConfiguration(), ['values' => [$channel->getCode() => $discount]]));
-        $catalogPromotion->setType(FixedCatalogDiscountCommand::TYPE);
+        $catalogPromotion->setDiscountConfiguration(array_merge($catalogPromotion->getDiscountConfiguration(), ['values' => [$channel->getCode() => $discount]]));
+        $catalogPromotion->setDiscountType(FixedCatalogDiscountCommand::TYPE);
 
         $this->manager->flush();
     }
@@ -130,8 +130,8 @@ final class CatalogPromotionContext implements Context
         $channel = $this->sharedStorage->get('channel');
 
         $catalogPromotion->addChannel($channel);
-        $catalogPromotion->setConfiguration(array_merge($catalogPromotion->getConfiguration(), ['percentage' => $discount / 100]));
-        $catalogPromotion->setType(PercentageCatalogDiscountCommand::TYPE);
+        $catalogPromotion->setDiscountConfiguration(array_merge($catalogPromotion->getDiscountConfiguration(), ['percentage' => $discount / 100]));
+        $catalogPromotion->setDiscountType(PercentageCatalogDiscountCommand::TYPE);
 
         $this->manager->flush();
     }

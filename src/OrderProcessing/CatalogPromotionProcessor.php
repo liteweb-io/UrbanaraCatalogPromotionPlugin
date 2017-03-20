@@ -61,9 +61,9 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
             /** @var CatalogPromotionInterface $catalogPromotion */
             foreach ($this->catalogPromotionProvider->provide($order->getChannel()) as $catalogPromotion) {
                 /** @var CatalogDiscountActionCommandInterface $command */
-                $command = $this->serviceRegistry->get($catalogPromotion->getType());
+                $command = $this->serviceRegistry->get($catalogPromotion->getDiscountType());
 
-                $discount = $command->calculate($item, $catalogPromotion->getConfiguration());
+                $discount = $command->calculate($item, $catalogPromotion->getDiscountConfiguration());
 
                 $this->catalogPromotionApplicator->apply($item, $discount, $catalogPromotion->getName());
             }

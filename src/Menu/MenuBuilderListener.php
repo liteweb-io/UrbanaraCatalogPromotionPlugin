@@ -5,7 +5,7 @@ namespace Acme\SyliusCatalogPromotionPlugin\Menu;
 use Knp\Menu\ItemInterface;
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 
-final class MenuBuilder
+final class MenuBuilderListener
 {
     /**
      * @param MenuBuilderEvent $event

@@ -51,8 +51,8 @@ final class CatalogPromotionProcessorSpec extends ObjectBehavior
 
         $catalogActionRegistry->get('action_discount')->willReturn($actionCommand);
 
-        $catalogPromotion->getType()->willReturn('action_discount');
-        $catalogPromotion->getConfiguration()->willReturn([]);
+        $catalogPromotion->getDiscountType()->willReturn('action_discount');
+        $catalogPromotion->getDiscountConfiguration()->willReturn([]);
         $catalogPromotion->getName()->willReturn('Cool discount');
 
         $order->getItems()->willReturn([$orderItem]);

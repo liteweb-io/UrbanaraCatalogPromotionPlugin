@@ -78,7 +78,7 @@ final class CatalogPromotionType extends AbstractResourceType
                 'time_widget' => 'single_text',
                 'required' => false,
             ])
-            ->add('type', CatalogActionChoiceType::class, [
+            ->add('discountType', CatalogActionChoiceType::class, [
                 'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.type',
             ])
             ->add('channels', ChannelChoiceType::class, [

@@ -56,12 +56,12 @@ class CatalogPromotion implements CatalogPromotionInterface
     /**
      * @var string
      */
-    protected $type;
+    protected $discountType;
 
     /**
      * @var array
      */
-    protected $configuration = [];
+    protected $discountConfiguration = [];
 
     /**
      * @var ChannelInterface[]|Collection
@@ -180,33 +180,33 @@ class CatalogPromotion implements CatalogPromotionInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getDiscountType()
     {
-        return $this->type;
+        return $this->discountType;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setDiscountType($discountType)
     {
-        $this->type = $type;
+        $this->discountType = $discountType;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getConfiguration()
+    public function getDiscountConfiguration()
     {
-        return $this->configuration;
+        return $this->discountConfiguration;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setConfiguration(array $configuration)
+    public function setDiscountConfiguration(array $discountConfiguration)
     {
-        $this->configuration = $configuration;
+        $this->discountConfiguration = $discountConfiguration;
     }
 
     /**

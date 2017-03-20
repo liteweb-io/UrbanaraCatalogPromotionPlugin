@@ -26,16 +26,16 @@ final class CatalogPromotionDiscountForEnabledChannelValidator extends Constrain
         /** @var CatalogPromotionDiscountForEnabledChannel $constraint */
         Assert::isInstanceOf($constraint, CatalogPromotionDiscountForEnabledChannel::class);
 
-        if ($value->getType() !== FixedCatalogDiscountCommand::TYPE) {
+        if ($value->getDiscountType() !== FixedCatalogDiscountCommand::TYPE) {
             return;
         }
 
         $channels = $value->getChannels();
 
         foreach ($channels as $channel) {
-            if (!isset($value->getConfiguration()['values'][$channel->getCode()])) {
+            if (!isset($value->getDiscountConfiguration()['values'][$channel->getCode()])) {
                 $this->context->buildViolation($constraint->message)
-                    ->atPath(sprintf('configuration[values][%s]', $channel->getCode()))
+                    ->atPath(sprintf('discountConfiguration[values][%s]', $channel->getCode()))
                     ->addViolation()
                 ;
 

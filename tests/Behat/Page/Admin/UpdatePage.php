@@ -71,8 +71,8 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     protected function getDefinedElements()
     {
         return [
-            'amount' => '#acme_sylius_catalog_promotion_configuration_percentage',
-            'channel_value' => '#acme_sylius_catalog_promotion_configuration_values_%channel_code%',
+            'amount' => '#acme_sylius_catalog_promotion_discountConfiguration_percentage',
+            'channel_value' => '#acme_sylius_catalog_promotion_discountConfiguration_values_%channel_code%',
             'code' => '#acme_sylius_catalog_promotion_code',
             'ends_at_date' => '#acme_sylius_catalog_promotion_endsAt_date',
             'ends_at_time' => '#acme_sylius_catalog_promotion_endsAt_time',

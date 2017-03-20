@@ -7,7 +7,7 @@
         </parameter>
     </parameters>
     <services>
-        <service id="acme_sylius_catalog_promotion.admin.menu_builder.catalog_promotion" class="Acme\SyliusCatalogPromotionPlugin\Menu\MenuBuilder">
+        <service id="acme_sylius_catalog_promotion.admin.menu_builder.catalog_promotion" class="Acme\SyliusCatalogPromotionPlugin\Menu\MenuBuilderListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addCatalogPromotion" />
         </service>
 

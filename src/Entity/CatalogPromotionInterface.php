@@ -62,22 +62,22 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
     /**
      * @return string
      */
-    public function getType();
+    public function getDiscountType();
 
     /**
      * @param string $type
      */
-    public function setType($type);
+    public function setDiscountType($type);
 
     /**
      * @return array
      */
-    public function getConfiguration();
+    public function getDiscountConfiguration();
 
     /**
      * @param array $configuration
      */
-    public function setConfiguration(array $configuration);
+    public function setDiscountConfiguration(array $configuration);
 
     /**
      * @return ChannelInterface[]|Collection

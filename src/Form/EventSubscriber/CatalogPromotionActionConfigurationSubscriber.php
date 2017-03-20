@@ -60,15 +60,16 @@ final class CatalogPromotionActionConfigurationSubscriber implements EventSubscr
      */
     public function preSetData(FormEvent $event)
     {
+        /** @var CatalogPromotionInterface $catalogPromotion */
         $catalogPromotion = $event->getData();
 
         Assert::isInstanceOf($catalogPromotion, CatalogPromotionInterface::class);
 
-        if (null === $type = $this->getRegistryIdentifier($catalogPromotion)) {
+        if (null === $discountType = $this->getRegistryIdentifier($catalogPromotion)) {
             return;
         }
 
-        $this->addConfigurationFields($event->getForm(), $type, $catalogPromotion->getConfiguration());
+        $this->addConfigurationFields($event->getForm(), $discountType, $catalogPromotion->getDiscountConfiguration());
     }
 
     /**
@@ -78,11 +79,11 @@ final class CatalogPromotionActionConfigurationSubscriber implements EventSubscr
     {
         $data = $event->getData();
 
-        if (empty($data) || !array_key_exists('type', $data)) {
+        if (empty($data) || !array_key_exists('discountType', $data)) {
             return;
         }
 
-        $this->addConfigurationFields($event->getForm(), $data['type']);
+        $this->addConfigurationFields($event->getForm(), $data['discountType']);
     }
 
     /**
@@ -92,7 +93,7 @@ final class CatalogPromotionActionConfigurationSubscriber implements EventSubscr
      */
     private function addConfigurationFields(FormInterface $form, $registryIdentifier, array $data = [])
     {
-        // FIXME: Unknown type of $model, may crash in any moment!
+        // FIXME: Unknown discountType of $model, may crash in any moment!
         $model = $this->registry->get($registryIdentifier);
 
         if (null === $configuration = $model->getConfigurationFormType()) {
@@ -100,7 +101,7 @@ final class CatalogPromotionActionConfigurationSubscriber implements EventSubscr
         }
 
         $configurationField = $this->factory->createNamed(
-            'configuration',
+            'discountConfiguration',
             $configuration,
             $data,
             [
@@ -119,8 +120,8 @@ final class CatalogPromotionActionConfigurationSubscriber implements EventSubscr
      */
     private function getRegistryIdentifier(CatalogPromotionInterface $catalogPromotion)
     {
-        if (null !== $catalogPromotion->getType()) {
-            return $catalogPromotion->getType();
+        if (null !== $catalogPromotion->getDiscountType()) {
+            return $catalogPromotion->getDiscountType();
         }
 
         return empty($this->registry->all())? null : array_keys($this->registry->all())[0];

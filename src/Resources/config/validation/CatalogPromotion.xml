@@ -59,7 +59,7 @@
                 <option name="groups">sylius</option>
             </constraint>
         </property>
-        <property name="configuration">
+        <property name="discountConfiguration">
             <constraint name="Valid" />
         </property>
     </class>

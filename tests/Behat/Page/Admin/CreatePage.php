@@ -44,7 +44,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
      */
     public function chooseActionType($type)
     {
-        $this->getDocument()->selectFieldOption('acme_sylius_catalog_promotion_type', $type);
+        $this->getDocument()->selectFieldOption('acme_sylius_catalog_promotion_discountType', $type);
     }
 
     /**
@@ -53,7 +53,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     public function fillActionAmount($field, $amount)
     {
         /** @var NodeElement $element */
-        $element = $this->getDocument()->find('css', '#acme_sylius_catalog_promotion_configuration_values');
+        $element = $this->getDocument()->find('css', '#acme_sylius_catalog_promotion_discountConfiguration_values');
         $element->fillField($field, $amount);
     }
 
@@ -93,7 +93,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         return [
             'code' => '#acme_sylius_catalog_promotion_code',
-            'price_for_channel' => '#acme_sylius_catalog_promotion_configuration_values',
+            'price_for_channel' => '#acme_sylius_catalog_promotion_discountConfiguration_values',
             'ends_at' => '#acme_sylius_catalog_promotion_endsAt',
             'name' => '#acme_sylius_catalog_promotion_name',
         ];
