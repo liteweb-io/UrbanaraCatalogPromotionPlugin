@@ -52,5 +52,10 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+        <one-to-many field="rules" target-entity="Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRuleInterface" mapped-by="catalogPromotion" orphan-removal="true">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>
