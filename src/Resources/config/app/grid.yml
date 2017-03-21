@@ -1,0 +1,47 @@
+sylius_grid:
+    grids:
+        acme_sylius_catalog_promotion_catalog_promotion:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%acme_sylius_catalog_promotion.model.catalog_promotion.class%"
+            sorting:
+                priority: desc
+            fields:
+                priority:
+                    type: twig
+                    label: sylius.ui.priority
+                    sortable: ~
+                    options:
+                        template: "@SyliusUi/Grid/Field/position.html.twig"
+                code:
+                    type: string
+                    label: sylius.ui.code
+                    sortable: ~
+                name:
+                    type: twig
+                    label: sylius.ui.name
+                    path: .
+                    sortable: ~
+                    options:
+                        template: "@SyliusUi/Grid/Field/nameAndDescription.html.twig"
+                exclusive:
+                    type: twig
+                    label: acme_sylius_catalog_promotion.ui.exclusive
+                    options:
+                        template: "@SyliusUi/Grid/Field/yesNo.html.twig"
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [code, name]
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

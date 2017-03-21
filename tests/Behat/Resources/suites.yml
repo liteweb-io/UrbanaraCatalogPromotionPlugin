@@ -2,9 +2,43 @@
 
 default:
     suites:
-        greeting_customer:
+        managing_catalog_promotions:
             contexts_services:
-                - acme_example.context.ui.shop.welcome
+                - sylius.behat.context.hook.doctrine_orm
+
+                - acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion
+                - sylius.behat.context.setup.admin_security
+                - sylius.behat.context.setup.channel
+
+                - acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion
+                - sylius.behat.context.transform.channel
+                - sylius.behat.context.transform.date_time
+                - sylius.behat.context.transform.shared_storage
+                - sylius.behat.context.transform.lexical
+
+                - acme_sylius_catalog_promotion.behat.context.ui.admin.managing
+                - sylius.behat.context.ui.admin.notification
 
             filters:
-                tags: "@greeting_customer"
+                tags: "@managing_catalog_promotions"
+
+        receiving_catalog_promotion_discount:
+            contexts_services:
+                - sylius.behat.context.hook.doctrine_orm
+
+                - acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion
+                - sylius.behat.context.transform.shared_storage
+                - sylius.behat.context.transform.product
+                - sylius.behat.context.transform.lexical
+
+                - acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion
+                - sylius.behat.context.setup.channel
+                - sylius.behat.context.setup.product
+                - sylius.behat.context.setup.shipping
+                - sylius.behat.context.setup.shop_security
+
+                - sylius.behat.context.ui.shop.cart
+                - sylius.behat.context.ui.shop.checkout
+
+            filters:
+                tags: "@receiving_catalog_promotion_discount"

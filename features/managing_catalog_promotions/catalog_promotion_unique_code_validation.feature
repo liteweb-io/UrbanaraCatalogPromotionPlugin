@@ -9,7 +9,7 @@ Feature: Catalog promotion unique code validation
         And there is a "No-VAT promotion" catalog promotion identified by "NO_VAT" code
         And I am logged in as an administrator
 
-    @todo
+    @ui
     Scenario: Trying to add a catalog promotion with an already used code
         When I create a new catalog promotion
         And I specify its code as "NO_VAT"

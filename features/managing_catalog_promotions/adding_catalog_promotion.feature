@@ -8,7 +8,7 @@ Feature: Adding a new catalog promotion
         Given the store operates on a single channel in "United States"
         And I am logged in as an administrator
 
-    @todo
+    @ui
     Scenario: Adding a new catalog promotion
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
@@ -17,7 +17,7 @@ Feature: Adding a new catalog promotion
         Then I should be notified that it has been successfully created
         And the "Weekend sale!" catalog promotion should appear in the registry
 
-    @todo
+    @ui
     Scenario: Adding a new exclusive catalog promotion
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
@@ -25,10 +25,9 @@ Feature: Adding a new catalog promotion
         And I make it exclusive
         And I add it
         Then I should be notified that it has been successfully created
-        And the "Weekend sale!" catalog promotion should appear in the registry
-        And this catalog promotion should be exclusive
+        And the "Weekend sale!" catalog promotion should be exclusive
 
-    @todo
+    @ui
     Scenario: Adding a new catalog promotion with start and end dates
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
@@ -36,10 +35,10 @@ Feature: Adding a new catalog promotion
         And I make it available from "21.04.2017" to "21.05.2017"
         And I add it
         Then I should be notified that it has been successfully created
-        And the "Weekend sale!" catalog promotion should appear in the registry
-        And this catalog promotion should be available from "21.04.2017" to "21.05.2017"
+        And the "Weekend sale!" catalog promotion should be available from "21.04.2017" to "21.05.2017"
 
-    @todo
+    #This scenario should be run as a juvascript, but there is a problem with running them so temporary can be run headless
+    @ui
     Scenario: Adding a new catalog promotion with fixed discount
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
@@ -47,25 +46,35 @@ Feature: Adding a new catalog promotion
         And I add the fixed value discount with amount of "$10" for "United States" channel
         And I add it
         Then I should be notified that it has been successfully created
-        And the "Weekend sale!" catalog promotion should appear in the registry
-        And this catalog promotion should give "$10" discount for "United States" channel
+        And the "Weekend sale!" catalog promotion should give "$10" discount for "United States" channel
 
-    @todo
+    @ui @javascript
     Scenario: Adding a new catalog promotion with percentage discount
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
         And I name it "Weekend sale!"
-        And I add the percentage discount with amount of 10%
+        And I specify the percentage discount with amount of "10%"
         And I add it
         Then I should be notified that it has been successfully created
-        And this catalog promotion should give "10%" discount
+        And the "Weekend sale!" catalog promotion should give "10%" discount
 
-    @todo
+    @ui
     Scenario: Adding a new catalog promotion for a channel
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
         And I name it "Weekend sale!"
         And I make it applicable for the "United States" channel
+        And I add the fixed value discount with amount of "$10" for "United States" channel
         And I add it
         Then I should be notified that it has been successfully created
-        And this catalog promotion should be applicable in the "United States" channel
+        And the "Weekend sale!" catalog promotion should be applicable for the "United States" channel
+
+    @ui
+    Scenario: Adding a new catalog promotion with priority
+        When I create a new catalog promotion
+        And I specify its code as "WEEKEND_SALE_PROMOTION"
+        And I name it "Weekend sale!"
+        And I set its priority to 1
+        And I add it
+        Then I should be notified that it has been successfully created
+        And the "Weekend sale!" catalog promotion should have priority set to 1

@@ -1,0 +1,26 @@
+acme_sylius_catalog_promotion:
+    menu:
+        admin:
+            catalog_promotions: "Catalog promotions"
+
+    form:
+        catalog_promotion:
+            amount: "Amount"
+            code: "Code"
+            description: "Description"
+            ends_at: "Ends at"
+            exclusive: "Exclusive"
+            name: "Name"
+            starts_at: "Starts at"
+            type: "Type"
+            percentage: "Percentage"
+            channels: "Channels"
+            priority: "Priority"
+
+    ui:
+        action_configuration: "Action configuration"
+        catalog_promotions: "Catalog promotions"
+        edit_catalog_promotion: "Edit catalog promotions"
+        exclusive: "Exclusive"
+        manage_catalog_discounts_and_promotional_campaigns: "Manage catalog discounts and promotional campaigns"
+        new_catalog_promotion: "New catalog promotions"

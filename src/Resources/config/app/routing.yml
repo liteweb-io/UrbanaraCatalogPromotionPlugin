@@ -1,0 +1,15 @@
+app_catalog_promotion:
+    resource: |
+        alias: acme_sylius_catalog_promotion.catalog_promotion
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        grid: acme_sylius_catalog_promotion_catalog_promotion
+        vars:
+            all:
+                subheader: acme_sylius_catalog_promotion.ui.manage_catalog_discounts_and_promotional_campaigns
+                templates:
+                    form: "@SyliusCatalogPromotionPlugin/_form.html.twig"
+            index:
+                icon: in cart
+    type: sylius.resource
