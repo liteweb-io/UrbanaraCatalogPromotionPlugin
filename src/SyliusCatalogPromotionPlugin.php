@@ -16,20 +16,4 @@ final class SyliusCatalogPromotionPlugin extends Bundle
 
         $container->addCompilerPass(new RegisterCatalogPromotionActionsPass());
     }
-
-    /**
-     * @return mixed
-     */
-    public function getExtension()
-    {
-        return $this->extension;
-    }
-
-    /**
-     * @param mixed $extension
-     */
-    public function setExtension($extension)
-    {
-        $this->extension = $extension;
-    }
 }

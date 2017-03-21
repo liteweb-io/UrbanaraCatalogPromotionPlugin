@@ -25,6 +25,8 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
  */
 trait SyliusPluginTrait
 {
+    private $containerExtension;
+
     /**
      * Returns the plugin's container extension.
      *
@@ -34,7 +36,7 @@ trait SyliusPluginTrait
      */
     public function getContainerExtension()
     {
-        if (null === $this->getExtension()) {
+        if (null === $this->containerExtension) {
             $extension = $this->createContainerExtension();
 
             if (null !== $extension) {
@@ -53,14 +55,14 @@ trait SyliusPluginTrait
                     ));
                 }
 
-                $this->setExtension($extension);
+                $this->containerExtension = $extension;
             } else {
-                $this->setExtension(false);
+                $this->containerExtension = false;
             }
         }
 
-        if ($this->getExtension()) {
-            return $this->getExtension();
+        if ($this->containerExtension) {
+            return $this->containerExtension;
         }
     }
 
@@ -84,16 +86,6 @@ trait SyliusPluginTrait
      * @return string The Bundle namespace
      */
     abstract protected function getNamespace();
-
-    /**
-     * @return ExtensionInterface|bool
-     */
-    abstract protected function getExtension();
-
-    /**
-     * @param ExtensionInterface|bool $extension
-     */
-    abstract protected function setExtension($extension);
 
     /**
      * Returns the plugin's container extension class.
