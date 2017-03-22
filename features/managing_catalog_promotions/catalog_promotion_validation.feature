@@ -33,7 +33,7 @@ Feature: Catalog promotion validation
         And I name it "Full metal promotion"
         And I make it available from "24.12.2017" to "12.12.2017"
         And I try to add it
-        Then I should be notified that the catalog promotion cannot ends before it starts
+        Then I should be notified that the catalog promotion cannot end before it starts
 
     @ui
     Scenario: Adding a catalog promotion with fixed discount without the price for enabled channel
