@@ -5,7 +5,7 @@ namespace Acme\SyliusCatalogPromotionPlugin\OrderProcessing;
 use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
 use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Provider\PreQualifiedCatalogPromotionProviderInterface;
+use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
@@ -16,7 +16,7 @@ use Webmozart\Assert\Assert;
 final class CatalogPromotionProcessor implements OrderProcessorInterface
 {
     /**
-     * @var PreQualifiedCatalogPromotionProviderInterface
+     * @var CatalogPromotionProviderInterface
      */
     private $catalogPromotionProvider;
 
@@ -31,12 +31,12 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
     private $catalogPromotionApplicator;
 
     /**
-     * @param PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider
+     * @param CatalogPromotionProviderInterface $catalogPromotionProvider
      * @param ServiceRegistryInterface $serviceRegistry
      * @param CatalogPromotionApplicatorInterface $catalogPromotionApplicator
      */
     public function __construct(
-        PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider,
+        CatalogPromotionProviderInterface $catalogPromotionProvider,
         ServiceRegistryInterface $serviceRegistry,
         CatalogPromotionApplicatorInterface $catalogPromotionApplicator
     ) {
@@ -59,7 +59,7 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
             }
 
             /** @var CatalogPromotionInterface $catalogPromotion */
-            foreach ($this->catalogPromotionProvider->provide($order->getChannel()) as $catalogPromotion) {
+            foreach ($this->catalogPromotionProvider->provide($order->getChannel(), $item) as $catalogPromotion) {
                 /** @var CatalogDiscountActionCommandInterface $command */
                 $command = $this->serviceRegistry->get($catalogPromotion->getDiscountType());
 

@@ -3,6 +3,10 @@
 namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Setup;
 
 use Acme\SyliusCatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand;
+use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRule;
+use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRuleInterface;
+use Acme\SyliusCatalogPromotionPlugin\Rule\IsFromTaxonRuleChecker;
+use Acme\SyliusCatalogPromotionPlugin\Rule\IsProductRuleChecker;
 use Behat\Behat\Tester\Exception\PendingException;
 use Acme\SyliusCatalogPromotionPlugin\Action\FixedCatalogDiscountCommand;
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
@@ -10,6 +14,8 @@ use Behat\Behat\Context\Context;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Component\Core\Formatter\StringInflector;
+use Sylius\Component\Core\Model\ProductInterface;
+use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
@@ -26,6 +32,11 @@ final class CatalogPromotionContext implements Context
     private $catalogPromotionFactory;
 
     /**
+     * @var FactoryInterface
+     */
+    private $catalogRulePromotionFactory;
+
+    /**
      * @var RepositoryInterface
      */
     private $catalogPromotionRepository;
@@ -38,17 +49,20 @@ final class CatalogPromotionContext implements Context
     /**
      * @param SharedStorageInterface $sharedStorage
      * @param FactoryInterface $catalogPromotionFactory
+     * @param FactoryInterface $catalogRulePromotionFactory
      * @param RepositoryInterface $catalogPromotionRepository
      * @param ObjectManager $manager
      */
     public function __construct(
         SharedStorageInterface $sharedStorage,
         FactoryInterface $catalogPromotionFactory,
+        FactoryInterface $catalogRulePromotionFactory,
         RepositoryInterface $catalogPromotionRepository,
         ObjectManager $manager
     ) {
         $this->sharedStorage = $sharedStorage;
         $this->catalogPromotionRepository = $catalogPromotionRepository;
+        $this->catalogRulePromotionFactory = $catalogRulePromotionFactory;
         $this->catalogPromotionFactory = $catalogPromotionFactory;
         $this->manager = $manager;
     }
@@ -110,6 +124,7 @@ final class CatalogPromotionContext implements Context
 
     /**
      * @Given /^(it) gives ("(?:€|£|\$)[^"]+") discount on every product$/
+     * @Given /^(it) gives ("(?:€|£|\$)[^"]+") off$/
      */
     public function itGivesDiscountOnEveryProduct(CatalogPromotionInterface $catalogPromotion, $discount)
     {
@@ -183,6 +198,38 @@ final class CatalogPromotionContext implements Context
     public function theCatalogPromotionHasBeenMadeExclusive(CatalogPromotionInterface $catalogPromotion)
     {
         $catalogPromotion->setExclusive(true);
+
+        $this->manager->flush();
+    }
+
+    /**
+     * @Given /^(it) is applicable for ("[^"]*" product)$/
+     */
+    public function itIsApplicableForProduct(CatalogPromotionInterface $catalogPromotion, ProductInterface $product)
+    {
+        /** @var CatalogRuleInterface $rule */
+        $rule = $this->catalogRulePromotionFactory->createNew();
+
+        $rule->setType(IsProductRuleChecker::TYPE);
+        $rule->setConfiguration(['products' => [$product->getCode()]]);
+
+        $catalogPromotion->addRule($rule);
+
+        $this->manager->flush();
+    }
+
+    /**
+     * @Given /^(it) is applicable for products (classified as "[^"]*")$/
+     */
+    public function itIsApplicableForProductsClassifiedAs(CatalogPromotionInterface $catalogPromotion, TaxonInterface $taxon)
+    {
+        /** @var CatalogRuleInterface $rule */
+        $rule = $this->catalogRulePromotionFactory->createNew();
+
+        $rule->setType(IsFromTaxonRuleChecker::TYPE);
+        $rule->setConfiguration(['taxons' => [$taxon->getCode()]]);
+
+        $catalogPromotion->addRule($rule);
 
         $this->manager->flush();
     }

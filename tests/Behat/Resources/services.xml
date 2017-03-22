@@ -23,6 +23,7 @@
         <service id="acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Setup\CatalogPromotionContext">
             <argument type="service" id="sylius.behat.shared_storage" />
             <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.factory.catalog_promotion" />
+            <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.factory.catalog_rule" />
             <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.repository.catalog_promotion" />
             <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.manager.catalog_promotion" />
             <tag name="fob.context_service" />

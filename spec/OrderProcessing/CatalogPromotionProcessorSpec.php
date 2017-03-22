@@ -6,7 +6,7 @@ use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterfa
 use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Acme\SyliusCatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor;
-use Acme\SyliusCatalogPromotionPlugin\Provider\PreQualifiedCatalogPromotionProviderInterface;
+use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -20,7 +20,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 final class CatalogPromotionProcessorSpec extends ObjectBehavior
 {
     function let(
-        PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider,
+        CatalogPromotionProviderInterface $catalogPromotionProvider,
         ServiceRegistry $catalogActionRegistry,
         CatalogPromotionApplicatorInterface $catalogPromotionApplicator
     ) {
@@ -43,11 +43,11 @@ final class CatalogPromotionProcessorSpec extends ObjectBehavior
         ChannelInterface $channel,
         OrderInterface $order,
         OrderItemInterface $orderItem,
-        PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider,
+        CatalogPromotionProviderInterface $catalogPromotionProvider,
         CatalogDiscountActionCommandInterface $actionCommand,
         ServiceRegistry $catalogActionRegistry
     ) {
-        $catalogPromotionProvider->provide($channel)->willReturn([$catalogPromotion]);
+        $catalogPromotionProvider->provide($channel, $orderItem)->willReturn([$catalogPromotion]);
 
         $catalogActionRegistry->get('action_discount')->willReturn($actionCommand);
 

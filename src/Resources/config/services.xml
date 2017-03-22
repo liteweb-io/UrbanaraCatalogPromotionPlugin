@@ -17,8 +17,13 @@
             <argument type="service" id="sylius.factory.adjustment" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.provider" class="Acme\SyliusCatalogPromotionPlugin\Provider\PreQualifiedCatalogPromotionProvider">
+        <service id="acme_sylius_catalog_promotion.provider" class="Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProvider">
             <argument type="service" id="acme_sylius_catalog_promotion.repository.catalog_promotion" />
+            <argument type="service" id="acme_sylius_catalog_promotion.checker" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.checker" class="Acme\SyliusCatalogPromotionPlugin\Checker\CatalogPromotionEligibilityChecker">
+            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_rule" />
         </service>
 
         <service id="acme_sylius_catalog_promotion.order_processing.catalog_promotion_recalculator" class="Acme\SyliusCatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor">

@@ -7,6 +7,8 @@ use Acme\SyliusCatalogPromotionPlugin\Rule\IsProductRuleChecker;
 use Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductInterface;
 
 final class IsProductRuleCheckerSpec extends ObjectBehavior
 {
@@ -23,5 +25,21 @@ final class IsProductRuleCheckerSpec extends ObjectBehavior
     function it_has_related_configuration_type()
     {
         $this->getConfigurationFormType()->shouldReturn(IsProductType::class);
+    }
+
+    function it_returns_true_if_promotion_is_eligible(OrderItemInterface $orderItem, ProductInterface $product)
+    {
+        $orderItem->getProduct()->willReturn($product);
+        $product->getCode()->willReturn('PUG-CODE');
+
+        $this->isEligible($orderItem, ['products' => ['PUG-CODE']])->shouldReturn(true);
+    }
+
+    function it_returns_false_if_promotion_is_not_eligible(OrderItemInterface $orderItem, ProductInterface $product)
+    {
+        $orderItem->getProduct()->willReturn($product);
+        $product->getCode()->willReturn('NARWHAL-CODE');
+
+        $this->isEligible($orderItem, ['products' => ['PUG-CODE']])->shouldReturn(false);
     }
 }

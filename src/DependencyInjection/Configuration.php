@@ -64,6 +64,7 @@ final class Configuration implements ConfigurationInterface
                                 ->scalarNode('model')->defaultValue(CatalogRule::class)->cannotBeEmpty()->end()
                                 ->scalarNode('interface')->defaultValue(CatalogRuleInterface::class)->cannotBeEmpty()->end()
                                 ->scalarNode('form')->defaultValue(CatalogRuleType::class)->cannotBeEmpty()->end()
+                                ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
         ;
     }
 }

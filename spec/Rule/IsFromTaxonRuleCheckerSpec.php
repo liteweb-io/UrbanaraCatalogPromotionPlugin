@@ -7,6 +7,9 @@ use Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface;
 use Acme\SyliusCatalogPromotionPlugin\Rule\IsFromTaxonRuleChecker;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductInterface;
+use Sylius\Component\Core\Model\TaxonInterface;
 
 final class IsFromTaxonRuleCheckerSpec extends ObjectBehavior
 {
@@ -23,5 +26,43 @@ final class IsFromTaxonRuleCheckerSpec extends ObjectBehavior
     function it_has_related_configuration_type()
     {
         $this->getConfigurationFormType()->shouldReturn(IsFromTaxonType::class);
+    }
+
+    function it_returns_true_if_promotion_is_eligible(
+        OrderItemInterface $orderItem,
+        ProductInterface $product,
+        TaxonInterface $taxon
+    ) {
+        $orderItem->getProduct()->willReturn($product);
+        $product->getTaxons()->willReturn([$taxon]);
+        $taxon->getCode()->willReturn('PUG-CODE');
+
+        $this->isEligible($orderItem, ['taxons' => ['PUG-CODE']])->shouldReturn(true);
+    }
+
+    function only_one_taxon_has_to_fulfill_creteria(
+        OrderItemInterface $orderItem,
+        ProductInterface $product,
+        TaxonInterface $badTaxon,
+        TaxonInterface $goodTaxon
+    ) {
+        $orderItem->getProduct()->willReturn($product);
+        $product->getTaxons()->willReturn([$badTaxon, $goodTaxon]);
+        $badTaxon->getCode()->willReturn('NARWHAL-CODE');
+        $goodTaxon->getCode()->willReturn('PUG-CODE');
+
+        $this->isEligible($orderItem, ['taxons' => ['PUG-CODE']])->shouldReturn(true);
+    }
+
+    function it_returns_false_if_promotion_is_not_eligible(
+        OrderItemInterface $orderItem,
+        ProductInterface $product,
+        TaxonInterface $taxon
+    ) {
+        $orderItem->getProduct()->willReturn($product);
+        $product->getTaxons()->willReturn([$taxon]);
+        $taxon->getCode()->willReturn('NARWHAL-CODE');
+
+        $this->isEligible($orderItem, ['taxons' => ['PUG-CODE']])->shouldReturn(false);
     }
 }
