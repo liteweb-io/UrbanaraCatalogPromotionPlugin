@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class CatalogRuleType extends AbstractResourceType
 {
@@ -45,7 +46,7 @@ final class CatalogRuleType extends AbstractResourceType
                 ],
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
-                $type = $this->getRegistryIdentifier($event->getData());
+                $type = $this->getRegistryIdentifier($event->getForm(), $event->getData());
                 if (null === $type) {
                     return;
                 }
@@ -53,7 +54,7 @@ final class CatalogRuleType extends AbstractResourceType
                 $this->addConfigurationFields($event->getForm(), $this->ruleRegistry->get($type));
             })
             ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
-                $type = $this->getRegistryIdentifier($event->getData());
+                $type = $this->getRegistryIdentifier($event->getForm(), $event->getData());
                 if (null === $type) {
                     return;
                 }
@@ -69,6 +70,19 @@ final class CatalogRuleType extends AbstractResourceType
 
                 $this->addConfigurationFields($event->getForm(), $this->ruleRegistry->get($data['type']));
             })
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
+
+        $resolver
+            ->setDefault('configuration_type', null)
+            ->setAllowedTypes('configuration_type', ['string', 'null'])
         ;
     }
 
@@ -92,14 +106,19 @@ final class CatalogRuleType extends AbstractResourceType
     }
 
     /**
+     * @param FormInterface $form
      * @param CatalogRuleInterface|null $ruleChecker
      *
      * @return null|string
      */
-    private function getRegistryIdentifier(CatalogRuleInterface $ruleChecker = null)
+    private function getRegistryIdentifier(FormInterface $form, CatalogRuleInterface $ruleChecker = null)
     {
         if (null !== $ruleChecker) {
             return $ruleChecker->getType();
+        }
+
+        if (null !== $form->getConfig()->getOption('configuration_type')) {
+            return $form->getConfig()->getOption('configuration_type');
         }
 
         return empty($this->ruleRegistry->all())? null : array_keys($this->ruleRegistry->all())[0];

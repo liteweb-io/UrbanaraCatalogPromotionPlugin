@@ -5,5 +5,9 @@
         <service id="acme_sylius_catalog_promotion.catalog_promotion_rule.is_from_taxon" class="Acme\SyliusCatalogPromotionPlugin\Rule\IsFromTaxonRuleChecker">
             <tag name="acme_sylius_catalog_promotion.catalog_promotion_rule" type="is_from_taxon" label="Is from taxon" />
         </service>
+
+        <service id="acme_sylius_catalog_promotion.catalog_promotion_rule.is_product" class="Acme\SyliusCatalogPromotionPlugin\Rule\IsProductRuleChecker">
+            <tag name="acme_sylius_catalog_promotion.catalog_promotion_rule" type="is_product" label="Is product" />
+        </service>
     </services>
 </container>

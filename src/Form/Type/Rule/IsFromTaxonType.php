@@ -29,7 +29,7 @@ final class IsFromTaxonType extends AbstractType
     {
         $builder
             ->add('taxons', TaxonAutocompleteChoiceType::class, [
-                'label' => 'sylius.form.promotion_rule.has_taxon.taxons',
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion_rule.taxons',
                 'multiple' => true,
             ])
         ;

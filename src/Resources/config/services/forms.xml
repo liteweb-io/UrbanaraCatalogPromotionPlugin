@@ -48,5 +48,10 @@
             <argument type="service" id="sylius.form.type.data_transformer.taxons_to_codes" />
             <tag name="form.type" />
         </service>
+
+        <service id="acme_sylius_catalog_promotion.form.type.rule.is_product" class="Acme\SyliusCatalogPromotionPlugin\Form\Type\Rule\IsProductType">
+            <argument type="service" id="sylius.form.type.data_transformer.products_to_codes" />
+            <tag name="form.type" />
+        </service>
     </services>
 </container>

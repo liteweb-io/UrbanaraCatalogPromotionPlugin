@@ -22,6 +22,8 @@ acme_sylius_catalog_promotion:
 
         catalog_promotion_rule:
             type: "Type"
+            taxons: "Taxons"
+            products: "Products"
 
     ui:
         action_configuration: "Action configuration"

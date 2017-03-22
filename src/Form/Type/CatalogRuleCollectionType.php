@@ -34,7 +34,11 @@ final class CatalogRuleCollectionType extends AbstractType
         foreach ($this->registry->all() as $type => $config) {
             $formBuilder = $builder->create(
                 $options['prototype_name'],
-                $options['entry_type']
+                $options['entry_type'],
+                array_replace(
+                    $options['entry_options'],
+                    ['configuration_type' => $type]
+                )
             );
 
             $prototypes[$type] = $formBuilder->getForm();
