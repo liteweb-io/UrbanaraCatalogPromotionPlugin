@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <parameters>
-        <parameter key="acme_sylius_catalog_promotion.form.type.catalog_promotion.validation_groups" type="collection">
-            <parameter>sylius</parameter>
-        </parameter>
-    </parameters>
+    <imports>
+        <import resource="services/actions.xml"/>
+        <import resource="services/blocks.xml"/>
+        <import resource="services/forms.xml"/>
+        <import resource="services/validators.xml"/>
+    </imports>
     <services>
         <service id="acme_sylius_catalog_promotion.admin.menu_builder.catalog_promotion" class="Acme\SyliusCatalogPromotionPlugin\Menu\MenuBuilderListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addCatalogPromotion" />
@@ -19,14 +20,6 @@
             <argument type="service" id="acme_sylius_catalog_promotion.repository.catalog_promotion" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.catalog_promotion_action.percentage_discount" class="Acme\SyliusCatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand">
-            <tag name="acme_sylius_catalog_promotion.catalog_promotion_action" type="percentage_discount" label="Percentage discount" />
-        </service>
-
-        <service id="acme_sylius_catalog_promotion.catalog_promotion_action.fixed_discount" class="Acme\SyliusCatalogPromotionPlugin\Action\FixedCatalogDiscountCommand">
-            <tag name="acme_sylius_catalog_promotion.catalog_promotion_action" type="fixed_discount" label="Fixed discount" />
-        </service>
-
         <service id="acme_sylius_catalog_promotion.order_processing.catalog_promotion_recalculator" class="Acme\SyliusCatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor">
             <argument type="service" id="acme_sylius_catalog_promotion.provider" />
             <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
@@ -37,41 +30,6 @@
         <service id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" class="Sylius\Component\Registry\ServiceRegistry">
             <argument>Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface</argument>
             <argument>catalog promotion action</argument>
-        </service>
-
-        <service id="acme_sylius_catalog_promotion.validator.date_range" class="Acme\SyliusCatalogPromotionPlugin\Validator\CatalogPromotionDateRangeValidator">
-            <tag name="validator.constraint_validator" alias="acme_sylius_catalog_promotion_date_range_validator" />
-        </service>
-
-        <service id="acme_sylius_catalog_promotion.validator.discount_for_enabled_channel" class="Acme\SyliusCatalogPromotionPlugin\Validator\CatalogPromotionDiscountForEnabledChannelValidator">
-            <tag name="validator.constraint_validator" alias="acme_sylius_catalog_promotion_discount_for_enabled_channel_validator" />
-        </service>
-
-        <service id="acme_sylius_catalog_promotion.form.type.catalog_promotion" class="Acme\SyliusCatalogPromotionPlugin\Form\Type\CatalogPromotionType">
-            <argument>%acme_sylius_catalog_promotion.model.catalog_promotion.class%</argument>
-            <argument>%acme_sylius_catalog_promotion.form.type.catalog_promotion.validation_groups%</argument>
-            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
-            <argument type="service" id="acme_sylius_catalog_promotion.form.event_subscriber.build_catalog_promotion_action" />
-            <tag name="form.type" />
-        </service>
-
-        <service id="acme_sylius_catalog_promotion.form.type.action.fixed_catalog_discount" class="Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType">
-            <tag name="form.type" />
-        </service>
-
-        <service id="acme_sylius_catalog_promotion.form.type.catalog_promotion_choice_type" class="Acme\SyliusCatalogPromotionPlugin\Form\Type\CatalogActionChoiceType">
-            <argument>%acme_sylius_catalog_promotion.catalog_promotion_actions%</argument>
-            <tag name="form.type" />
-        </service>
-
-        <service id="acme_sylius_catalog_promotion.form.event_subscriber.build_catalog_promotion_action" class="Acme\SyliusCatalogPromotionPlugin\Form\EventSubscriber\CatalogPromotionActionConfigurationSubscriber">
-            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
-            <argument type="service" id="form.factory" />
-        </service>
-
-        <service id="acme_sylius_catalog_promotion.block.js_block" class="Sylius\Bundle\UiBundle\Block\BlockEventListener">
-            <argument>@SyliusCatalogPromotionPlugin/_javascripts.html.twig</argument>
-            <tag name="kernel.event_listener" event="sonata.block.event.sylius.admin.layout.javascripts" method="onBlockEvent" />
         </service>
     </services>
 </container>
