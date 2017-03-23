@@ -24,7 +24,10 @@ final class CatalogPromotionProvider implements CatalogPromotionProviderInterfac
      * @param CatalogPromotionRepositoryInterface $catalogPromotionRepository
      * @param EligibilityCheckerInterface $checker
      */
-    public function __construct(CatalogPromotionRepositoryInterface $catalogPromotionRepository, EligibilityCheckerInterface $checker) {
+    public function __construct(
+        CatalogPromotionRepositoryInterface $catalogPromotionRepository,
+        EligibilityCheckerInterface $checker
+    ) {
         $this->catalogPromotionRepository = $catalogPromotionRepository;
         $this->checker = $checker;
     }

@@ -14,7 +14,8 @@ use Sylius\Component\Core\Model\OrderItemInterface;
 
 final class CatalogPromotionProviderSpec extends ObjectBehavior
 {
-    function let(CatalogPromotionRepositoryInterface $catalogPromotionRepository, EligibilityCheckerInterface $checker) {
+    function let(CatalogPromotionRepositoryInterface $catalogPromotionRepository, EligibilityCheckerInterface $checker)
+    {
         $this->beConstructedWith($catalogPromotionRepository, $checker);
     }
 
