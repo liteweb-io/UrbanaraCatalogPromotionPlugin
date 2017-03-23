@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="acme_sylius_catalog_promotion.form.type.catalog_promotion.validation_groups" type="collection">
+            <parameter>sylius</parameter>
+        </parameter>
+    </parameters>
+    <services>
+        <service id="acme_sylius_catalog_promotion.form.type.catalog_promotion" class="Acme\SyliusCatalogPromotionPlugin\Form\Type\CatalogPromotionType">
+            <argument>%acme_sylius_catalog_promotion.model.catalog_promotion.class%</argument>
+            <argument>%acme_sylius_catalog_promotion.form.type.catalog_promotion.validation_groups%</argument>
+            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
+            <argument type="service" id="acme_sylius_catalog_promotion.form.event_subscriber.build_catalog_promotion_action" />
+            <tag name="form.type" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.form.type.action.fixed_catalog_discount" class="Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.form.type.catalog_promotion_choice_type" class="Acme\SyliusCatalogPromotionPlugin\Form\Type\CatalogActionChoiceType">
+            <argument>%acme_sylius_catalog_promotion.catalog_promotion_actions%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.form.event_subscriber.build_catalog_promotion_action" class="Acme\SyliusCatalogPromotionPlugin\Form\EventSubscriber\CatalogPromotionActionConfigurationSubscriber">
+            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
+            <argument type="service" id="form.factory" />
+        </service>
+    </services>
+</container>
