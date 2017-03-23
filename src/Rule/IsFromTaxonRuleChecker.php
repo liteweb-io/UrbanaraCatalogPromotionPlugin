@@ -9,11 +9,17 @@ final class IsFromTaxonRuleChecker implements RuleCheckerInterface
 {
     const TYPE = 'is_from_taxon';
 
+    /**
+     * {@inheritdoc}
+     */
     public function getConfigurationFormType()
     {
         return IsFromTaxonType::class;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isEligible(OrderItemInterface $orderItem, array $configuration)
     {
         $product = $orderItem->getProduct();

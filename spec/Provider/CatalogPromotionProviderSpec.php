@@ -12,7 +12,7 @@ use Prophecy\Argument;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 
-class CatalogPromotionProviderSpec extends ObjectBehavior
+final class CatalogPromotionProviderSpec extends ObjectBehavior
 {
     function let(CatalogPromotionRepositoryInterface $catalogPromotionRepository, EligibilityCheckerInterface $checker) {
         $this->beConstructedWith($catalogPromotionRepository, $checker);

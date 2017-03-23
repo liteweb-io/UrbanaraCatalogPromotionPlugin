@@ -9,6 +9,9 @@ final class IsProductRuleChecker implements RuleCheckerInterface
 {
     const TYPE = 'is_product';
 
+    /**
+     * {@inheritdoc}
+     */
     public function getConfigurationFormType()
     {
         return IsProductType::class;

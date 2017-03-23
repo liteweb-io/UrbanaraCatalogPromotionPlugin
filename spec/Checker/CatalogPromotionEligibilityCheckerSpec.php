@@ -12,7 +12,7 @@ use Prophecy\Argument;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 
-class CatalogPromotionEligibilityCheckerSpec extends ObjectBehavior
+final class CatalogPromotionEligibilityCheckerSpec extends ObjectBehavior
 {
     function let(ServiceRegistryInterface $ruleRegistry)
     {
