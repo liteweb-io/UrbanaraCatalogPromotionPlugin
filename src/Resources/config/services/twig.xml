@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="acme_sylius_catalog_promotion.templating.helper.catalog_price" class="Acme\SyliusCatalogPromotionPlugin\Templating\Helper\CatalogPriceHelper">
+            <argument type="service" id="acme_sylius_catalog_promotion.provider" />
+            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
+            <tag name="templating.helper" />
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.twig.catalog_price" class="Acme\SyliusCatalogPromotionPlugin\Twig\CatalogPriceExtension">
+            <argument type="service" id="acme_sylius_catalog_promotion.templating.helper.catalog_price" />
+            <tag name="twig.extension" />
+        </service>
+    </services>
+</container>

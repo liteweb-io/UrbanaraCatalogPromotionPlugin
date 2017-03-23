@@ -6,8 +6,10 @@ use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterfa
 use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
@@ -61,19 +63,28 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
                 continue;
             }
 
-            $variant = $item->getVariant();
-            $currentPrice = $variant->getChannelPricingForChannel($channel)->getPrice();
+            $this->applyPromotion($channel, $item);
+        }
+    }
 
-            /** @var CatalogPromotionInterface $catalogPromotion */
-            foreach ($this->catalogPromotionProvider->provide($channel, $variant) as $catalogPromotion) {
-                /** @var CatalogDiscountActionCommandInterface $command */
-                $command = $this->serviceRegistry->get($catalogPromotion->getDiscountType());
+    /**
+     * @param ChannelInterface $channel
+     * @param OrderItemInterface $item
+     */
+    private function applyPromotion(ChannelInterface $channel, OrderItemInterface $item)
+    {
+        $variant = $item->getVariant();
+        $currentPrice = $variant->getChannelPricingForChannel($channel)->getPrice();
 
-                $discount = $command->calculate($currentPrice, $channel, $catalogPromotion->getDiscountConfiguration());
+        /** @var CatalogPromotionInterface $catalogPromotion */
+        foreach ($this->catalogPromotionProvider->provide($channel, $variant) as $catalogPromotion) {
+            /** @var CatalogDiscountActionCommandInterface $command */
+            $command = $this->serviceRegistry->get($catalogPromotion->getDiscountType());
 
-                $this->catalogPromotionApplicator->apply($item, $discount, $catalogPromotion->getName());
-                $currentPrice -= $discount;
-            }
+            $discount = $command->calculate($currentPrice, $channel, $catalogPromotion->getDiscountConfiguration());
+
+            $this->catalogPromotionApplicator->apply($item, $discount, $catalogPromotion->getName());
+            $currentPrice -= $discount;
         }
     }
 }
