@@ -3,7 +3,7 @@
 namespace Acme\SyliusCatalogPromotionPlugin\Rule;
 
 use Acme\SyliusCatalogPromotionPlugin\Form\Type\Rule\IsProductType;
-use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
 
 final class IsProductRuleChecker implements RuleCheckerInterface
 {
@@ -20,8 +20,8 @@ final class IsProductRuleChecker implements RuleCheckerInterface
     /**
      * {@inheritdoc}
      */
-    public function isEligible(OrderItemInterface $orderItem, array $configuration)
+    public function isEligible(ProductVariantInterface $productVariant, array $configuration)
     {
-        return in_array($orderItem->getProduct()->getCode(), $configuration['products'], true);
+        return in_array($productVariant->getProduct()->getCode(), $configuration['products'], true);
     }
 }

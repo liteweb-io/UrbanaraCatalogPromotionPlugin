@@ -3,7 +3,8 @@
 namespace Acme\SyliusCatalogPromotionPlugin\Rule;
 
 use Acme\SyliusCatalogPromotionPlugin\Form\Type\Rule\IsFromTaxonType;
-use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
 
 final class IsFromTaxonRuleChecker implements RuleCheckerInterface
 {
@@ -20,9 +21,10 @@ final class IsFromTaxonRuleChecker implements RuleCheckerInterface
     /**
      * {@inheritdoc}
      */
-    public function isEligible(OrderItemInterface $orderItem, array $configuration)
+    public function isEligible(ProductVariantInterface $productVariant, array $configuration)
     {
-        $product = $orderItem->getProduct();
+        /** @var ProductInterface $product */
+        $product = $productVariant->getProduct();
 
         foreach ($product->getTaxons() as $taxon) {
             if (in_array($taxon->getCode(), $configuration['taxons'], true)) {

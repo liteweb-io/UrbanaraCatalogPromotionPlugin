@@ -14,6 +14,9 @@
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.update" />
             <tag name="fob.context_service" />
         </service>
+        <service id="acme_sylius_catalog_promotion.behat.context.ui.shop.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Ui\Shop\ProductContext">
+            <tag name="fob.context_service" />
+        </service>
 
         <service id="acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Transform\CatalogPromotionContext">
             <argument type="service" id="__symfony__.acme_sylius_catalog_promotion.repository.catalog_promotion" />

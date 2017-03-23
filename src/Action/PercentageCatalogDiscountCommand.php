@@ -3,7 +3,9 @@
 namespace Acme\SyliusCatalogPromotionPlugin\Action;
 
 use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\PercentageCatalogDiscountType;
-use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
+use Webmozart\Assert\Assert;
 
 final class PercentageCatalogDiscountCommand implements CatalogDiscountActionCommandInterface
 {
@@ -20,12 +22,13 @@ final class PercentageCatalogDiscountCommand implements CatalogDiscountActionCom
     /**
      * {@inheritdoc}
      */
-    public function calculate(OrderItemInterface $orderItem, array $configuration)
+    public function calculate($currentPrice, ChannelInterface $channel, array $configuration)
     {
+        Assert::integer($currentPrice, 'Current price is not an integer.');
+
         $this->isConfigurationValid($configuration);
 
         $promotionDiscount = $configuration['percentage'];
-        $currentPrice = $orderItem->getUnitPrice();
 
         return (int) ($currentPrice * $promotionDiscount);
     }
@@ -37,8 +40,7 @@ final class PercentageCatalogDiscountCommand implements CatalogDiscountActionCom
      */
     private function isConfigurationValid(array $configuration)
     {
-        if (!isset($configuration['percentage']) || !is_float($configuration['percentage'])) {
-            throw new \InvalidArgumentException('"percentage" must be set and must be a float.');
-        }
+        Assert::keyExists($configuration, 'percentage', '"percentage" must be set and must be a float.');
+        Assert::float($configuration['percentage'], '"percentage" must be set and must be a float.');
     }
 }

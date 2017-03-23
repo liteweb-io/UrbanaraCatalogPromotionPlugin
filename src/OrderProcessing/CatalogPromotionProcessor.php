@@ -7,6 +7,7 @@ use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInter
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
@@ -52,20 +53,26 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
     {
         /** @var OrderInterface $order */
         Assert::isInstanceOf($order, OrderInterface::class);
+        $channel = $order->getChannel();
 
+        /** @var OrderItemInterface $item */
         foreach ($order->getItems() as $item) {
             if ($item->isImmutable()) {
                 continue;
             }
 
+            $variant = $item->getVariant();
+            $currentPrice = $variant->getChannelPricingForChannel($channel)->getPrice();
+
             /** @var CatalogPromotionInterface $catalogPromotion */
-            foreach ($this->catalogPromotionProvider->provide($order->getChannel(), $item) as $catalogPromotion) {
+            foreach ($this->catalogPromotionProvider->provide($channel, $variant) as $catalogPromotion) {
                 /** @var CatalogDiscountActionCommandInterface $command */
                 $command = $this->serviceRegistry->get($catalogPromotion->getDiscountType());
 
-                $discount = $command->calculate($item, $catalogPromotion->getDiscountConfiguration());
+                $discount = $command->calculate($currentPrice, $channel, $catalogPromotion->getDiscountConfiguration());
 
                 $this->catalogPromotionApplicator->apply($item, $discount, $catalogPromotion->getName());
+                $currentPrice -= $discount;
             }
         }
     }

@@ -7,6 +7,7 @@ use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Acme\SyliusCatalogPromotionPlugin\Repository\CatalogPromotionRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
 
 final class CatalogPromotionProvider implements CatalogPromotionProviderInterface
 {
@@ -35,12 +36,12 @@ final class CatalogPromotionProvider implements CatalogPromotionProviderInterfac
     /**
      * {@inheritdoc}
      */
-    public function provide(ChannelInterface $channel, OrderItemInterface $orderItem)
+    public function provide(ChannelInterface $channel, ProductVariantInterface $productVariant)
     {
         $catalogPromotions = $this->catalogPromotionRepository->findActiveForChannel($channel);
 
-        $eligiblePromotions = array_filter($catalogPromotions, function (CatalogPromotionInterface $catalogPromotion) use ($orderItem) {
-            return $this->checker->isEligible($orderItem, $catalogPromotion);
+        $eligiblePromotions = array_filter($catalogPromotions, function (CatalogPromotionInterface $catalogPromotion) use ($productVariant) {
+            return $this->checker->isEligible($productVariant, $catalogPromotion);
         });
 
         /** @var CatalogPromotionInterface $catalogPromotion */

@@ -2,7 +2,7 @@
 
 namespace Acme\SyliusCatalogPromotionPlugin\Rule;
 
-use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
 
 interface RuleCheckerInterface
 {
@@ -12,10 +12,10 @@ interface RuleCheckerInterface
     public function getConfigurationFormType();
 
     /**
-     * @param OrderItemInterface $orderItem
+     * @param ProductVariantInterface $productVariant
      * @param array $configuration
      *
      * @return bool
      */
-    public function isEligible(OrderItemInterface $orderItem, array $configuration);
+    public function isEligible(ProductVariantInterface $productVariant, array $configuration);
 }

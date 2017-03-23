@@ -46,3 +46,20 @@ default:
 
             filters:
                 tags: "@receiving_catalog_promotion_discount"
+
+        showing_catalog_discount:
+            contexts_services:
+                - sylius.behat.context.hook.doctrine_orm
+
+                - acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion
+                - sylius.behat.context.setup.channel
+                - sylius.behat.context.setup.product
+
+                - acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion
+                - sylius.behat.context.transform.shared_storage
+
+                - acme_sylius_catalog_promotion.behat.context.ui.shop.catalog_promotion
+                - sylius.behat.context.ui.shop.product
+
+            filters:
+                tags: "@showing_catalog_discount"

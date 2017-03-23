@@ -9,7 +9,7 @@ use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRuleInterface;
 use Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 
 final class CatalogPromotionEligibilityCheckerSpec extends ObjectBehavior
@@ -31,7 +31,7 @@ final class CatalogPromotionEligibilityCheckerSpec extends ObjectBehavior
 
     function it_checks_eligibility_of_the_promotion(
         CatalogPromotionInterface $catalogPromotion,
-        OrderItemInterface $orderItem,
+        ProductVariantInterface $productVariant,
         CatalogRuleInterface $eligibleRule,
         RuleCheckerInterface $ruleChecker,
         ServiceRegistryInterface $ruleRegistry
@@ -40,23 +40,23 @@ final class CatalogPromotionEligibilityCheckerSpec extends ObjectBehavior
         $eligibleRule->getType()->willReturn('identifier');
         $eligibleRule->getConfiguration()->willReturn([]);
         $ruleRegistry->get('identifier')->willReturn($ruleChecker);
-        $ruleChecker->isEligible($orderItem, [])->willReturn(true);
+        $ruleChecker->isEligible($productVariant, [])->willReturn(true);
 
-        $this->isEligible($orderItem, $catalogPromotion)->shouldReturn(true);
+        $this->isEligible($productVariant, $catalogPromotion)->shouldReturn(true);
     }
 
     function it_returns_true_if_no_rules_defined(
         CatalogPromotionInterface $catalogPromotion,
-        OrderItemInterface $orderItem
+        ProductVariantInterface $productVariant
     ) {
         $catalogPromotion->getRules()->willReturn([]);
 
-        $this->isEligible($orderItem, $catalogPromotion)->shouldReturn(true);
+        $this->isEligible($productVariant, $catalogPromotion)->shouldReturn(true);
     }
 
     function it_returns_false_if_some_of_rules_is_not_fulfilled(
         CatalogPromotionInterface $catalogPromotion,
-        OrderItemInterface $orderItem,
+        ProductVariantInterface $productVariant,
         CatalogRuleInterface $eligibleRule,
         CatalogRuleInterface $notEligibleRule,
         RuleCheckerInterface $ruleChecker,
@@ -71,8 +71,8 @@ final class CatalogPromotionEligibilityCheckerSpec extends ObjectBehavior
         $notEligibleRule->getConfiguration()->willReturn([]);
 
         $ruleRegistry->get('identifier')->willReturn($ruleChecker);
-        $ruleChecker->isEligible($orderItem, [])->willReturn(true, false);
+        $ruleChecker->isEligible($productVariant, [])->willReturn(true, false);
 
-        $this->isEligible($orderItem, $catalogPromotion)->shouldReturn(false);
+        $this->isEligible($productVariant, $catalogPromotion)->shouldReturn(false);
     }
 }

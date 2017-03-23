@@ -2,7 +2,7 @@
 
 namespace Acme\SyliusCatalogPromotionPlugin\Action;
 
-use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 
 interface CatalogDiscountActionCommandInterface
 {
@@ -12,10 +12,11 @@ interface CatalogDiscountActionCommandInterface
     public function getConfigurationFormType();
 
     /**
-     * @param OrderItemInterface $orderItem
+     * @param int $currentPrice
+     * @param ChannelInterface $channel
      * @param array $configuration
      *
      * @return int
      */
-    public function calculate(OrderItemInterface $orderItem, array $configuration);
+    public function calculate($currentPrice, ChannelInterface $channel, array $configuration);
 }

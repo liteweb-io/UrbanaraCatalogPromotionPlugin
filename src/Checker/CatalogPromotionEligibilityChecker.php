@@ -5,6 +5,7 @@ namespace Acme\SyliusCatalogPromotionPlugin\Checker;
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 
 final class CatalogPromotionEligibilityChecker implements EligibilityCheckerInterface
@@ -25,13 +26,13 @@ final class CatalogPromotionEligibilityChecker implements EligibilityCheckerInte
     /**
      * {@inheritdoc}
      */
-    public function isEligible(OrderItemInterface $orderItem, CatalogPromotionInterface $catalogPromotion)
+    public function isEligible(ProductVariantInterface $productVariant, CatalogPromotionInterface $catalogPromotion)
     {
         foreach ($catalogPromotion->getRules() as $rule) {
             /** @var RuleCheckerInterface $ruleChecker */
             $ruleChecker = $this->registry->get($rule->getType());
 
-            if (!$ruleChecker->isEligible($orderItem, $rule->getConfiguration())) {
+            if (!$ruleChecker->isEligible($productVariant, $rule->getConfiguration())) {
                 return false;
             }
         }
