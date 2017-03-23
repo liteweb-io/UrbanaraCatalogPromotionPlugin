@@ -2,11 +2,17 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="sylius.behat.page.admin.catalog_promotion.create.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\CreatePage</parameter>
-        <parameter key="sylius.behat.page.admin.catalog_promotion.index.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\IndexPage</parameter>
-        <parameter key="sylius.behat.page.admin.catalog_promotion.update.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\UpdatePage</parameter>
+        <parameter key="acme_sylius_catalog_promotion.behat.page.admin.catalog_promotion.create.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\CreatePage</parameter>
+        <parameter key="acme_sylius_catalog_promotion.behat.page.admin.catalog_promotion.index.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\IndexPage</parameter>
+        <parameter key="acme_sylius_catalog_promotion.behat.page.admin.catalog_promotion.update.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin\UpdatePage</parameter>
+        <parameter key="acme_sylius_catalog_promotion.behat.page.element.catalog_promotion.class">Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Element\CatalogPromotionElement</parameter>
     </parameters>
     <services>
+        <service id="acme_sylius_catalog_promotion.behat.element" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Element\Element" abstract="true" public="false">
+            <argument type="service" id="mink.default_session" />
+            <argument>%__behat__.mink.parameters%</argument>
+        </service>
+
         <service id="acme_sylius_catalog_promotion.behat.context.ui.admin.managing" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Ui\Admin\ManagingCatalogPromotionContext">
             <argument type="service" id="sylius.behat.shared_storage" />
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.create" />
@@ -14,7 +20,8 @@
             <argument type="service" id="acme_sylius_catalog_promotion.behat.page.admin.update" />
             <tag name="fob.context_service" />
         </service>
-        <service id="acme_sylius_catalog_promotion.behat.context.ui.shop.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Ui\Shop\ProductContext">
+        <service id="acme_sylius_catalog_promotion.behat.context.ui.shop.catalog_promotion" class="Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Ui\Shop\CatalogPromotionContext">
+            <argument type="service" id="acme_sylius_catalog_promotion.behat.page.element.catalog_promotion" />
             <tag name="fob.context_service" />
         </service>
 
@@ -32,13 +39,17 @@
             <tag name="fob.context_service" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.behat.page.admin.create" class="%sylius.behat.page.admin.catalog_promotion.create.class%" parent="sylius.behat.page.admin.crud.create" public="false">
+        <service id="acme_sylius_catalog_promotion.behat.page.admin.create" class="%acme_sylius_catalog_promotion.behat.page.admin.catalog_promotion.create.class%" parent="sylius.behat.page.admin.crud.create" public="false">
             <argument type="string">acme_sylius_catalog_promotion_admin_catalog_promotion_create</argument>
         </service>
-        <service id="acme_sylius_catalog_promotion.behat.page.admin.index" class="%sylius.behat.page.admin.catalog_promotion.index.class%" parent="sylius.behat.page.admin.crud.index" public="false">
+        <service id="acme_sylius_catalog_promotion.behat.page.admin.index" class="%acme_sylius_catalog_promotion.behat.page.admin.catalog_promotion.index.class%" parent="sylius.behat.page.admin.crud.index" public="false">
             <argument type="string">acme_sylius_catalog_promotion_admin_catalog_promotion_index</argument>
         </service>
-        <service id="acme_sylius_catalog_promotion.behat.page.admin.update" class="%sylius.behat.page.admin.catalog_promotion.update.class%" parent="sylius.behat.page.admin.crud.update" public="false">
+        <service id="acme_sylius_catalog_promotion.behat.page.admin.update" class="%acme_sylius_catalog_promotion.behat.page.admin.catalog_promotion.update.class%" parent="sylius.behat.page.admin.crud.update" public="false">
+            <argument type="string">acme_sylius_catalog_promotion_admin_catalog_promotion_update</argument>
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.behat.page.element.catalog_promotion" class="%acme_sylius_catalog_promotion.behat.page.element.catalog_promotion.class%" parent="acme_sylius_catalog_promotion.behat.element" public="false">
             <argument type="string">acme_sylius_catalog_promotion_admin_catalog_promotion_update</argument>
         </service>
     </services>

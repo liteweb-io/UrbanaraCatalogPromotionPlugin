@@ -54,11 +54,17 @@ default:
                 - acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion
                 - sylius.behat.context.setup.channel
                 - sylius.behat.context.setup.product
+                - sylius.behat.context.setup.product_taxon
+                - sylius.behat.context.setup.taxonomy
+                - sylius.behat.context.transform.product
 
                 - acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion
+                - sylius.behat.context.transform.lexical
                 - sylius.behat.context.transform.shared_storage
+                - sylius.behat.context.transform.taxon
 
                 - acme_sylius_catalog_promotion.behat.context.ui.shop.catalog_promotion
+                - sylius.behat.context.ui.shop.cart
                 - sylius.behat.context.ui.shop.product
 
             filters:
