@@ -121,6 +121,8 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
 
     /**
      * @param CatalogRuleInterface $rule
+     *
+     * @return bool
      */
     public function hasRule(CatalogRuleInterface $rule);
 

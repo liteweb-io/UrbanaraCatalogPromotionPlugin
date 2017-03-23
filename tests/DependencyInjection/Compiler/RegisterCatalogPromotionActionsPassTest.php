@@ -49,6 +49,9 @@ final class RegisterCatalogPromotionActionsPassTest extends AbstractCompilerPass
         );
     }
 
+    /**
+     * @param ContainerBuilder $container
+     */
     protected function registerCompilerPass(ContainerBuilder $container)
     {
         $container->addCompilerPass(new RegisterCatalogPromotionActionsPass());

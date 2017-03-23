@@ -121,6 +121,6 @@ final class CatalogRuleType extends AbstractResourceType
             return $form->getConfig()->getOption('configuration_type');
         }
 
-        return empty($this->ruleRegistry->all())? null : array_keys($this->ruleRegistry->all())[0];
+        return empty($this->ruleRegistry->all()) ? null : array_keys($this->ruleRegistry->all())[0];
     }
 }

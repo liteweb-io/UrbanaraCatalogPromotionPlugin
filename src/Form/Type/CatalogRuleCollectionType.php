@@ -47,6 +47,9 @@ final class CatalogRuleCollectionType extends AbstractType
         $builder->setAttribute('prototypes', $prototypes);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
@@ -66,7 +69,6 @@ final class CatalogRuleCollectionType extends AbstractType
             $view->vars['prototypes'][$type] = $prototype->createView($view);
         }
     }
-
 
     /**
      * {@inheritdoc}
