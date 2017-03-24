@@ -405,4 +405,15 @@ final class ManagingCatalogPromotionContext implements Context
             sprintf('Expected last catalog promotion\'s %s to be "%s", but it is "%s".', $field, $value, $actualValue)
         );
     }
+
+    /**
+     * @Then I should be notified that a code cannot contain any spaces
+     */
+    public function iShouldBeNotifiedThatACodeCannotContainAnySpaces()
+    {
+        Assert::contains(
+            $this->createPage->getValidationMessage('code'),
+            'Catalog promotion code can only be comprised of letters, numbers, dashes and underscores.'
+        );
+    }
 }
