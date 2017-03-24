@@ -9,6 +9,7 @@ default:
                 - acme_sylius_catalog_promotion.behat.context.setup.catalog_promotion
                 - sylius.behat.context.setup.admin_security
                 - sylius.behat.context.setup.channel
+                - sylius.behat.context.setup.taxonomy
 
                 - acme_sylius_catalog_promotion.behat.context.transform.catalog_promotion
                 - sylius.behat.context.transform.channel

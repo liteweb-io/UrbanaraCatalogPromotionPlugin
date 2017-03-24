@@ -16,6 +16,14 @@ acme_sylius_catalog_promotion:
             percentage: "Percentage"
             channels: "Channels"
             priority: "Priority"
+            add_rule: "Add rule"
+            rules: "Rules"
+            type: "Type"
+
+        catalog_promotion_rule:
+            type: "Type"
+            taxons: "Taxons"
+            products: "Products"
 
     ui:
         action_configuration: "Action configuration"

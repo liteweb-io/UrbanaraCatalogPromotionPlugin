@@ -5,6 +5,7 @@
         <import resource="services/actions.xml"/>
         <import resource="services/blocks.xml"/>
         <import resource="services/forms.xml"/>
+        <import resource="services/rules.xml"/>
         <import resource="services/validators.xml"/>
     </imports>
     <services>
@@ -30,6 +31,11 @@
         <service id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" class="Sylius\Component\Registry\ServiceRegistry">
             <argument>Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface</argument>
             <argument>catalog promotion action</argument>
+        </service>
+
+        <service id="acme_sylius_catalog_promotion.registry_catalog_promotion_rule" class="Sylius\Component\Registry\ServiceRegistry">
+            <argument>Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface</argument>
+            <argument>catalog promotion rule</argument>
         </service>
     </services>
 </container>

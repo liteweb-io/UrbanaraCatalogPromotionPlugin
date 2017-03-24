@@ -35,6 +35,7 @@ script:
     - composer validate --strict
 
     - vendor/bin/phpspec run
+    - vendor/bin/phpunit
 
     # TODO: Temporary remove js features
     - vendor/bin/behat -vvv --no-interaction --tags ~@javascript|| vendor/bin/behat --strict -vvv --no-interaction --tags ~@javascript --rerun

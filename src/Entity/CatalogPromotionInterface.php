@@ -108,4 +108,31 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
      * @param int $priority
      */
     public function setPriority($priority);
+
+    /**
+     * @return Collection|CatalogRuleInterface[]
+     */
+    public function getRules();
+
+    /**
+     * @return bool
+     */
+    public function hasRules();
+
+    /**
+     * @param CatalogRuleInterface $rule
+     *
+     * @return bool
+     */
+    public function hasRule(CatalogRuleInterface $rule);
+
+    /**
+     * @param CatalogRuleInterface $rule
+     */
+    public function addRule(CatalogRuleInterface $rule);
+
+    /**
+     * @param CatalogRuleInterface $rule
+     */
+    public function removeRule(CatalogRuleInterface $rule);
 }

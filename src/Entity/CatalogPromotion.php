@@ -68,9 +68,15 @@ class CatalogPromotion implements CatalogPromotionInterface
      */
     protected $channels;
 
+    /**
+     * @var Collection|CatalogRuleInterface[]
+     */
+    protected $rules;
+
     public function __construct()
     {
         $this->channels = new ArrayCollection();
+        $this->rules = new ArrayCollection();
     }
 
     /**
@@ -259,5 +265,49 @@ class CatalogPromotion implements CatalogPromotionInterface
     public function setPriority($priority)
     {
         $this->priority = $priority;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRules()
+    {
+        return $this->rules;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasRules()
+    {
+        return !$this->rules->isEmpty();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasRule(CatalogRuleInterface $rule)
+    {
+        return $this->rules->contains($rule);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addRule(CatalogRuleInterface $rule)
+    {
+        if (!$this->hasRule($rule)) {
+            $rule->setCatalogPromotion($this);
+            $this->rules->add($rule);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeRule(CatalogRuleInterface $rule)
+    {
+        $rule->setCatalogPromotion(null);
+        $this->rules->removeElement($rule);
     }
 }

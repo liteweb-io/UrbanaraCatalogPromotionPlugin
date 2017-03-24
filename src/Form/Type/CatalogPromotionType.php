@@ -107,6 +107,14 @@ final class CatalogPromotionType extends AbstractResourceType
 
                 $this->addConfigurationFields($event->getForm(), $this->registry->get($data['discountType']));
             })
+            ->add('rules', CatalogRuleCollectionType::class, [
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'error_bubbling' => false,
+                'button_add_label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.add_rule',
+                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.rules',
+            ])
             ->addEventSubscriber(new AddCodeFormSubscriber())
         ;
 
