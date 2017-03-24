@@ -18,6 +18,15 @@ Feature: Catalog promotion validation
         And the catalog promotion with name "No-VAT promotion" should not be added
 
     @ui
+    Scenario: Trying to add a new catalog promotion with code with spaces
+        When I create a new catalog promotion
+        And I name it "No-VAT promotion"
+        And I specify its code as "FULL METAL PROMOTION"
+        And I try to add it
+        Then I should be notified that a code cannot contain any spaces
+        And the catalog promotion with name "No-VAT promotion" should not be added
+
+    @ui
     Scenario: Trying to add a new catalog promotion without specifying its name
         When I create a new catalog promotion
         And I specify its code as "no_vat_promotion"
