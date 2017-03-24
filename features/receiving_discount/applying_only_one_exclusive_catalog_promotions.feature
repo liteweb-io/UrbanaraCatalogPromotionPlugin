@@ -17,8 +17,8 @@ Feature: Applying only one exclusive catalog promotion
         When I add product "PHP T-Shirt" to the cart
         Then I should see "PHP T-Shirt" with unit price "$80.00" in my cart
 
-    @todo
+    @ui
     Scenario: Receiving only first exclusive catalog promotion even if other exclusive promotion exists
-        Given the "Weekend SALE" catalog promotion has been made exclusive
+        Given the "Summer SALE" catalog promotion has been made exclusive
         When I add product "PHP T-Shirt" to the cart
-        Then the "PHP T-Shirt" item should cost "$80.00"
+        Then I should see "PHP T-Shirt" with unit price "$80.00" in my cart

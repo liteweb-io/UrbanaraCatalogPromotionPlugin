@@ -178,6 +178,16 @@ final class CatalogPromotionContext implements Context
     }
 
     /**
+     * @Given the :catalogPromotion catalog promotion has been made exclusive
+     */
+    public function theCatalogPromotionHasBeenMadeExclusive(CatalogPromotionInterface $catalogPromotion)
+    {
+        $catalogPromotion->setExclusive(true);
+
+        $this->manager->flush();
+    }
+
+    /**
      * @param string $catalogPromotionName
      *
      * @return CatalogPromotionInterface
