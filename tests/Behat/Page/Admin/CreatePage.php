@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin;
+namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Page\Admin;
 
 use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Behaviour\NamesIt;
@@ -24,8 +24,8 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         $timestamp = $dateTime->getTimestamp();
 
-        $this->getDocument()->fillField('acme_sylius_catalog_promotion_startsAt_date', date('Y-m-d', $timestamp));
-        $this->getDocument()->fillField('acme_sylius_catalog_promotion_startsAt_time', date('H:i', $timestamp));
+        $this->getDocument()->fillField('urbanara_catalog_promotion_startsAt_date', date('Y-m-d', $timestamp));
+        $this->getDocument()->fillField('urbanara_catalog_promotion_startsAt_time', date('H:i', $timestamp));
     }
 
     /**
@@ -35,8 +35,8 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         $timestamp = $dateTime->getTimestamp();
 
-        $this->getDocument()->fillField('acme_sylius_catalog_promotion_endsAt_date', date('Y-m-d', $timestamp));
-        $this->getDocument()->fillField('acme_sylius_catalog_promotion_endsAt_time', date('H:i', $timestamp));
+        $this->getDocument()->fillField('urbanara_catalog_promotion_endsAt_date', date('Y-m-d', $timestamp));
+        $this->getDocument()->fillField('urbanara_catalog_promotion_endsAt_time', date('H:i', $timestamp));
     }
 
     /**
@@ -44,7 +44,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
      */
     public function chooseActionType($type)
     {
-        $this->getDocument()->selectFieldOption('acme_sylius_catalog_promotion_discountType', $type);
+        $this->getDocument()->selectFieldOption('urbanara_catalog_promotion_discountType', $type);
     }
 
     /**
@@ -53,7 +53,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     public function fillActionAmount($field, $amount)
     {
         /** @var NodeElement $element */
-        $element = $this->getDocument()->find('css', '#acme_sylius_catalog_promotion_discountConfiguration_values');
+        $element = $this->getDocument()->find('css', '#urbanara_catalog_promotion_discountConfiguration_values');
         $element->fillField($field, $amount);
     }
 
@@ -92,10 +92,10 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     protected function getDefinedElements()
     {
         return [
-            'code' => '#acme_sylius_catalog_promotion_code',
-            'price_for_channel' => '#acme_sylius_catalog_promotion_discountConfiguration_values',
-            'ends_at' => '#acme_sylius_catalog_promotion_endsAt',
-            'name' => '#acme_sylius_catalog_promotion_name',
+            'code' => '#urbanara_catalog_promotion_code',
+            'price_for_channel' => '#urbanara_catalog_promotion_discountConfiguration_values',
+            'ends_at' => '#urbanara_catalog_promotion_endsAt',
+            'name' => '#urbanara_catalog_promotion_name',
         ];
     }
 }

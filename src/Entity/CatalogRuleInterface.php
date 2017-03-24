@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Entity;
+namespace Urbanara\CatalogPromotionPlugin\Entity;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 

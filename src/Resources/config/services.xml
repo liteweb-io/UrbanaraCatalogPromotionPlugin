@@ -10,37 +10,37 @@
         <import resource="services/validators.xml"/>
     </imports>
     <services>
-        <service id="acme_sylius_catalog_promotion.admin.menu_builder.catalog_promotion" class="Acme\SyliusCatalogPromotionPlugin\Menu\MenuBuilderListener">
+        <service id="urbanara_catalog_promotion.admin.menu_builder.catalog_promotion" class="Urbanara\CatalogPromotionPlugin\Menu\MenuBuilderListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addCatalogPromotion" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.applicator" class="Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicator">
+        <service id="urbanara_catalog_promotion.applicator" class="Urbanara\CatalogPromotionPlugin\Applicator\CatalogPromotionApplicator">
             <argument type="service" id="sylius.factory.adjustment" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.provider" class="Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProvider">
-            <argument type="service" id="acme_sylius_catalog_promotion.repository.catalog_promotion" />
-            <argument type="service" id="acme_sylius_catalog_promotion.checker" />
+        <service id="urbanara_catalog_promotion.provider" class="Urbanara\CatalogPromotionPlugin\Provider\CatalogPromotionProvider">
+            <argument type="service" id="urbanara_catalog_promotion.repository.catalog_promotion" />
+            <argument type="service" id="urbanara_catalog_promotion.checker" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.checker" class="Acme\SyliusCatalogPromotionPlugin\Checker\CatalogPromotionEligibilityChecker">
-            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_rule" />
+        <service id="urbanara_catalog_promotion.checker" class="Urbanara\CatalogPromotionPlugin\Checker\CatalogPromotionEligibilityChecker">
+            <argument type="service" id="urbanara_catalog_promotion.registry_catalog_promotion_rule" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.order_processing.catalog_promotion_recalculator" class="Acme\SyliusCatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor">
-            <argument type="service" id="acme_sylius_catalog_promotion.provider" />
-            <argument type="service" id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" />
-            <argument type="service" id="acme_sylius_catalog_promotion.applicator" />
+        <service id="urbanara_catalog_promotion.order_processing.catalog_promotion_recalculator" class="Urbanara\CatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor">
+            <argument type="service" id="urbanara_catalog_promotion.provider" />
+            <argument type="service" id="urbanara_catalog_promotion.registry_catalog_promotion_action" />
+            <argument type="service" id="urbanara_catalog_promotion.applicator" />
             <tag name="sylius.order_processor" priority="35" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.registry_catalog_promotion_action" class="Sylius\Component\Registry\ServiceRegistry">
-            <argument>Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface</argument>
+        <service id="urbanara_catalog_promotion.registry_catalog_promotion_action" class="Sylius\Component\Registry\ServiceRegistry">
+            <argument>Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface</argument>
             <argument>catalog promotion action</argument>
         </service>
 
-        <service id="acme_sylius_catalog_promotion.registry_catalog_promotion_rule" class="Sylius\Component\Registry\ServiceRegistry">
-            <argument>Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface</argument>
+        <service id="urbanara_catalog_promotion.registry_catalog_promotion_rule" class="Sylius\Component\Registry\ServiceRegistry">
+            <argument>Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface</argument>
             <argument>catalog promotion rule</argument>
         </service>
     </services>

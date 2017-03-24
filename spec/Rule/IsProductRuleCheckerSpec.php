@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionPlugin\Rule;
+namespace spec\Urbanara\CatalogPromotionPlugin\Rule;
 
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\Rule\IsProductType;
-use Acme\SyliusCatalogPromotionPlugin\Rule\IsProductRuleChecker;
-use Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductType;
+use Urbanara\CatalogPromotionPlugin\Rule\IsProductRuleChecker;
+use Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\ProductVariantInterface;

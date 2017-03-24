@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionPlugin\Applicator;
+namespace spec\Urbanara\CatalogPromotionPlugin\Applicator;
 
-use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicator;
-use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
-use Acme\SyliusCatalogPromotionPlugin\Model\CatalogAdjustmentInterface;
+use Urbanara\CatalogPromotionPlugin\Applicator\CatalogPromotionApplicator;
+use Urbanara\CatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
+use Urbanara\CatalogPromotionPlugin\Model\CatalogAdjustmentInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\AdjustmentInterface;

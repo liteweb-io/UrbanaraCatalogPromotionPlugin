@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Transform;
+namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
 use Sylius\Component\Resource\Repository\RepositoryInterface;

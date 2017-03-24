@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Applicator;
+namespace Urbanara\CatalogPromotionPlugin\Applicator;
 
-use Acme\SyliusCatalogPromotionPlugin\Model\CatalogAdjustmentInterface;
+use Urbanara\CatalogPromotionPlugin\Model\CatalogAdjustmentInterface;
 use Sylius\Component\Core\Model\AdjustmentInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Page\Admin;
+namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Page\Admin;
 
 use Sylius\Behat\Behaviour\ChecksCodeImmutability;
 use Sylius\Behat\Page\Admin\Crud\UpdatePage as BaseUpdatePage;
@@ -71,13 +71,13 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     protected function getDefinedElements()
     {
         return [
-            'amount' => '#acme_sylius_catalog_promotion_discountConfiguration_percentage',
-            'channel_value' => '#acme_sylius_catalog_promotion_discountConfiguration_values_%channel_code%',
-            'code' => '#acme_sylius_catalog_promotion_code',
-            'ends_at_date' => '#acme_sylius_catalog_promotion_endsAt_date',
-            'ends_at_time' => '#acme_sylius_catalog_promotion_endsAt_time',
-            'starts_at_date' => '#acme_sylius_catalog_promotion_startsAt_date',
-            'starts_at_time' => '#acme_sylius_catalog_promotion_startsAt_time',
+            'amount' => '#urbanara_catalog_promotion_discountConfiguration_percentage',
+            'channel_value' => '#urbanara_catalog_promotion_discountConfiguration_values_%channel_code%',
+            'code' => '#urbanara_catalog_promotion_code',
+            'ends_at_date' => '#urbanara_catalog_promotion_endsAt_date',
+            'ends_at_time' => '#urbanara_catalog_promotion_endsAt_time',
+            'starts_at_date' => '#urbanara_catalog_promotion_startsAt_date',
+            'starts_at_time' => '#urbanara_catalog_promotion_startsAt_time',
         ];
     }
 }

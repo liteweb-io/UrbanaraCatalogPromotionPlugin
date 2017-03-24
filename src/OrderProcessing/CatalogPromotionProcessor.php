@@ -1,11 +1,11 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\OrderProcessing;
+namespace Urbanara\CatalogPromotionPlugin\OrderProcessing;
 
-use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
+use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Urbanara\CatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Form\Type\Rule;
+namespace Urbanara\CatalogPromotionPlugin\Form\Type\Rule;
 
 use Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonAutocompleteChoiceType;
 use Symfony\Component\Form\AbstractType;
@@ -29,7 +29,7 @@ final class IsFromTaxonType extends AbstractType
     {
         $builder
             ->add('taxons', TaxonAutocompleteChoiceType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion_rule.taxons',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion_rule.taxons',
                 'multiple' => true,
             ])
         ;
@@ -42,6 +42,6 @@ final class IsFromTaxonType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'acme_sylius_catalog_promotion_is_from_taxon_rule';
+        return 'urbanara_catalog_promotion_is_from_taxon_rule';
     }
 }

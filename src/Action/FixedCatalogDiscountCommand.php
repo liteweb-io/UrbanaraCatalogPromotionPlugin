@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Action;
+namespace Urbanara\CatalogPromotionPlugin\Action;
 
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Webmozart\Assert\Assert;
 

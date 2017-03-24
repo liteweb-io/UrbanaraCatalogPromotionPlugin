@@ -1,13 +1,14 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin;
+namespace Urbanara\CatalogPromotionPlugin;
 
-use Acme\SyliusCatalogPromotionPlugin\DependencyInjection\Compiler\RegisterCatalogPromotionActionsPass;
-use Acme\SyliusCatalogPromotionPlugin\DependencyInjection\Compiler\RegisterCatalogPromotionRulesPass;
+use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
+use Urbanara\CatalogPromotionPlugin\DependencyInjection\Compiler\RegisterCatalogPromotionActionsPass;
+use Urbanara\CatalogPromotionPlugin\DependencyInjection\Compiler\RegisterCatalogPromotionRulesPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class SyliusCatalogPromotionPlugin extends Bundle
+final class CatalogPromotionPlugin extends Bundle
 {
     use SyliusPluginTrait;
 

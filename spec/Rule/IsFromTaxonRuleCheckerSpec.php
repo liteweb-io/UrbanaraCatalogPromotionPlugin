@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionPlugin\Rule;
+namespace spec\Urbanara\CatalogPromotionPlugin\Rule;
 
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\Rule\IsFromTaxonType;
-use Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface;
-use Acme\SyliusCatalogPromotionPlugin\Rule\IsFromTaxonRuleChecker;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsFromTaxonType;
+use Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface;
+use Urbanara\CatalogPromotionPlugin\Rule\IsFromTaxonRuleChecker;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\ProductVariantInterface;

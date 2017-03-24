@@ -1,10 +1,10 @@
 sylius_grid:
     grids:
-        acme_sylius_catalog_promotion_catalog_promotion:
+        urbanara_catalog_promotion_catalog_promotion:
             driver:
                 name: doctrine/orm
                 options:
-                    class: "%acme_sylius_catalog_promotion.model.catalog_promotion.class%"
+                    class: "%urbanara_catalog_promotion.model.catalog_promotion.class%"
             sorting:
                 priority: desc
             fields:
@@ -27,7 +27,7 @@ sylius_grid:
                         template: "@SyliusUi/Grid/Field/nameAndDescription.html.twig"
                 exclusive:
                     type: twig
-                    label: acme_sylius_catalog_promotion.ui.exclusive
+                    label: urbanara_catalog_promotion.ui.exclusive
                     options:
                         template: "@SyliusUi/Grid/Field/yesNo.html.twig"
             filters:

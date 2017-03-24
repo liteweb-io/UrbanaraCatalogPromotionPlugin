@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Entity;
+namespace Urbanara\CatalogPromotionPlugin\Entity;
 
 class CatalogRule implements CatalogRuleInterface
 {

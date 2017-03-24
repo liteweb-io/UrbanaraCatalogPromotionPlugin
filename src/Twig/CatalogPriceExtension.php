@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Twig;
+namespace Urbanara\CatalogPromotionPlugin\Twig;
 
 use Symfony\Component\Templating\Helper\Helper;
 

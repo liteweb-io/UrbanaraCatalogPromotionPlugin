@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\DependencyInjection\Compiler;
+namespace Urbanara\CatalogPromotionPlugin\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -13,14 +13,14 @@ final class RegisterCatalogPromotionActionsPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('acme_sylius_catalog_promotion.registry_catalog_promotion_action')) {
+        if (!$container->hasDefinition('urbanara_catalog_promotion.registry_catalog_promotion_action')) {
             return;
         }
 
-        $registry = $container->getDefinition('acme_sylius_catalog_promotion.registry_catalog_promotion_action');
+        $registry = $container->getDefinition('urbanara_catalog_promotion.registry_catalog_promotion_action');
         $actions = [];
 
-        $actionsServices = $container->findTaggedServiceIds('acme_sylius_catalog_promotion.catalog_promotion_action');
+        $actionsServices = $container->findTaggedServiceIds('urbanara_catalog_promotion.catalog_promotion_action');
         ksort($actionsServices);
 
         foreach ($actionsServices as $id => $attributes) {
@@ -33,6 +33,6 @@ final class RegisterCatalogPromotionActionsPass implements CompilerPassInterface
             $registry->addMethodCall('register', [$attributes[0]['type'], new Reference($id)]);
         }
 
-        $container->setParameter('acme_sylius_catalog_promotion.catalog_promotion_actions', $actions);
+        $container->setParameter('urbanara_catalog_promotion.catalog_promotion_actions', $actions);
     }
 }

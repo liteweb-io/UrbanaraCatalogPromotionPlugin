@@ -1,4 +1,4 @@
-acme_sylius_catalog_promotion:
+urbanara_catalog_promotion:
     catalog_promotion:
         code:
             unique: "The catalog promotion with given code already exists."

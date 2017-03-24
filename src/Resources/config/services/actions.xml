@@ -2,12 +2,12 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="acme_sylius_catalog_promotion.catalog_promotion_action.percentage_discount" class="Acme\SyliusCatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand">
-            <tag name="acme_sylius_catalog_promotion.catalog_promotion_action" type="percentage_discount" label="Percentage discount" />
+        <service id="urbanara_catalog_promotion.catalog_promotion_action.percentage_discount" class="Urbanara\CatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand">
+            <tag name="urbanara_catalog_promotion.catalog_promotion_action" type="percentage_discount" label="Percentage discount" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.catalog_promotion_action.fixed_discount" class="Acme\SyliusCatalogPromotionPlugin\Action\FixedCatalogDiscountCommand">
-            <tag name="acme_sylius_catalog_promotion.catalog_promotion_action" type="fixed_discount" label="Fixed discount" />
+        <service id="urbanara_catalog_promotion.catalog_promotion_action.fixed_discount" class="Urbanara\CatalogPromotionPlugin\Action\FixedCatalogDiscountCommand">
+            <tag name="urbanara_catalog_promotion.catalog_promotion_action" type="fixed_discount" label="Fixed discount" />
         </service>
     </services>
 </container>

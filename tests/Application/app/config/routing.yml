@@ -3,6 +3,6 @@ sylius:
 
 # Put your own routes here
 
-sylius_catalog_promotion:
-    resource: "@SyliusCatalogPromotionPlugin/Resources/config/routing.yml"
+urbanara_catalog_promotion:
+    resource: "@CatalogPromotionPlugin/Resources/config/routing.yml"
     prefix: /admin

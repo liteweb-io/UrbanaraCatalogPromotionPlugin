@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Action;
+namespace Urbanara\CatalogPromotionPlugin\Action;
 
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\PercentageCatalogDiscountType;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Action\PercentageCatalogDiscountType;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Webmozart\Assert\Assert;

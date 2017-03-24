@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionPlugin\DependencyInjection\Compiler;
+namespace Tests\Urbanara\CatalogPromotionPlugin\DependencyInjection\Compiler;
 
-use Acme\SyliusCatalogPromotionPlugin\DependencyInjection\Compiler\RegisterCatalogPromotionRulesPass;
+use Urbanara\CatalogPromotionPlugin\DependencyInjection\Compiler\RegisterCatalogPromotionRulesPass;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -15,16 +15,16 @@ final class RegisterCatalogPromotionRulesPassTest extends AbstractCompilerPassTe
      */
     public function it_registers_collected_catalog_promotion_rules_in_the_registry()
     {
-        $this->setDefinition('acme_sylius_catalog_promotion.registry_catalog_promotion_rule', new Definition());
+        $this->setDefinition('urbanara_catalog_promotion.registry_catalog_promotion_rule', new Definition());
         $this->setDefinition(
             'custom_catalog_promotion_rule_command',
-            (new Definition())->addTag('acme_sylius_catalog_promotion.catalog_promotion_rule', ['type' => 'custom', 'label' => 'Label'])
+            (new Definition())->addTag('urbanara_catalog_promotion.catalog_promotion_rule', ['type' => 'custom', 'label' => 'Label'])
         );
 
         $this->compile();
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-            'acme_sylius_catalog_promotion.registry_catalog_promotion_rule',
+            'urbanara_catalog_promotion.registry_catalog_promotion_rule',
             'register',
             ['custom', new Reference('custom_catalog_promotion_rule_command')]
         );
@@ -35,16 +35,16 @@ final class RegisterCatalogPromotionRulesPassTest extends AbstractCompilerPassTe
      */
     public function it_creates_parameter_which_maps_catalog_promotion_rule_type_to_label()
     {
-        $this->setDefinition('acme_sylius_catalog_promotion.registry_catalog_promotion_rule', new Definition());
+        $this->setDefinition('urbanara_catalog_promotion.registry_catalog_promotion_rule', new Definition());
         $this->setDefinition(
             'custom_promotion_rule_command',
-            (new Definition())->addTag('acme_sylius_catalog_promotion.catalog_promotion_rule', ['type' => 'custom', 'label' => 'Label', 'form-type' => 'FQCN'])
+            (new Definition())->addTag('urbanara_catalog_promotion.catalog_promotion_rule', ['type' => 'custom', 'label' => 'Label', 'form-type' => 'FQCN'])
         );
 
         $this->compile();
 
         $this->assertContainerBuilderHasParameter(
-            'acme_sylius_catalog_promotion.catalog_promotion_rules',
+            'urbanara_catalog_promotion.catalog_promotion_rules',
             ['custom' => 'Label']
         );
     }

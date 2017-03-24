@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionPlugin\Action;
+namespace spec\Urbanara\CatalogPromotionPlugin\Action;
 
-use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionPlugin\Action\FixedCatalogDiscountCommand;
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType;
+use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Urbanara\CatalogPromotionPlugin\Action\FixedCatalogDiscountCommand;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ChannelInterface;
 

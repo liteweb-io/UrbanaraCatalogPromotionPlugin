@@ -2,12 +2,12 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="acme_sylius_catalog_promotion.validator.date_range" class="Acme\SyliusCatalogPromotionPlugin\Validator\CatalogPromotionDateRangeValidator">
-            <tag name="validator.constraint_validator" alias="acme_sylius_catalog_promotion_date_range_validator" />
+        <service id="urbanara_catalog_promotion.validator.date_range" class="Urbanara\CatalogPromotionPlugin\Validator\CatalogPromotionDateRangeValidator">
+            <tag name="validator.constraint_validator" alias="urbanara_catalog_promotion_date_range_validator" />
         </service>
 
-        <service id="acme_sylius_catalog_promotion.validator.discount_for_enabled_channel" class="Acme\SyliusCatalogPromotionPlugin\Validator\CatalogPromotionDiscountForEnabledChannelValidator">
-            <tag name="validator.constraint_validator" alias="acme_sylius_catalog_promotion_discount_for_enabled_channel_validator" />
+        <service id="urbanara_catalog_promotion.validator.discount_for_enabled_channel" class="Urbanara\CatalogPromotionPlugin\Validator\CatalogPromotionDiscountForEnabledChannelValidator">
+            <tag name="validator.constraint_validator" alias="urbanara_catalog_promotion_discount_for_enabled_channel_validator" />
         </service>
     </services>
 </container>

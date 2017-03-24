@@ -1,10 +1,10 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Validator;
+namespace Urbanara\CatalogPromotionPlugin\Validator;
 
-use Acme\SyliusCatalogPromotionPlugin\Action\FixedCatalogDiscountCommand;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Validator\Constraints\CatalogPromotionDiscountForEnabledChannel;
+use Urbanara\CatalogPromotionPlugin\Action\FixedCatalogDiscountCommand;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Validator\Constraints\CatalogPromotionDiscountForEnabledChannel;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Webmozart\Assert\Assert;

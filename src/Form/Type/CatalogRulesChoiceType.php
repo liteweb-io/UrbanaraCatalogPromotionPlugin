@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Form\Type;
+namespace Urbanara\CatalogPromotionPlugin\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -46,6 +46,6 @@ final class CatalogRulesChoiceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'acme_sylius_catalog_promotion_catalog_rule';
+        return 'urbanara_catalog_promotion_catalog_rule';
     }
 }

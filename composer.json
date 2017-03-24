@@ -1,5 +1,5 @@
 {
-    "name": "lchrusciel/sylius-catalog-promotion-plugin",
+    "name": "urbanara/catalog-promotion-plugin",
     "type": "sylius-bundle",
     "description": "Catalog promotion extension for Sylius.",
     "license": "MIT",
@@ -8,6 +8,12 @@
 
         "sylius/sylius": "^1.0@dev"
     },
+    "authors": [
+        {
+            "name": "Łukasz Chruściel",
+            "email": "lukasz.chrusciel@lakion.com"
+        }
+    ],
     "require-dev": {
         "behat/behat": "^3.3",
         "behat/mink": "^1.7",
@@ -28,8 +34,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Acme\\SyliusCatalogPromotionPlugin\\": "src/",
-            "Tests\\Acme\\SyliusCatalogPromotionPlugin\\": "tests/"
+            "Urbanara\\CatalogPromotionPlugin\\": "src/",
+            "Tests\\Urbanara\\CatalogPromotionPlugin\\": "tests/"
         }
     }
 }

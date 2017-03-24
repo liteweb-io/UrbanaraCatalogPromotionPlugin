@@ -1,9 +1,9 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Checker;
+namespace Urbanara\CatalogPromotionPlugin\Checker;
 
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;

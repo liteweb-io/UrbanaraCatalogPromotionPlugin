@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Validator\Constraints;
+namespace Urbanara\CatalogPromotionPlugin\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 
@@ -9,7 +9,7 @@ final class CatalogPromotionDiscountForEnabledChannel extends Constraint
     /**
      * @var string
      */
-    public $message = 'acme_sylius_catalog_promotion.catalog_promotion.configuration.discounts.cannot_be_empty_for_enabled_channel';
+    public $message = 'urbanara_catalog_promotion.catalog_promotion.configuration.discounts.cannot_be_empty_for_enabled_channel';
 
     /**
      * {@inheritdoc}
@@ -24,6 +24,6 @@ final class CatalogPromotionDiscountForEnabledChannel extends Constraint
      */
     public function validatedBy()
     {
-        return 'acme_sylius_catalog_promotion_discount_for_enabled_channel_validator';
+        return 'urbanara_catalog_promotion_discount_for_enabled_channel_validator';
     }
 }

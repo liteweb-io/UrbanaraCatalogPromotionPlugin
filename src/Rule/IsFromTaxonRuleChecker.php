@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Rule;
+namespace Urbanara\CatalogPromotionPlugin\Rule;
 
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\Rule\IsFromTaxonType;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsFromTaxonType;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 

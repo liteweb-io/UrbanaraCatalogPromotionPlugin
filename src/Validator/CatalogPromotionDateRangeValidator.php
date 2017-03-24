@@ -1,9 +1,9 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Validator;
+namespace Urbanara\CatalogPromotionPlugin\Validator;
 
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Validator\Constraints\CatalogPromotionDateRange;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Validator\Constraints\CatalogPromotionDateRange;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Webmozart\Assert\Assert;

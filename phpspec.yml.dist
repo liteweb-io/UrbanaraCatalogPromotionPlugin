@@ -1,4 +1,4 @@
 suites:
     default:
-        namespace: Acme\SyliusCatalogPromotionPlugin
-        psr4_prefix: Acme\SyliusCatalogPromotionPlugin
+        namespace: Urbanara\CatalogPromotionPlugin
+        psr4_prefix: Urbanara\CatalogPromotionPlugin

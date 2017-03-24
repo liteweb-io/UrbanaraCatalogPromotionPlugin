@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionPlugin\OrderProcessing;
+namespace spec\Urbanara\CatalogPromotionPlugin\OrderProcessing;
 
-use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor;
-use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
+use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Urbanara\CatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor;
+use Urbanara\CatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\ChannelInterface;
