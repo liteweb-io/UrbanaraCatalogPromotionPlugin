@@ -297,8 +297,7 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
-     * @Then I should be notified that the catalog promotion cannot ends before it starts
-     * @Then I should be notified that a catalog promotion cannot end before it starts
+     * @Then I should be notified that a/the catalog promotion cannot end before it starts
      */
     public function iShouldBeNotifiedThatPromotionCannotEndBeforeItsEvenStart()
     {
