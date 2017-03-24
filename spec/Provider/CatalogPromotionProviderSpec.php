@@ -50,19 +50,27 @@ final class CatalogPromotionProviderSpec extends ObjectBehavior
     function it_provides_only_one_exclusive_promotion(
         CatalogPromotionRepositoryInterface $catalogPromotionRepository,
         CatalogPromotionInterface $normalCatalogPromotion,
-        CatalogPromotionInterface $exclusiveCatalogPromotion,
+        CatalogPromotionInterface $prioritizedExclusiveCatalogPromotion,
+        CatalogPromotionInterface $regularExclusiveCatalogPromotion,
         ChannelInterface $channel,
         EligibilityCheckerInterface $checker,
         OrderItemInterface $orderItem
     ) {
-        $catalogPromotionRepository->findActiveForChannel($channel)->willReturn([$normalCatalogPromotion, $exclusiveCatalogPromotion]);
+        $catalogPromotionRepository->findActiveForChannel($channel)->willReturn([
+            $normalCatalogPromotion,
+            $prioritizedExclusiveCatalogPromotion,
+            $regularExclusiveCatalogPromotion
+        ]);
+
         $normalCatalogPromotion->isExclusive()->willReturn(false);
-        $exclusiveCatalogPromotion->isExclusive()->willReturn(true);
+        $prioritizedExclusiveCatalogPromotion->isExclusive()->willReturn(true);
+        $regularExclusiveCatalogPromotion->isExclusive()->willReturn(true);
 
         $checker->isEligible($orderItem, $normalCatalogPromotion)->willReturn(true);
-        $checker->isEligible($orderItem, $exclusiveCatalogPromotion)->willReturn(true);
+        $checker->isEligible($orderItem, $prioritizedExclusiveCatalogPromotion)->willReturn(true);
+        $checker->isEligible($orderItem, $regularExclusiveCatalogPromotion)->willReturn(true);
 
-        $this->provide($channel, $orderItem)->shouldReturn([$exclusiveCatalogPromotion]);
+        $this->provide($channel, $orderItem)->shouldReturn([$prioritizedExclusiveCatalogPromotion]);
     }
 
     function it_provides_only_eligiable_promotions(

@@ -40,7 +40,7 @@ final class IsFromTaxonRuleCheckerSpec extends ObjectBehavior
         $this->isEligible($orderItem, ['taxons' => ['PUG-CODE']])->shouldReturn(true);
     }
 
-    function only_one_taxon_has_to_fulfill_creteria(
+    function it_returns_true_if_at_least_one_of_taxons_fulfill_criteria(
         OrderItemInterface $orderItem,
         ProductInterface $product,
         TaxonInterface $badTaxon,

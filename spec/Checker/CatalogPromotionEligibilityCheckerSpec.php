@@ -54,7 +54,7 @@ final class CatalogPromotionEligibilityCheckerSpec extends ObjectBehavior
         $this->isEligible($orderItem, $catalogPromotion)->shouldReturn(true);
     }
 
-    function it_returns_false_if_any_of_rules_is_not_fulfilled(
+    function it_returns_false_if_some_of_rules_is_not_fulfilled(
         CatalogPromotionInterface $catalogPromotion,
         OrderItemInterface $orderItem,
         CatalogRuleInterface $eligibleRule,
