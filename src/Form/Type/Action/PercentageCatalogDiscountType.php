@@ -16,7 +16,6 @@ final class PercentageCatalogDiscountType extends AbstractType
     {
         $builder
             ->add('percentage', PercentType::class, [
-                'data' => 0,
                 'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.percentage',
                 'constraints' => [
                     new Range([
