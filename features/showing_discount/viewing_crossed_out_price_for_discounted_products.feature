@@ -6,24 +6,27 @@ Feature: Viewing a crossed out price for discounted products
 
     Background:
         Given the store operates on a single channel in "United States"
-        And there is a catalog promotion "Holiday SALE"
+        And there is a "Holiday SALE" catalog promotion
         And it gives "$10.00" discount on every product
         And the store has a product "PHP T-Shirt" priced at "$100.00"
 
-    @todo
+    @ui
     Scenario: Viewing a catalog promotion on the details page of a product
         When I check this product's details
         Then the old product price "$100.00" should be crossed out
         And the new product price should be "$90.00"
 
-    @todo
+    @ui
     Scenario: Viewing a catalog promotions on the products list
-        When I check the price of the "PHP T-Shirt" product on the list
+        Given the store classifies its products as "T-Shirts"
+        And this product belongs to "T-Shirts"
+        When I browse products from taxon "T-Shirts"
         Then the old product price "$100.00" should be crossed out
         And the new product price should be "$90.00"
 
-    @todo
+    @ui
     Scenario: Viewing a catalog promotion in the cart
         When I add product "PHP T-Shirt" to the cart
+        And I see the summary of my cart
         Then the old product price "$100.00" should be crossed out
         And the new product price should be "$90.00"

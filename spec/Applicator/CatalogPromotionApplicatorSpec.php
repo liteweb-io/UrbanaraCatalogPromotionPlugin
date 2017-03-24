@@ -11,7 +11,7 @@ use Sylius\Component\Core\Model\AdjustmentInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-class CatalogPromotionApplicatorSpec extends ObjectBehavior
+final class CatalogPromotionApplicatorSpec extends ObjectBehavior
 {
     function let(FactoryInterface $adjustmentFactory)
     {

@@ -5,8 +5,11 @@ namespace Acme\SyliusCatalogPromotionPlugin\OrderProcessing;
 use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
 use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Provider\PreQualifiedCatalogPromotionProviderInterface;
+use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
@@ -16,7 +19,7 @@ use Webmozart\Assert\Assert;
 final class CatalogPromotionProcessor implements OrderProcessorInterface
 {
     /**
-     * @var PreQualifiedCatalogPromotionProviderInterface
+     * @var CatalogPromotionProviderInterface
      */
     private $catalogPromotionProvider;
 
@@ -31,12 +34,12 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
     private $catalogPromotionApplicator;
 
     /**
-     * @param PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider
+     * @param CatalogPromotionProviderInterface $catalogPromotionProvider
      * @param ServiceRegistryInterface $serviceRegistry
      * @param CatalogPromotionApplicatorInterface $catalogPromotionApplicator
      */
     public function __construct(
-        PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider,
+        CatalogPromotionProviderInterface $catalogPromotionProvider,
         ServiceRegistryInterface $serviceRegistry,
         CatalogPromotionApplicatorInterface $catalogPromotionApplicator
     ) {
@@ -52,21 +55,36 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
     {
         /** @var OrderInterface $order */
         Assert::isInstanceOf($order, OrderInterface::class);
+        $channel = $order->getChannel();
 
+        /** @var OrderItemInterface $item */
         foreach ($order->getItems() as $item) {
             if ($item->isImmutable()) {
                 continue;
             }
 
-            /** @var CatalogPromotionInterface $catalogPromotion */
-            foreach ($this->catalogPromotionProvider->provide($order->getChannel()) as $catalogPromotion) {
-                /** @var CatalogDiscountActionCommandInterface $command */
-                $command = $this->serviceRegistry->get($catalogPromotion->getDiscountType());
+            $this->applyPromotion($channel, $item);
+        }
+    }
 
-                $discount = $command->calculate($item, $catalogPromotion->getDiscountConfiguration());
+    /**
+     * @param ChannelInterface $channel
+     * @param OrderItemInterface $item
+     */
+    private function applyPromotion(ChannelInterface $channel, OrderItemInterface $item)
+    {
+        $variant = $item->getVariant();
+        $currentPrice = $variant->getChannelPricingForChannel($channel)->getPrice();
 
-                $this->catalogPromotionApplicator->apply($item, $discount, $catalogPromotion->getName());
-            }
+        /** @var CatalogPromotionInterface $catalogPromotion */
+        foreach ($this->catalogPromotionProvider->provide($channel, $variant) as $catalogPromotion) {
+            /** @var CatalogDiscountActionCommandInterface $command */
+            $command = $this->serviceRegistry->get($catalogPromotion->getDiscountType());
+
+            $discount = $command->calculate($currentPrice, $channel, $catalogPromotion->getDiscountConfiguration());
+
+            $this->catalogPromotionApplicator->apply($item, $discount, $catalogPromotion->getName());
+            $currentPrice -= $discount;
         }
     }
 }

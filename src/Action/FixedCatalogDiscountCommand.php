@@ -3,7 +3,8 @@
 namespace Acme\SyliusCatalogPromotionPlugin\Action;
 
 use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType;
-use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
+use Webmozart\Assert\Assert;
 
 final class FixedCatalogDiscountCommand implements CatalogDiscountActionCommandInterface
 {
@@ -17,27 +18,26 @@ final class FixedCatalogDiscountCommand implements CatalogDiscountActionCommandI
     /**
      * {@inheritdoc}
      */
-    public function calculate(OrderItemInterface $orderItem, array $configuration)
+    public function calculate($currentPrice, ChannelInterface $channel, array $configuration)
     {
-        $channelCode = $orderItem->getOrder()->getChannel()->getCode();
+        Assert::integer($currentPrice, 'Current price is not an integer.');
 
+        $channelCode = $channel->getCode();
         $this->isConfigurationValid($configuration, $channelCode);
 
         $promotionDiscount = $configuration['values'][$channelCode];
-        $currentPrice = $orderItem->getUnitPrice();
 
         return $promotionDiscount > $currentPrice ? $currentPrice : $promotionDiscount;
     }
 
     /**
      * @param array $configuration
-     *
-     * @throws \InvalidArgumentException
+     * @param string $channel
      */
     private function isConfigurationValid(array $configuration, $channel)
     {
-        if (!isset($configuration['values'], $configuration['values'][$channel]) || !is_int($configuration['values'][$channel])) {
-            throw new \InvalidArgumentException('The promotion has not been configured for requested channel.');
-        }
+        Assert::keyExists($configuration, 'values', 'The promotion has not been configured for requested channel.');
+        Assert::keyExists($configuration['values'], $channel, 'The promotion has not been configured for requested channel.');
+        Assert::integer($configuration['values'][$channel], 'The promotion has not been configured for requested channel.');
     }
 }

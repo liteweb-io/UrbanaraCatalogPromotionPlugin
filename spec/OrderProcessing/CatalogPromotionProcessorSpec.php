@@ -6,21 +6,21 @@ use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterfa
 use Acme\SyliusCatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
 use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Acme\SyliusCatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor;
-use Acme\SyliusCatalogPromotionPlugin\Provider\PreQualifiedCatalogPromotionProviderInterface;
-use Doctrine\Common\Collections\ArrayCollection;
+use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Core\Model\ChannelPricingInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
 use Sylius\Component\Registry\ServiceRegistry;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 final class CatalogPromotionProcessorSpec extends ObjectBehavior
 {
     function let(
-        PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider,
+        CatalogPromotionProviderInterface $catalogPromotionProvider,
         ServiceRegistry $catalogActionRegistry,
         CatalogPromotionApplicatorInterface $catalogPromotionApplicator
     ) {
@@ -38,16 +38,21 @@ final class CatalogPromotionProcessorSpec extends ObjectBehavior
     }
 
     function it_process_order_items_in_order_to_apply_catalog_discounts(
+        ChannelPricingInterface $channelPricing,
         CatalogPromotionInterface $catalogPromotion,
         CatalogPromotionApplicatorInterface $catalogPromotionApplicator,
         ChannelInterface $channel,
         OrderInterface $order,
         OrderItemInterface $orderItem,
-        PreQualifiedCatalogPromotionProviderInterface $catalogPromotionProvider,
+        ProductVariantInterface $promotionVariant,
+        CatalogPromotionProviderInterface $catalogPromotionProvider,
         CatalogDiscountActionCommandInterface $actionCommand,
         ServiceRegistry $catalogActionRegistry
     ) {
-        $catalogPromotionProvider->provide($channel)->willReturn([$catalogPromotion]);
+        $promotionVariant->getChannelPricingForChannel($channel)->willReturn($channelPricing);
+        $channelPricing->getPrice()->willReturn(1000);
+
+        $catalogPromotionProvider->provide($channel, $promotionVariant)->willReturn([$catalogPromotion]);
 
         $catalogActionRegistry->get('action_discount')->willReturn($actionCommand);
 
@@ -58,9 +63,10 @@ final class CatalogPromotionProcessorSpec extends ObjectBehavior
         $order->getItems()->willReturn([$orderItem]);
         $order->getChannel()->willReturn($channel);
 
+        $orderItem->getVariant()->willReturn($promotionVariant);
         $orderItem->isImmutable()->willReturn(false);
 
-        $actionCommand->calculate($orderItem, [])->willReturn(100);
+        $actionCommand->calculate(1000, $channel, [])->willReturn(100);
 
         $catalogPromotionApplicator->apply($orderItem, 100, 'Cool discount')->shouldBeCalled();
 
