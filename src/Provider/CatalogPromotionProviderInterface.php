@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Provider;
+namespace Urbanara\CatalogPromotionPlugin\Provider;
 
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;

@@ -1,4 +1,4 @@
-acme_sylius_catalog_promotion:
+urbanara_catalog_promotion:
     menu:
         admin:
             catalog_promotions: "Catalog promotions"

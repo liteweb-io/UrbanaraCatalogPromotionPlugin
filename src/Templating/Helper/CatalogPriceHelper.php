@@ -1,11 +1,11 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Templating\Helper;
+namespace Urbanara\CatalogPromotionPlugin\Templating\Helper;
 
-use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Model\CatalogVariantPrice;
-use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
+use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Model\CatalogVariantPrice;
+use Urbanara\CatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 use Symfony\Component\Templating\Helper\Helper;

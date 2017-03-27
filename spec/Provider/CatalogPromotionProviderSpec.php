@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionPlugin\Provider;
+namespace spec\Urbanara\CatalogPromotionPlugin\Provider;
 
-use Acme\SyliusCatalogPromotionPlugin\Checker\EligibilityCheckerInterface;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProvider;
-use Acme\SyliusCatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
-use Acme\SyliusCatalogPromotionPlugin\Repository\CatalogPromotionRepositoryInterface;
+use Urbanara\CatalogPromotionPlugin\Checker\EligibilityCheckerInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Provider\CatalogPromotionProvider;
+use Urbanara\CatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
+use Urbanara\CatalogPromotionPlugin\Repository\CatalogPromotionRepositoryInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\ChannelInterface;

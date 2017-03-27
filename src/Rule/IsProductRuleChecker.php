@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Rule;
+namespace Urbanara\CatalogPromotionPlugin\Rule;
 
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\Rule\IsProductType;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductType;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 
 final class IsProductRuleChecker implements RuleCheckerInterface

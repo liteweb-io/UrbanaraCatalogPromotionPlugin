@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Ui\Shop;
+namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Ui\Shop;
 
 use Behat\Behat\Context\Context;
-use Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Element\CatalogPromotionElementInterface;
+use Tests\Urbanara\CatalogPromotionPlugin\Behat\Element\CatalogPromotionElementInterface;
 use Webmozart\Assert\Assert;
 
 final class CatalogPromotionContext implements Context

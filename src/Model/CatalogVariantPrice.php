@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Model;
+namespace Urbanara\CatalogPromotionPlugin\Model;
 
 final class CatalogVariantPrice
 {

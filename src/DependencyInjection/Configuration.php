@@ -1,14 +1,14 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\DependencyInjection;
+namespace Urbanara\CatalogPromotionPlugin\DependencyInjection;
 
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotion;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRule;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRuleInterface;
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\CatalogRuleType;
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\CatalogPromotionType;
-use Acme\SyliusCatalogPromotionPlugin\Repository\CatalogPromotionRepository;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotion;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogRule;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogRuleInterface;
+use Urbanara\CatalogPromotionPlugin\Form\Type\CatalogRuleType;
+use Urbanara\CatalogPromotionPlugin\Form\Type\CatalogPromotionType;
+use Urbanara\CatalogPromotionPlugin\Repository\CatalogPromotionRepository;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Component\Resource\Factory\Factory;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
@@ -23,7 +23,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('sylius_catalog_promotion');
+        $rootNode = $treeBuilder->root('urbanara_catalog_promotion');
 
         $this->addCatalogPromotion($rootNode->children());
 

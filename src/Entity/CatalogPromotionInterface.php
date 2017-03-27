@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Entity;
+namespace Urbanara\CatalogPromotionPlugin\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Core\Model\ChannelInterface;

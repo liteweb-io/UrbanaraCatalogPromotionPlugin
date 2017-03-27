@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Repository;
+namespace Urbanara\CatalogPromotionPlugin\Repository;
 
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Element;
+namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Element;
 
 final class CatalogPromotionElement extends Element implements CatalogPromotionElementInterface
 {

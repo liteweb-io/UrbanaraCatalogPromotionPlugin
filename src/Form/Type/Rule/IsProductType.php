@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Form\Type\Rule;
+namespace Urbanara\CatalogPromotionPlugin\Form\Type\Rule;
 
 use Sylius\Bundle\ProductBundle\Form\Type\ProductAutocompleteChoiceType;
 use Symfony\Component\Form\AbstractType;
@@ -29,7 +29,7 @@ final class IsProductType extends AbstractType
     {
         $builder
             ->add('products', ProductAutocompleteChoiceType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion_rule.products',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion_rule.products',
                 'multiple' => true,
             ])
         ;
@@ -42,6 +42,6 @@ final class IsProductType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'acme_sylius_catalog_promotion_is_product_rule';
+        return 'urbanara_catalog_promotion_is_product_rule';
     }
 }

@@ -18,7 +18,7 @@
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
                   >
 
-    <entity name="Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotion" table="acme_catalog_promotion">
+    <entity name="Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotion" table="acme_catalog_promotion">
         <id name="id" type="integer">
             <generator strategy="AUTO" />
         </id>
@@ -52,7 +52,7 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
-        <one-to-many field="rules" target-entity="Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRuleInterface" mapped-by="catalogPromotion" orphan-removal="true">
+        <one-to-many field="rules" target-entity="Urbanara\CatalogPromotionPlugin\Entity\CatalogRuleInterface" mapped-by="catalogPromotion" orphan-removal="true">
             <cascade>
                 <cascade-all />
             </cascade>

@@ -1,15 +1,15 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Context\Setup;
+namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Setup;
 
-use Acme\SyliusCatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRule;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRuleInterface;
-use Acme\SyliusCatalogPromotionPlugin\Rule\IsFromTaxonRuleChecker;
-use Acme\SyliusCatalogPromotionPlugin\Rule\IsProductRuleChecker;
+use Urbanara\CatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogRule;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogRuleInterface;
+use Urbanara\CatalogPromotionPlugin\Rule\IsFromTaxonRuleChecker;
+use Urbanara\CatalogPromotionPlugin\Rule\IsProductRuleChecker;
 use Behat\Behat\Tester\Exception\PendingException;
-use Acme\SyliusCatalogPromotionPlugin\Action\FixedCatalogDiscountCommand;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Action\FixedCatalogDiscountCommand;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Behat\Service\SharedStorageInterface;

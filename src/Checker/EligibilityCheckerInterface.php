@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Checker;
+namespace Urbanara\CatalogPromotionPlugin\Checker;
 
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Form\Type;
+namespace Urbanara\CatalogPromotionPlugin\Form\Type;
 
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogRuleInterface;
-use Acme\SyliusCatalogPromotionPlugin\Rule\RuleCheckerInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogRuleInterface;
+use Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -40,7 +40,7 @@ final class CatalogRuleType extends AbstractResourceType
 
         $builder
             ->add('type', CatalogRulesChoiceType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion_rule.type',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion_rule.type',
                 'attr' => [
                     'data-form-collection' => 'update',
                 ],
@@ -91,7 +91,7 @@ final class CatalogRuleType extends AbstractResourceType
      */
     public function getBlockPrefix()
     {
-        return 'acme_sylius_catalog_promotion_catalog_promotion_rule';
+        return 'urbanara_catalog_promotion_catalog_promotion_rule';
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Action;
+namespace Urbanara\CatalogPromotionPlugin\Action;
 
 use Sylius\Component\Core\Model\ChannelInterface;
 

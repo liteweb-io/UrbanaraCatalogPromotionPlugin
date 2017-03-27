@@ -1,10 +1,10 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Provider;
+namespace Urbanara\CatalogPromotionPlugin\Provider;
 
-use Acme\SyliusCatalogPromotionPlugin\Checker\EligibilityCheckerInterface;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
-use Acme\SyliusCatalogPromotionPlugin\Repository\CatalogPromotionRepositoryInterface;
+use Urbanara\CatalogPromotionPlugin\Checker\EligibilityCheckerInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Repository\CatalogPromotionRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;

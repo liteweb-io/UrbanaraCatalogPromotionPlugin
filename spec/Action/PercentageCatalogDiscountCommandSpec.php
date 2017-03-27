@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Acme\SyliusCatalogPromotionPlugin\Action;
+namespace spec\Urbanara\CatalogPromotionPlugin\Action;
 
-use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand;
-use Acme\SyliusCatalogPromotionPlugin\Form\Type\Action\PercentageCatalogDiscountType;
+use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Urbanara\CatalogPromotionPlugin\Action\PercentageCatalogDiscountCommand;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Action\PercentageCatalogDiscountType;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;

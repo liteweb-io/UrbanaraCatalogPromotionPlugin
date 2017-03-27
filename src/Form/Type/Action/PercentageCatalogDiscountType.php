@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Form\Type\Action;
+namespace Urbanara\CatalogPromotionPlugin\Form\Type\Action;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
@@ -16,14 +16,14 @@ final class PercentageCatalogDiscountType extends AbstractType
     {
         $builder
             ->add('percentage', PercentType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.percentage',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.percentage',
                 'constraints' => [
                     new Range([
                         'groups' => ['sylius'],
                         'min' => 0,
-                        'minMessage' => 'acme_sylius_catalog_promotion.catalog_promotion.percentage.min',
+                        'minMessage' => 'urbanara_catalog_promotion.catalog_promotion.percentage.min',
                         'max' => 100,
-                        'maxMessage' => 'acme_sylius_catalog_promotion.catalog_promotion.percentage.max',
+                        'maxMessage' => 'urbanara_catalog_promotion.catalog_promotion.percentage.max',
                     ]),
                 ],
             ])
@@ -35,6 +35,6 @@ final class PercentageCatalogDiscountType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'acme_sylius_catalog_promotion_percentage_action';
+        return 'urbanara_catalog_promotion_percentage_action';
     }
 }

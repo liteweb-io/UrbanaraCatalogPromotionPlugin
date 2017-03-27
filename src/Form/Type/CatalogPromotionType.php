@@ -1,9 +1,9 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Form\Type;
+namespace Urbanara\CatalogPromotionPlugin\Form\Type;
 
-use Acme\SyliusCatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
-use Acme\SyliusCatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
@@ -48,37 +48,37 @@ final class CatalogPromotionType extends AbstractResourceType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.name',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.name',
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.description',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.description',
                 'required' => false,
             ])
             ->add('exclusive', CheckboxType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.exclusive',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.exclusive',
             ])
             ->add('priority', IntegerType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.priority',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.priority',
             ])
             ->add('startsAt', DateTimeType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.starts_at',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.starts_at',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
                 'required' => false,
             ])
             ->add('endsAt', DateTimeType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.ends_at',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.ends_at',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
                 'required' => false,
             ])
             ->add('discountType', CatalogActionChoiceType::class, [
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.type',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.type',
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.channels',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.channels',
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
                 /** @var CatalogPromotionInterface $catalogPromotion */
@@ -112,8 +112,8 @@ final class CatalogPromotionType extends AbstractResourceType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'error_bubbling' => false,
-                'button_add_label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.add_rule',
-                'label' => 'acme_sylius_catalog_promotion.form.catalog_promotion.rules',
+                'button_add_label' => 'urbanara_catalog_promotion.form.catalog_promotion.add_rule',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.rules',
             ])
             ->addEventSubscriber(new AddCodeFormSubscriber())
         ;
@@ -146,7 +146,7 @@ final class CatalogPromotionType extends AbstractResourceType
      */
     public function getBlockPrefix()
     {
-        return 'acme_sylius_catalog_promotion';
+        return 'urbanara_catalog_promotion';
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Form\Type\Action;
+namespace Urbanara\CatalogPromotionPlugin\Form\Type\Action;
 
 use Sylius\Bundle\CoreBundle\Form\Type\ChannelCollectionType;
 use Sylius\Bundle\MoneyBundle\Form\Type\MoneyType;
@@ -28,7 +28,7 @@ final class FixedCatalogDiscountType extends AbstractType
                         new GreaterThan([
                             'groups' => ['sylius'],
                             'value' => 0,
-                            'message' => 'acme_sylius_catalog_promotion.catalog_promotion.configuration.discounts.min',
+                            'message' => 'urbanara_catalog_promotion.catalog_promotion.configuration.discounts.min',
                         ]),
                     ],
                 ];
@@ -42,6 +42,6 @@ final class FixedCatalogDiscountType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'acme_sylius_catalog_promotion_fixed_value_action';
+        return 'urbanara_catalog_promotion_fixed_value_action';
     }
 }

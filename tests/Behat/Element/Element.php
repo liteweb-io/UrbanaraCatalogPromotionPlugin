@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Acme\SyliusCatalogPromotionPlugin\Behat\Element;
+namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Element;
 
 use Behat\Mink\Driver\DriverInterface;
 use Behat\Mink\Element\DocumentElement;

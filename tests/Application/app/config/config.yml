@@ -7,7 +7,7 @@ imports:
     - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
-    - { resource: "@SyliusCatalogPromotionPlugin/Resources/config/app/grid.yml" }
+    - { resource: "@CatalogPromotionPlugin/Resources/config/app/grid.yml" }
 
     - { resource: "../../../../vendor/sylius/sylius/app/config/security.yml" }
 

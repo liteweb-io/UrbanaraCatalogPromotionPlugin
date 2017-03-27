@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusCatalogPromotionPlugin\Menu;
+namespace Urbanara\CatalogPromotionPlugin\Menu;
 
 use Knp\Menu\ItemInterface;
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
@@ -15,8 +15,8 @@ final class MenuBuilderListener
         $marketingMenu = $this->getMarketingMenu($event);
 
         $marketingMenu
-            ->addChild('catalog_promotion', ['route' => 'acme_sylius_catalog_promotion_admin_catalog_promotion_index'])
-            ->setLabel('acme_sylius_catalog_promotion.menu.admin.catalog_promotions')
+            ->addChild('catalog_promotion', ['route' => 'urbanara_catalog_promotion_admin_catalog_promotion_index'])
+            ->setLabel('urbanara_catalog_promotion.menu.admin.catalog_promotions')
             ->setLabelAttribute('icon', 'in cart')
         ;
     }
@@ -34,7 +34,7 @@ final class MenuBuilderListener
         if (null === $marketingMenu) {
             $marketingMenu = $adminMenu
                 ->addChild('marketing')
-                ->setLabel('acme_sylius_catalog_promotion.menu.admin.header')
+                ->setLabel('urbanara_catalog_promotion.menu.admin.header')
             ;
         }
 
