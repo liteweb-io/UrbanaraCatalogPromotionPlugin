@@ -33,7 +33,7 @@ $ composer require urbanara/catalog-promotion-plugin
 
         $bundles = [
            ...
-            new \Urbanara\CatalogPromotionPlugin\SyliusCatalogPromotionPlugin(),
+            new \Urbanara\CatalogPromotionPlugin\CatalogPromotionPlugin(),
         ];
 
         ```
