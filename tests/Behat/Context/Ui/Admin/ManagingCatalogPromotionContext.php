@@ -2,7 +2,7 @@
 
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Ui\Admin;
 
-use Behat\Behat\Tester\Exception\PendingException;
+use Sylius\Behat\Context\Transform\ProductContext;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
 use Sylius\Behat\Service\SharedStorageInterface;
@@ -35,21 +35,29 @@ final class ManagingCatalogPromotionContext implements Context
     private $updatePage;
 
     /**
+     * @var ProductContext
+     */
+    private $productContext;
+
+    /**
      * @param SharedStorageInterface $sharedStorage
      * @param CreatePageInterface $createPage
      * @param IndexPageInterface $indexPage
      * @param UpdatePageInterface $updatePage
+     * @param ProductContext $productContext
      */
     public function __construct(
         SharedStorageInterface $sharedStorage,
         CreatePageInterface $createPage,
         IndexPageInterface $indexPage,
-        UpdatePageInterface $updatePage
+        UpdatePageInterface $updatePage,
+        ProductContext $productContext
     ) {
         $this->sharedStorage = $sharedStorage;
         $this->createPage = $createPage;
         $this->indexPage = $indexPage;
         $this->updatePage = $updatePage;
+        $this->productContext = $productContext;
     }
 
     /**
@@ -415,5 +423,17 @@ final class ManagingCatalogPromotionContext implements Context
             $this->createPage->getValidationMessage('code'),
             'Catalog promotion code can only be comprised of letters, numbers, dashes and underscores.'
         );
+    }
+
+    /**
+     * @Given product :productName has a delivery time greater than :deliveryWeeks weeks
+     */
+    public function productHasADeliveryTimeGreaterThanWeeks(string $productName, int $deliveryWeeks)
+    {
+        $eta = $this->productContext->getProductByName($productName)->getAttributeByCodeAndLocale('eta', 'en');
+
+        $etaDays = !$eta ? 21 : intval($eta->getValue());
+        $etaWeeks = ceil($etaDays / 7);
+        Assert::greaterThan($etaWeeks, $deliveryWeeks);
     }
 }

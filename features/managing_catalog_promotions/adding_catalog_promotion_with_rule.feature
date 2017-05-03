@@ -31,3 +31,14 @@ Feature: Adding a new catalog promotion with a rule
         Then I should be notified that it has been successfully created
         And the "PHP T-Shirt promotion" catalog promotion should appear in the registry
         And this catalog promotion should be applicable for "PHP T-Shirt" product only
+
+    @ui
+    Scenario: Receiving a discount when delivery time is greater than 2 weeks
+        When I create a new catalog promotion
+        And I specify its code as "DELIVERY_TIME_PROMO"
+        And I name it "Delivery time promo"
+        And I add the fixed value discount with amount of "$10.00" for "United States" channel
+        And I add it
+        Then I should be notified that it has been successfully created
+        And the "Delivery time promo" catalog promotion should appear in the registry
+        And the "Delivery time promo" catalog promotion should give "$10" discount for "United States" channel
