@@ -2,9 +2,10 @@
 
 namespace Urbanara\CatalogPromotionPlugin\Checker;
 
+use Psr\Log\LoggerInterface;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Exception\CatalogPromotionRuleException;
 use Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface;
-use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 
@@ -16,11 +17,18 @@ final class CatalogPromotionEligibilityChecker implements EligibilityCheckerInte
     private $registry;
 
     /**
-     * @param ServiceRegistryInterface $registry
+     * @var LoggerInterface
      */
-    public function __construct(ServiceRegistryInterface $registry)
+    private $logger;
+
+    /**
+     * @param ServiceRegistryInterface $registry
+     * @param LoggerInterface $logger
+     */
+    public function __construct(ServiceRegistryInterface $registry, LoggerInterface $logger)
     {
         $this->registry = $registry;
+        $this->logger = $logger;
     }
 
     /**
@@ -31,9 +39,20 @@ final class CatalogPromotionEligibilityChecker implements EligibilityCheckerInte
         foreach ($catalogPromotion->getRules() as $rule) {
             /** @var RuleCheckerInterface $ruleChecker */
             $ruleChecker = $this->registry->get($rule->getType());
-
-            if (!$ruleChecker->isEligible($productVariant, $rule->getConfiguration())) {
-                return false;
+            try {
+                if (!$ruleChecker->isEligible($productVariant, $rule->getConfiguration())) {
+                    return false;
+                }
+            } catch (CatalogPromotionRuleException $ex) {
+                $this->logger->error(
+                    sprintf('CatalogPromotionRuleException: %s', $ex->getMessage()),
+                    [
+                        'Component' => self::class,
+                        'RuleId' => $rule->getId(),
+                        'ProductId' => $productVariant->getProduct()->getId()
+                    ]
+                );
+                continue;
             }
         }
 

@@ -2,6 +2,7 @@
 
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Ui\Admin;
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Sylius\Behat\Context\Transform\ProductContext;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
@@ -435,5 +436,21 @@ final class ManagingCatalogPromotionContext implements Context
         $etaDays = !$eta ? 21 : intval($eta->getValue());
         $etaWeeks = ceil($etaDays / 7);
         Assert::greaterThan($etaWeeks, $deliveryWeeks);
+    }
+
+    /**
+     * @When I set rule delivery time greater than :numWeeks weeks
+     */
+    public function iSetRuleDeliveryTimeGreaterThanWeeks(int $numWeeks)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then the :promotion catalog promotion should be applicable for delivery time greater than :numWeeks weeks
+     */
+    public function theCatalogPromotionShouldBeApplicableForDeliveryTimeGreaterThanWeeks(string $promotion, int $numWeeks)
+    {
+        throw new PendingException();
     }
 }

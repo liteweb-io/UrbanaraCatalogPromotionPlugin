@@ -9,5 +9,9 @@
         <service id="urbanara_catalog_promotion.catalog_promotion_rule.is_product" class="Urbanara\CatalogPromotionPlugin\Rule\IsProductRuleChecker">
             <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_product" label="Is product" />
         </service>
+
+        <service id="urbanara_catalog_promotion.catalog_promotion_rule.is_delivery_time_in_scope" class="Urbanara\CatalogPromotionPlugin\Rule\IsDeliveryTimeInScopeRuleChecker">
+            <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_delivery_time_in_scope" label="Is delivery time in scope" />
+        </service>
     </services>
 </container>

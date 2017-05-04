@@ -53,5 +53,9 @@
             <argument type="service" id="sylius.form.type.data_transformer.products_to_codes" />
             <tag name="form.type" />
         </service>
+
+        <service id="urbanara_catalog_promotion.form.type.rule.is_product_delivery_time_in_scope" class="Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductDeliveryTimeInScopeType">
+            <tag name="form.type" />
+        </service>
     </services>
 </container>
