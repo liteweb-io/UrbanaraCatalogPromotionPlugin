@@ -17,6 +17,10 @@ final class IsDeliveryTimeInScopeRuleChecker implements RuleCheckerInterface
     const CRITERIA_LESS = 'less';
     const CRITERIA_EQUAL = 'equal';
 
+    const ERROR_MSG_ETA_NOT_FOUND = "ETA not found for product %s";
+    const ERROR_MSG_NO_CRITERIA_OR_WEEKS_NUMBER_ITEMS_FOUND =
+        "Wrong rule configuration. No criteria or weeks number items found";
+
     /**
      * {@inheritdoc}
      */
@@ -30,35 +34,80 @@ final class IsDeliveryTimeInScopeRuleChecker implements RuleCheckerInterface
      */
     public function isEligible(ProductVariantInterface $productVariant, array $configuration)
     {
-        $isElegible = false;
         $etaAttribute = $productVariant->getProduct()->getAttributeByCodeAndLocale(
             self::PRODUCT_ATTRIBUTE_DELIVERY_TIME
         );
 
         if (!($etaAttribute instanceof AttributeValueInterface)) {
-            throw new CatalogPromotionRuleException(sprintf("ETA not found for product %s", $productVariant->getProduct()->getId()));
+            throw new CatalogPromotionRuleException(
+                sprintf(
+                    self::ERROR_MSG_ETA_NOT_FOUND,
+                    $productVariant->getProduct()->getId()
+                )
+            );
         }
 
         $etaInWeeks = intval($etaAttribute->getValue());
 
         if (!isset($configuration['criteria']) || !isset($configuration['weeks'])) {
-            throw new CatalogPromotionRuleException("Wrong rule configuration. No criteria or weeks number items found");
+            throw new CatalogPromotionRuleException(self::ERROR_MSG_NO_CRITERIA_OR_WEEKS_NUMBER_ITEMS_FOUND);
         }
 
-        $referenceDeliveryWeeks = $configuration['weeks'];
+        return $this->validateElegibility($configuration['criteria'], $etaInWeeks, $configuration['weeks']);
+    }
 
-        switch ($configuration['criteria']) {
-            case self::CRITERIA_MORE:
-                $isElegible = ($etaInWeeks > $referenceDeliveryWeeks);
-                break;
-            case self::CRITERIA_LESS:
-                $isElegible = ($etaInWeeks < $referenceDeliveryWeeks);
-                break;
-            case self::CRITERIA_EQUAL:
-                $isElegible = ($etaInWeeks == $referenceDeliveryWeeks);
-                break;
+    /**
+     * @param string $criteria
+     * @param int    $etaInWeeks
+     * @param int    $referenceDeliveryWeeks
+     *
+     * @return bool
+     */
+    private function validateElegibility(string $criteria, int $etaInWeeks, int $referenceDeliveryWeeks)
+    {
+        if ($criteria == self::CRITERIA_MORE) {
+            return $this->isGreaterThan($etaInWeeks, $referenceDeliveryWeeks);
+        }
+        if ($criteria == self::CRITERIA_EQUAL) {
+            return $this->isEqualsTo($etaInWeeks, $referenceDeliveryWeeks);
+        }
+        if ($criteria == self::CRITERIA_LESS) {
+            return $this->isLessThan($etaInWeeks, $referenceDeliveryWeeks);
         }
 
-        return $isElegible;
+        return false;
+    }
+
+    /**
+     * @param int $etaInWeeks
+     * @param int $referenceDeliveryWeeks
+     *
+     * @return bool
+     */
+    private function isGreaterThan(int $etaInWeeks, int $referenceDeliveryWeeks)
+    {
+        return $etaInWeeks > $referenceDeliveryWeeks;
+    }
+
+    /**
+     * @param int $etaInWeeks
+     * @param int $referenceDeliveryWeeks
+     *
+     * @return bool
+     */
+    private function isEqualsTo(int $etaInWeeks, int $referenceDeliveryWeeks)
+    {
+        return $etaInWeeks == $referenceDeliveryWeeks;
+    }
+
+    /**
+     * @param int $etaInWeeks
+     * @param int $referenceDeliveryWeeks
+     *
+     * @return bool
+     */
+    private function isLessThan(int $etaInWeeks, int $referenceDeliveryWeeks)
+    {
+        return $etaInWeeks < $referenceDeliveryWeeks;
     }
 }

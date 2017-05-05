@@ -11,6 +11,8 @@ use Sylius\Component\Registry\ServiceRegistryInterface;
 
 final class CatalogPromotionEligibilityChecker implements EligibilityCheckerInterface
 {
+    const ERROR_MSG_CATALOG_PROMOTION_EXCEPTION = 'CatalogPromotionRuleException: %s';
+
     /**
      * @var ServiceRegistryInterface
      */
@@ -45,14 +47,15 @@ final class CatalogPromotionEligibilityChecker implements EligibilityCheckerInte
                 }
             } catch (CatalogPromotionRuleException $ex) {
                 $this->logger->error(
-                    sprintf('CatalogPromotionRuleException: %s', $ex->getMessage()),
+                    sprintf(self::ERROR_MSG_CATALOG_PROMOTION_EXCEPTION, $ex->getMessage()),
                     [
                         'Component' => self::class,
                         'RuleId' => $rule->getId(),
                         'ProductId' => $productVariant->getProduct()->getId()
                     ]
                 );
-                continue;
+
+                return false;
             }
         }
 
