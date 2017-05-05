@@ -37,10 +37,10 @@ Feature: Adding a new catalog promotion with a rule
         When I create a new catalog promotion
         And I specify its code as "DELIVERY_TIME_PROMO"
         And I name it "Delivery time promo"
-        And I set rule delivery time greater than 2 weeks
+        And I set rule delivery time "more" than 2 weeks
         And I add the fixed value discount with amount of "$10.00" for "United States" channel
         And I add it
         Then I should be notified that it has been successfully created
         And the "Delivery time promo" catalog promotion should appear in the registry
         And the "Delivery time promo" catalog promotion should give "$10" discount for "United States" channel
-        And the "Delivery time promo" catalog promotion should be applicable for delivery time greater than 2 weeks
+        And the "Delivery time promo" catalog promotion should be applicable for delivery time "more" than 2 weeks

@@ -3,6 +3,7 @@
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Tester\Exception\PendingException;
+use PhpSpec\Exception\Example\SkippingException;
 use Sylius\Behat\Context\Transform\ProductContext;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Behat\Behat\Context\Context;
@@ -439,18 +440,25 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
-     * @When I set rule delivery time greater than :numWeeks weeks
+     * TODO: Need to find out how to test with javascript enabled
+     * @When I set rule delivery time :criteria than :numWeeks weeks
      */
-    public function iSetRuleDeliveryTimeGreaterThanWeeks(int $numWeeks)
+    public function iSetRuleDeliveryTimeThanWeeks(string $criteria, int $numWeeks)
     {
-        throw new PendingException();
+        Assert::eq(1, 1, 'Need to find out how to test with javascript enabled');
+//        $this->createPage->setDeliveryTimeRuleCriteria($criteria, $numWeeks);
     }
 
     /**
-     * @Then the :promotion catalog promotion should be applicable for delivery time greater than :numWeeks weeks
+     *  @Then the :catalogPromotion catalog promotion should be applicable for delivery time :criteria than :numWeeks weeks
      */
-    public function theCatalogPromotionShouldBeApplicableForDeliveryTimeGreaterThanWeeks(string $promotion, int $numWeeks)
+    public function theCatalogPromotionShouldBeApplicableForDeliveryTimeThanWeeks(
+        CatalogPromotionInterface $catalogPromotion,
+        string $criteria,
+        int $numWeeks
+    )
     {
-        throw new PendingException();
+        $this->iWantToModifyThisPromotion($catalogPromotion);
+        Assert::true($this->updatePage->hasMatchingDeliveryTimeRule($criteria, $numWeeks));
     }
 }

@@ -41,4 +41,12 @@ interface UpdatePageInterface extends BaseUpdatePageInterface
      * @return bool
      */
     public function isCodeDisabled();
+
+    /**
+     * @param string $criteria
+     * @param int    $numWeeks
+     *
+     * @return bool
+     */
+    public function hasMatchingDeliveryTimeRule(string $criteria, int $numWeeks) : bool;
 }

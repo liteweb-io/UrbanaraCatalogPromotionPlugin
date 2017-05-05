@@ -55,4 +55,10 @@ interface CreatePageInterface extends BaseCreatePageInterface
      * @param int $priority
      */
     public function setItsPriority($priority);
+
+    /**
+     * @param string $criteria
+     * @param int $numWeeks
+     */
+    public function setDeliveryTimeRuleCriteria(string $criteria, int $numWeeks);
 }

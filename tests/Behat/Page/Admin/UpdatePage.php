@@ -2,8 +2,10 @@
 
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Page\Admin;
 
+use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Behaviour\ChecksCodeImmutability;
 use Sylius\Behat\Page\Admin\Crud\UpdatePage as BaseUpdatePage;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductDeliveryTimeInScopeType;
 
 class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
 {
@@ -55,6 +57,36 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
         $field = $this->getDocument()->findField($channelName);
 
         return (bool) $field->getValue();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasMatchingDeliveryTimeRule(string $criteria, int $numWeeks) : bool
+    {
+        $document = $this->getDocument();
+
+        $rule = $document->find('css', 'div#urbanara_catalog_promotion_rules_0');
+        if (!($rule instanceof NodeElement)) {
+            return false;
+        }
+
+        $ruleTypeElement = $rule->find('css', "select[id^=urbanara_catalog_promotion_rules_0_type]");
+        if (!($ruleTypeElement instanceof NodeElement) || $ruleTypeElement->getValue() != 'is_delivery_time_in_scope') {
+            return false;
+        }
+
+        $criteriaElement = $rule->find('css', "select[id^=urbanara_catalog_promotion_rules_0_criteria]");
+        if (!($criteriaElement instanceof NodeElement) || $criteriaElement->getValue() != $criteria) {
+            return false;
+        }
+
+        $numWeeksElement = $rule->find('css', "select[id^=urbanara_catalog_promotion_rules_0_weeks]");
+        if (!($numWeeksElement instanceof NodeElement) || $numWeeksElement->getValue() != $numWeeks) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
