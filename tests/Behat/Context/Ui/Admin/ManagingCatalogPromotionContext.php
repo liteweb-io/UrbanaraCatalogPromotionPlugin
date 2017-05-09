@@ -467,10 +467,9 @@ final class ManagingCatalogPromotionContext implements Context
      */
     public function iMakeThisCatalogPromotionApplicableForProductSkuInTheListOnly(string $skuTextList)
     {
-        $skuList = explode(",", str_replace(['[', ']', ' '], ['', '', ''], $skuTextList));
-        foreach ($skuList as $index => $sku) {
-            echo "\n$sku";
-        }
+        $this->createPage->setIsProductSkuRuleCriteria($skuTextList);
+        echo $skuTextList;
+
         throw new PendingException();
     }
 

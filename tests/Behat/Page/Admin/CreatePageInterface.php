@@ -57,9 +57,9 @@ interface CreatePageInterface extends BaseCreatePageInterface
     public function setItsPriority($priority);
 
     /**
-     * @param string[] $skuList
+     * @param string $skuList
      */
-    public function setIsProductSkuRuleCriteria(array $skuList);
+    public function setIsProductSkuRuleCriteria(string $skuList);
 
     /**
      * @param string $criteria

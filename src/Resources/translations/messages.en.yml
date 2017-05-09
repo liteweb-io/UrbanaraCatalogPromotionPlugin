@@ -24,6 +24,7 @@ urbanara_catalog_promotion:
             type: "Type"
             taxons: "Taxons"
             products: "Products"
+            product_sku_list: "Products (SKU list)"
             delivery_time:
                 form_label: "Delivery time"
                 weeks: "Number of weeks"

@@ -6,6 +6,7 @@ use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Behaviour\NamesIt;
 use Sylius\Behat\Behaviour\SpecifiesItsCode;
 use Sylius\Behat\Page\Admin\Crud\CreatePage as BaseCreatePage;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductSkuType;
 
 class CreatePage extends BaseCreatePage implements CreatePageInterface
 {
@@ -87,13 +88,16 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     }
 
     /**
-     * @param string[] $skuList
+     * @param string $skuList
      */
-    public function setIsProductSkuRuleCriteria(array $skuList)
+    public function setIsProductSkuRuleCriteria(string $skuList)
     {
         $this->getSession()->getPage()->clickLink('Add rule');
         $this->getDriver()->selectOption('//*[@id="urbanara_catalog_promotion_rules_0_type"]', 'is_product_sku');
-        $this->getDriver()->setValue('//*[@id="urbanara_catalog_promotion_rules_0_configuration_sku_list"]', \json_decode($skuList));
+        $this->getDriver()->setValue(
+            '//*[@id="urbanara_catalog_promotion_rules_0_configuration_sku_list"]',
+            str_replace(',', "\n", $skuList)
+        );
     }
 
     /**
@@ -117,6 +121,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         $this->getSession()->getPage()->clickLink('Add rule');
         $this->getDriver()->selectOption('//*[@id="urbanara_catalog_promotion_rules_0_type"]', $criteria);
+        $this->getDriver()->selectOption('//*[@id="urbanara_catalog_promotion_rules_0_configuration_criteria"]', $criteria);
         $this->getDriver()->setValue('//*[@id="urbanara_catalog_promotion_rules_0_configuration_weeks"]', $numWeeks);
     }
 }
