@@ -25,7 +25,7 @@
 
         <service id="urbanara_catalog_promotion.checker" class="Urbanara\CatalogPromotionPlugin\Checker\CatalogPromotionEligibilityChecker">
             <argument type="service" id="urbanara_catalog_promotion.registry_catalog_promotion_rule" />
-            <argument type="service" id="monolog.logger.event" />
+            <argument type="service" id="logger" />
         </service>
 
         <service id="urbanara_catalog_promotion.order_processing.catalog_promotion_recalculator" class="Urbanara\CatalogPromotionPlugin\OrderProcessing\CatalogPromotionProcessor">
