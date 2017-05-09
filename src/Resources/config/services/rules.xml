@@ -11,7 +11,7 @@
         </service>
 
         <service id="urbanara_catalog_promotion.catalog_promotion_rule.is_product_sku" class="Urbanara\CatalogPromotionPlugin\Rule\IsProductSkuRuleChecker">
-            <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_product_sku" label="Is product (multiple SKU)" />
+            <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_product_sku" label="Is in product list" />
         </service>
 
         <service id="urbanara_catalog_promotion.catalog_promotion_rule.is_delivery_time_in_scope" class="Urbanara\CatalogPromotionPlugin\Rule\IsDeliveryTimeInScopeRuleChecker">
