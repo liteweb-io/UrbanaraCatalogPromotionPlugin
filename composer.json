@@ -6,7 +6,8 @@
     "require": {
         "php": "^7.0",
 
-        "sylius/sylius": "^1.0@dev"
+        "sylius/sylius": "^1.0@dev",
+	"symfony/monolog-bundle": "~2.4"
     },
     "authors": [
         {
