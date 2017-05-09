@@ -98,4 +98,15 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
             'name' => '#urbanara_catalog_promotion_name',
         ];
     }
+
+    /**
+     * @param int    $numWeeks
+     * @param string $criteria
+     */
+    public function setDeliveryTimeRuleCriteria(string $criteria, int $numWeeks)
+    {
+        $this->getSession()->getPage()->clickLink('Add rule');
+        $this->getDriver()->selectOption('//*[@id="urbanara_catalog_promotion_rules_0_type"]', $criteria);
+        $this->getDriver()->setValue('//*[@id="urbanara_catalog_promotion_rules_0_configuration_weeks"]', $numWeeks);
+    }
 }

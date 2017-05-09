@@ -10,13 +10,13 @@ default:
                 - sylius.behat.context.setup.admin_security
                 - sylius.behat.context.setup.channel
                 - sylius.behat.context.setup.taxonomy
+                - sylius.behat.context.setup.product
 
                 - urbanara_catalog_promotion.behat.context.transform.catalog_promotion
                 - sylius.behat.context.transform.channel
                 - sylius.behat.context.transform.date_time
                 - sylius.behat.context.transform.shared_storage
                 - sylius.behat.context.transform.lexical
-
                 - urbanara_catalog_promotion.behat.context.ui.admin.managing
                 - sylius.behat.context.ui.admin.notification
 

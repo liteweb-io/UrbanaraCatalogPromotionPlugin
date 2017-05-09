@@ -18,6 +18,7 @@
             <argument type="service" id="urbanara_catalog_promotion.behat.page.admin.create" />
             <argument type="service" id="urbanara_catalog_promotion.behat.page.admin.index" />
             <argument type="service" id="urbanara_catalog_promotion.behat.page.admin.update" />
+            <argument type="service" id="sylius.behat.context.transform.product" />
             <tag name="fob.context_service" />
         </service>
         <service id="urbanara_catalog_promotion.behat.context.ui.shop.catalog_promotion" class="Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Ui\Shop\CatalogPromotionContext">
