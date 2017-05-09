@@ -30,6 +30,8 @@ final class IsProductDeliveryTimeInScopeType extends AbstractType
             ])
             ->add('weeks', IntegerType::class, [
                 'label' => self::LABEL_DELIVERY_TIME_WEEKS,
+                'required' => true,
+                'attr' => ['min' => 1],
             ])
         ;
     }
