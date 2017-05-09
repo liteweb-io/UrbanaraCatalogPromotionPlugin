@@ -46,3 +46,24 @@ Feature: Adding a new catalog promotion with a rule
         And the "Delivery time promo" catalog promotion should appear in the registry
         And the "Delivery time promo" catalog promotion should give "$10" discount for "United States" channel
 #        And the "Delivery time promo" catalog promotion should be applicable for delivery time "more" than 2 weeks
+
+    @ui
+    Scenario: Adding a new catalog promotion with contains product list rule
+        Given the store has a "text" product attribute "sku" with code "sku"
+        And the store has a product "PHP T-Shirt" priced at "$100"
+        And this product has a text attribute "sku" with value "php-t-shirt"
+        And the store has a product "PHP Mug" priced at "$50"
+        And this product has a text attribute "sku" with value "php-mug"
+        And the store has a product "PHP Mousepad" priced at "$20"
+        And this product has a text attribute "sku" with value "php-mousepad"
+        And the store has a product "PHP Sticker" priced at "$10"
+        And this product has a text attribute "sku" with value "php-sticker"
+        When I create a new catalog promotion
+        And I specify its code as "PHP_SKU_PROMOTION"
+        And I name it "PHP SKU promotion"
+        And I make this catalog promotion applicable for product sku in the list "[php-t-shirt, php-mug, php-mousepad]" only
+        And I add it
+        Then I should be notified that it has been successfully created
+        And the "PHP SKU promotion" catalog promotion should appear in the registry
+        And this catalog promotion should be applicable for product sku "php-t-shirt"
+        And this catalog promotion should not be applicable for product sku "php-sticker"

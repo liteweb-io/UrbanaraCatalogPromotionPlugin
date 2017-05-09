@@ -461,4 +461,33 @@ final class ManagingCatalogPromotionContext implements Context
         $this->iWantToModifyThisPromotion($catalogPromotion);
         Assert::true($this->updatePage->hasMatchingDeliveryTimeRule($criteria, $numWeeks));
     }
+
+    /**
+     * @When I make this catalog promotion applicable for product sku in the list :skuTextList only
+     */
+    public function iMakeThisCatalogPromotionApplicableForProductSkuInTheListOnly(string $skuTextList)
+    {
+        $skuList = explode(",", str_replace(['[', ']', ' '], ['', '', ''], $skuTextList));
+        foreach ($skuList as $index => $sku) {
+            echo "\n$sku";
+        }
+        throw new PendingException();
+    }
+
+    /**
+     * @Then this catalog promotion should be applicable for product sku :sku
+     */
+    public function thisCatalogPromotionShouldBeApplicableForProductSku(string $sku)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then this catalog promotion should not be applicable for product sku :sku
+     */
+    public function thisCatalogPromotionShouldNotBeApplicableForProductSku(string $sku)
+    {
+        throw new PendingException();
+    }
+
 }

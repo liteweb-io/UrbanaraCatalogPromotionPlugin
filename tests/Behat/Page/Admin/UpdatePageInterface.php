@@ -49,4 +49,11 @@ interface UpdatePageInterface extends BaseUpdatePageInterface
      * @return bool
      */
     public function hasMatchingDeliveryTimeRule(string $criteria, int $numWeeks) : bool;
+
+    /**
+     * @param string $sku
+     *
+     * @return bool
+     */
+    public function hasMatchingIsProductSkuRule(string $sku) : bool;
 }

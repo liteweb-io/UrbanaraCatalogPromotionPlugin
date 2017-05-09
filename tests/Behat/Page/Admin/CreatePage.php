@@ -87,6 +87,16 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     }
 
     /**
+     * @param string[] $skuList
+     */
+    public function setIsProductSkuRuleCriteria(array $skuList)
+    {
+        $this->getSession()->getPage()->clickLink('Add rule');
+        $this->getDriver()->selectOption('//*[@id="urbanara_catalog_promotion_rules_0_type"]', 'is_product_sku');
+        $this->getDriver()->setValue('//*[@id="urbanara_catalog_promotion_rules_0_configuration_sku_list"]', \json_decode($skuList));
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function getDefinedElements()
