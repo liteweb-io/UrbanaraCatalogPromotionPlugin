@@ -468,8 +468,6 @@ final class ManagingCatalogPromotionContext implements Context
     public function iMakeThisCatalogPromotionApplicableForProductSkuInTheListOnly(string $skuTextList)
     {
         $this->createPage->setIsProductSkuRuleCriteria($skuTextList);
-        echo $skuTextList;
-
         throw new PendingException();
     }
 
