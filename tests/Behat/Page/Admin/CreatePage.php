@@ -6,11 +6,19 @@ use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Behaviour\NamesIt;
 use Sylius\Behat\Behaviour\SpecifiesItsCode;
 use Sylius\Behat\Page\Admin\Crud\CreatePage as BaseCreatePage;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductDeliveryTimeInScopeType;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductSkuType;
 
 class CreatePage extends BaseCreatePage implements CreatePageInterface
 {
     use NamesIt;
     use SpecifiesItsCode;
+
+    const BUTTON_ADD_RULE = 'Add rule';
+    const XPATH_CATALOG_PROMOTION_TYPE_DROPDOWN = '//*[@id="urbanara_catalog_promotion_rules_0_type"]';
+    const XPATH_DROPDOWN_DELIVERY_TIME_WEEKS = '//*[@id="urbanara_catalog_promotion_rules_0_configuration_weeks"]';
+    const XPATH_DROPDOWN_DELIVERY_TIME_CRITERIA = '//*[@id="urbanara_catalog_promotion_rules_0_configuration_criteria"]';
+    const XPATH_DROPDOWN_PRODUCT_SKU_LIST = '//*[@id="urbanara_catalog_promotion_rules_0_configuration_sku_list"]';
 
     public function makeExclusive()
     {
@@ -87,6 +95,22 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     }
 
     /**
+     * @param string $skuList
+     */
+    public function setIsProductSkuRuleCriteria(string $skuList)
+    {
+        $this->getSession()->getPage()->clickLink(self::BUTTON_ADD_RULE);
+        $this->getDriver()->selectOption(
+            self::XPATH_CATALOG_PROMOTION_TYPE_DROPDOWN,
+            IsProductSkuType::FORM_TYPE_DROPDOWN_OPTION
+        );
+        $this->getDriver()->setValue(
+            self::XPATH_DROPDOWN_PRODUCT_SKU_LIST,
+            str_replace(',', "\n", $skuList)
+        );
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function getDefinedElements()
@@ -105,8 +129,12 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
      */
     public function setDeliveryTimeRuleCriteria(string $criteria, int $numWeeks)
     {
-        $this->getSession()->getPage()->clickLink('Add rule');
-        $this->getDriver()->selectOption('//*[@id="urbanara_catalog_promotion_rules_0_type"]', $criteria);
-        $this->getDriver()->setValue('//*[@id="urbanara_catalog_promotion_rules_0_configuration_weeks"]', $numWeeks);
+        $this->getSession()->getPage()->clickLink(self::BUTTON_ADD_RULE);
+        $this->getDriver()->selectOption(
+            self::XPATH_CATALOG_PROMOTION_TYPE_DROPDOWN,
+            IsProductDeliveryTimeInScopeType::FORM_TYPE_DROPDOWN_OPTION
+        );
+        $this->getDriver()->selectOption(self::XPATH_DROPDOWN_DELIVERY_TIME_CRITERIA, $criteria);
+        $this->getDriver()->setValue(self::XPATH_DROPDOWN_DELIVERY_TIME_WEEKS, $numWeeks);
     }
 }

@@ -13,6 +13,7 @@ final class IsProductDeliveryTimeInScopeType extends AbstractType
     const LABEL_DELIVERY_TIME_CRITERIA = 'urbanara_catalog_promotion.form.catalog_promotion_rule.delivery_time.criteria';
     const LABEL_DELIVERY_TIME_WEEKS = 'urbanara_catalog_promotion.form.catalog_promotion_rule.delivery_time.weeks';
     const BLOCK_PREFIX = 'urbanara_catalog_promotion_is_delivery_time_in_scope_rule';
+    const FORM_TYPE_DROPDOWN_OPTION = 'is_delivery_time_in_scope';
 
     /**
      * {@inheritdoc}

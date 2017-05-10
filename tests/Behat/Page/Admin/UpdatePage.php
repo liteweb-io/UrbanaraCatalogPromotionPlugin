@@ -2,9 +2,10 @@
 
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Page\Admin;
 
-use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Behaviour\ChecksCodeImmutability;
 use Sylius\Behat\Page\Admin\Crud\UpdatePage as BaseUpdatePage;
+use Behat\Mink\Element\NodeElement;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductSkuInListType;
 use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductDeliveryTimeInScopeType;
 
 class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
@@ -87,6 +88,16 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
         }
 
         return true;
+    }
+
+    /**
+     * @param string $sku
+     *
+     * @return bool
+     */
+    public function hasMatchingIsProductSkuRule(string $sku) : bool
+    {
+        return false;
     }
 
     /**
