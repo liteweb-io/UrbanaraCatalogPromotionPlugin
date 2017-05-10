@@ -34,22 +34,22 @@ Feature: Adding a new catalog promotion with a rule
 
     # Last condition for this feature needs to have javascript and thus selenium-chromedriver enabled,
     # which is currently under maintenance.
-    @ui
+    @todo
     Scenario: Adding a new catalog promotion which contains product rule for delivery time
         When I create a new catalog promotion
         And I specify its code as "DELIVERY_TIME_PROMO"
         And I name it "Delivery time promo"
-#        And I set rule delivery time "more" than 2 weeks
+        And I set rule delivery time "more" than 2 weeks
         And I add the fixed value discount with amount of "$10.00" for "United States" channel
         And I add it
         Then I should be notified that it has been successfully created
         And the "Delivery time promo" catalog promotion should appear in the registry
         And the "Delivery time promo" catalog promotion should give "$10" discount for "United States" channel
-#        And the "Delivery time promo" catalog promotion should be applicable for delivery time "more" than 2 weeks
+        And the "Delivery time promo" catalog promotion should be applicable for delivery time "more" than 2 weeks
 
     # Last condition for this feature needs to have javascript and thus selenium-chromedriver enabled,
     # which is currently under maintenance.
-    @ui
+    @todo
     Scenario: Adding a new catalog promotion with contains product in sku list rule
         Given the store has a "text" product attribute "sku" with code "sku"
         And the store has a product "PHP T-Shirt" priced at "$100"
@@ -63,9 +63,9 @@ Feature: Adding a new catalog promotion with a rule
         When I create a new catalog promotion
         And I specify its code as "PHP_SKU_PROMOTION"
         And I name it "PHP SKU promotion"
-#        And I make this catalog promotion applicable for product sku in the list "php-t-shirt, php-mug, php-mousepad" only
+        And I make this catalog promotion applicable for product sku in the list "php-t-shirt, php-mug, php-mousepad" only
         And I add it
         Then I should be notified that it has been successfully created
         And the "PHP SKU promotion" catalog promotion should appear in the registry
-#        And this catalog promotion should be applicable for product sku "php-t-shirt"
-#        And this catalog promotion should not be applicable for product sku "php-sticker"
+        And this catalog promotion should be applicable for product sku "php-t-shirt"
+        And this catalog promotion should not be applicable for product sku "php-sticker"
