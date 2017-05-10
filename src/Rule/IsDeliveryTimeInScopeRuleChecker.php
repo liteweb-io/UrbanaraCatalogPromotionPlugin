@@ -47,7 +47,7 @@ final class IsDeliveryTimeInScopeRuleChecker implements RuleCheckerInterface
             );
         }
 
-        $etaInWeeks = intval($etaAttribute->getValue());
+        $etaInWeeks = intval(ceil($etaAttribute->getValue() / 7));
 
         if (!isset($configuration['criteria']) || !isset($configuration['weeks'])) {
             throw new CatalogPromotionRuleException(self::ERROR_MSG_NO_CRITERIA_OR_WEEKS_NUMBER_ITEMS_FOUND);
