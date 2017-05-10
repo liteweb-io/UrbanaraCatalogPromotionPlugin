@@ -15,7 +15,7 @@
         </service>
 
         <service id="urbanara_catalog_promotion.catalog_promotion_rule.is_delivery_time_in_scope" class="Urbanara\CatalogPromotionPlugin\Rule\IsDeliveryTimeInScopeRuleChecker">
-            <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_delivery_time_in_scope" label="Is delivery time in scope" />
+            <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_delivery_time_in_scope" label="Item delivery time" />
         </service>
     </services>
 </container>
