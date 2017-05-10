@@ -97,29 +97,6 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
      */
     public function hasMatchingIsProductSkuRule(string $sku) : bool
     {
-//        $document = $this->getDocument();
-//
-//        $rule = $document->find('css', 'div#urbanara_catalog_promotion_rules_0');
-//        if (!($rule instanceof NodeElement)) {
-//            return false;
-//        }
-//
-//        $ruleTypeElement = $rule->find('css', "select[id^=urbanara_catalog_promotion_rules_0_type]");
-//        if (!($ruleTypeElement instanceof NodeElement) || $ruleTypeElement->getValue() != 'is_delivery_time_in_scope') {
-//            return false;
-//        }
-//
-//        $criteriaElement = $rule->find('css', "select[id^=urbanara_catalog_promotion_rules_0_criteria]");
-//        if (!($criteriaElement instanceof NodeElement) || $criteriaElement->getValue() != $sku) {
-//            return false;
-//        }
-//
-//        $numWeeksElement = $rule->find('css', "select[id^=urbanara_catalog_promotion_rules_0_weeks]");
-//        if (!($numWeeksElement instanceof NodeElement) || $numWeeksElement->getValue() != $sku) {
-//            return false;
-//        }
-//
-//        return true;
         return false;
     }
 

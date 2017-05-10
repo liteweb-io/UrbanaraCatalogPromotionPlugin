@@ -28,7 +28,7 @@ final class IsProductSkuRuleChecker implements RuleCheckerInterface
      */
     public function isEligible(ProductVariantInterface $productVariant, array $configuration)
     {
-        if (empty($configuration['product_sku_list'])) {
+        if (empty($configuration[IsProductSkuType::FORM_ELEMENT_NAME_PRODUCT_SKU_LIST])) {
             throw new CatalogPromotionRuleException(
                 sprintf('%s: %s', self::class, self::ERROR_MSG_NO_SKU_LIST_FOUND_IN_RULE)
             );
@@ -43,6 +43,9 @@ final class IsProductSkuRuleChecker implements RuleCheckerInterface
             );
         }
 
-        return (bool) preg_match("/\b{$lookedUpSkuAttribute->getValue()}\b/", $configuration['product_sku_list']);
+        return (bool) preg_match(
+            "/\b{$lookedUpSkuAttribute->getValue()}\b/",
+            $configuration[IsProductSkuType::FORM_ELEMENT_NAME_PRODUCT_SKU_LIST]
+        );
     }
 }
