@@ -11,6 +11,7 @@ final class IsProductSkuType extends AbstractType
     const BLOCK_PREFIX = 'urbanara_catalog_promotion_is_product_sku_rule';
     const FORM_ELEMENT_LABEL_PRODUCT_SKU_LIST = 'urbanara_catalog_promotion.form.catalog_promotion_rule.product_sku_list';
     const FORM_ELEMENT_NAME_PRODUCT_SKU_LIST = 'product_sku_list';
+    const FORM_TYPE_DROPDOWN_OPTION = 'is_product_sku';
 
     /**
      * {@inheritdoc}

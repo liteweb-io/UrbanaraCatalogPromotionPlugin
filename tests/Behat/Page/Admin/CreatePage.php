@@ -18,6 +18,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     const XPATH_CATALOG_PROMOTION_TYPE_DROPDOWN = '//*[@id="urbanara_catalog_promotion_rules_0_type"]';
     const XPATH_DROPDOWN_DELIVERY_TIME_WEEKS = '//*[@id="urbanara_catalog_promotion_rules_0_configuration_weeks"]';
     const XPATH_DROPDOWN_DELIVERY_TIME_CRITERIA = '//*[@id="urbanara_catalog_promotion_rules_0_configuration_criteria"]';
+    const XPATH_DROPDOWN_PRODUCT_SKU_LIST = '//*[@id="urbanara_catalog_promotion_rules_0_configuration_sku_list"]';
 
     public function makeExclusive()
     {
@@ -98,10 +99,13 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
      */
     public function setIsProductSkuRuleCriteria(string $skuList)
     {
-        $this->getSession()->getPage()->clickLink('Add rule');
-        $this->getDriver()->selectOption('//*[@id="urbanara_catalog_promotion_rules_0_type"]', 'is_product_sku');
+        $this->getSession()->getPage()->clickLink(self::BUTTON_ADD_RULE);
+        $this->getDriver()->selectOption(
+            self::XPATH_CATALOG_PROMOTION_TYPE_DROPDOWN,
+            IsProductSkuType::FORM_TYPE_DROPDOWN_OPTION
+        );
         $this->getDriver()->setValue(
-            '//*[@id="urbanara_catalog_promotion_rules_0_configuration_sku_list"]',
+            self::XPATH_DROPDOWN_PRODUCT_SKU_LIST,
             str_replace(',', "\n", $skuList)
         );
     }
