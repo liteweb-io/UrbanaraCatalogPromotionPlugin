@@ -445,8 +445,7 @@ final class ManagingCatalogPromotionContext implements Context
      */
     public function iSetRuleDeliveryTimeThanWeeks(string $criteria, int $numWeeks)
     {
-        Assert::eq(1, 1, 'Need to find out how to test with javascript enabled');
-//        $this->createPage->setDeliveryTimeRuleCriteria($criteria, $numWeeks);
+        throw new PendingException();
     }
 
     /**
