@@ -26,7 +26,7 @@ urbanara_catalog_promotion:
             products: "Products"
             product_sku_list: "Products (SKU list)"
             delivery_time:
-                form_label: "Delivery time"
+                form_label: "Item delivery time"
                 weeks: "Number of weeks"
                 criteria: "Criteria"
 

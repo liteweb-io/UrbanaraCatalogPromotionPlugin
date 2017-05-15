@@ -5,8 +5,6 @@ namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Page\Admin;
 use Sylius\Behat\Behaviour\ChecksCodeImmutability;
 use Sylius\Behat\Page\Admin\Crud\UpdatePage as BaseUpdatePage;
 use Behat\Mink\Element\NodeElement;
-use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductSkuInListType;
-use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductDeliveryTimeInScopeType;
 
 class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
 {

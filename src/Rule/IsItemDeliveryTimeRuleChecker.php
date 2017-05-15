@@ -4,10 +4,10 @@ namespace Urbanara\CatalogPromotionPlugin\Rule;
 
 use Sylius\Component\Attribute\Model\AttributeValueInterface;
 use Urbanara\CatalogPromotionPlugin\Exception\CatalogPromotionRuleException;
-use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductDeliveryTimeInScopeType;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsItemDeliveryTimeType;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 
-final class IsDeliveryTimeInScopeRuleChecker implements RuleCheckerInterface
+final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
 {
     const TYPE = 'is_product_delivery_time_in_scope';
 
@@ -26,7 +26,7 @@ final class IsDeliveryTimeInScopeRuleChecker implements RuleCheckerInterface
      */
     public function getConfigurationFormType()
     {
-        return IsProductDeliveryTimeInScopeType::class;
+        return IsItemDeliveryTimeType::class;
     }
 
     /**
