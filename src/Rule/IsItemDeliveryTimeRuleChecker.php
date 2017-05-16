@@ -2,6 +2,7 @@
 
 namespace Urbanara\CatalogPromotionPlugin\Rule;
 
+use Psr\Log\LoggerInterface;
 use Sylius\Component\Attribute\Model\AttributeValueInterface;
 use Urbanara\CatalogPromotionPlugin\Exception\CatalogPromotionRuleException;
 use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsItemDeliveryTimeType;
@@ -22,6 +23,19 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
         "Wrong rule configuration. No criteria or weeks number items found";
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getConfigurationFormType() : string
@@ -34,6 +48,7 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
      */
     public function isEligible(ProductVariantInterface $productVariant, array $configuration) : bool
     {
+        $this->logger->critical("RUN AWAY RUN AWAY RUN AWAY");
         $etaAttribute = $productVariant->getProduct()->getAttributeByCodeAndLocale(
             self::PRODUCT_ATTRIBUTE_DELIVERY_TIME
         );
