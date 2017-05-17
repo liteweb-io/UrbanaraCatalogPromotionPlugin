@@ -10,7 +10,10 @@ use Sylius\Component\Core\Model\ProductVariantInterface;
 
 final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
 {
-    const TYPE = 'is_product_delivery_time_in_scope';
+    const TYPE = 'is_product_delivery_time';
+
+    const CONFIG_KEY_CRITERIA = 'criteria';
+    const CONFIG_KEY_WEEKS = 'weeks';
 
     const PRODUCT_ATTRIBUTE_DELIVERY_TIME = 'eta_date';
 
@@ -21,6 +24,8 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
     const ERROR_MSG_ETA_NOT_FOUND = "ETA date invalid or not found for product %s";
     const ERROR_MSG_NO_CRITERIA_OR_WEEKS_NUMBER_ITEMS_FOUND =
         "Wrong rule configuration. No criteria or weeks number items found";
+
+    const REGEX_VALID_ISO_DATETIME = '/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/i';
 
     /**
      * @var LoggerInterface
@@ -33,6 +38,7 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
+        $this->logger->error(__METHOD__);
     }
 
     /**
@@ -48,32 +54,36 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
      */
     public function isEligible(ProductVariantInterface $productVariant, array $configuration) : bool
     {
-        $this->logger->critical(__METHOD__);
         $etaAttribute = $productVariant->getProduct()->getAttributeByCodeAndLocale(
             self::PRODUCT_ATTRIBUTE_DELIVERY_TIME
         );
 
         if (!($etaAttribute instanceof AttributeValueInterface)) {
             throw new CatalogPromotionRuleException(
-                sprintf(
-                    self::ERROR_MSG_ETA_NOT_FOUND,
-                    $productVariant->getProduct()->getId()
-                )
+                sprintf(self::ERROR_MSG_ETA_NOT_FOUND, $productVariant->getProduct()->getId())
+            );
+        }
+
+        $etaDate = $etaAttribute->getValue();
+        if (!preg_match(self::REGEX_VALID_ISO_DATETIME, $etaDate)) {
+            throw new CatalogPromotionRuleException(
+                sprintf(self::ERROR_MSG_ETA_NOT_FOUND, $productVariant->getProduct()->getId())
             );
         }
 
         $etaParsedDate = \DateTime::createFromFormat(DATE_ISO8601, $etaAttribute->getValue());
-        $this->logger->critical($etaParsedDate->format('c'));
 
         if (!$etaParsedDate || !($etaParsedDate instanceof \DateTime)) {
-            throw new CatalogPromotionRuleException(self::ERROR_MSG_ETA_NOT_FOUND);
+            throw new CatalogPromotionRuleException(
+                sprintf(self::ERROR_MSG_ETA_NOT_FOUND, $productVariant->getProduct()->getId())
+            );
         }
 
-        if (!isset($configuration['criteria']) || !isset($configuration['weeks'])) {
+        if (!isset($configuration[self::CONFIG_KEY_CRITERIA]) || !isset($configuration[self::CONFIG_KEY_WEEKS])) {
             throw new CatalogPromotionRuleException(self::ERROR_MSG_NO_CRITERIA_OR_WEEKS_NUMBER_ITEMS_FOUND);
         }
-        $this->logger->critical($this->validateElegibility($configuration['criteria'], $configuration['weeks'], $etaParsedDate));
-        return $this->validateElegibility($configuration['criteria'], $configuration['weeks'], $etaParsedDate);
+
+        return $this->validateElegibility($configuration[self::CONFIG_KEY_CRITERIA], $configuration[self::CONFIG_KEY_WEEKS], $etaParsedDate);
     }
 
     /**
@@ -138,7 +148,7 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
      */
     private function getDateTimeNumWeeksFromNow(int $numWeeks) : \DateTime
     {
-        $now = (new \DateTime())->setTime(0, 0, 0, 0);
+        $now = (new \DateTime())->setTime(0, 0, 0);
 
         if ($numWeeks <= 0) {
             return $now;
