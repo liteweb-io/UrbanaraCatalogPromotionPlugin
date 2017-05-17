@@ -3,18 +3,17 @@
 namespace spec\Urbanara\CatalogPromotionPlugin\Rule;
 
 use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductType;
-use Urbanara\CatalogPromotionPlugin\Rule\IsDeliveryTimeInScopeRuleChecker;
+use Urbanara\CatalogPromotionPlugin\Rule\IsItemDeliveryTimeRuleChecker;
 use Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 
-final class IsDeliveryTimeInScopeRuleCheckerSpec extends ObjectBehavior
+final class IsItemDeliveryTimeRuleCheckerSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(IsDeliveryTimeInScopeRuleChecker::class);
+        $this->shouldHaveType(IsItemDeliveryTimeRuleChecker::class);
     }
 
     function it_is_a_rule_checker()

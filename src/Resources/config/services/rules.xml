@@ -14,8 +14,9 @@
             <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_product_sku" label="Is in product list" />
         </service>
 
-        <service id="urbanara_catalog_promotion.catalog_promotion_rule.is_delivery_time_in_scope" class="Urbanara\CatalogPromotionPlugin\Rule\IsDeliveryTimeInScopeRuleChecker">
-            <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_delivery_time_in_scope" label="Is delivery time in scope" />
+        <service id="urbanara_catalog_promotion.catalog_promotion_rule.is_item_delivery_time" class="Urbanara\CatalogPromotionPlugin\Rule\IsItemDeliveryTimeRuleChecker">
+            <argument type="service" id="logger" />
+            <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_item_delivery_time" label="Item delivery time" />
         </service>
     </services>
 </container>
