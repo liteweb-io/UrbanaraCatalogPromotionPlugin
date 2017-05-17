@@ -48,7 +48,7 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
      */
     public function isEligible(ProductVariantInterface $productVariant, array $configuration) : bool
     {
-        $this->logger->critical("RUN AWAY RUN AWAY RUN AWAY");
+        $this->logger->critical(__METHOD__);
         $etaAttribute = $productVariant->getProduct()->getAttributeByCodeAndLocale(
             self::PRODUCT_ATTRIBUTE_DELIVERY_TIME
         );
@@ -63,6 +63,7 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
         }
 
         $etaParsedDate = \DateTime::createFromFormat(DATE_ISO8601, $etaAttribute->getValue());
+        $this->logger->critical($etaParsedDate->format('c'));
 
         if (!$etaParsedDate || !($etaParsedDate instanceof \DateTime)) {
             throw new CatalogPromotionRuleException(self::ERROR_MSG_ETA_NOT_FOUND);
@@ -71,7 +72,7 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
         if (!isset($configuration['criteria']) || !isset($configuration['weeks'])) {
             throw new CatalogPromotionRuleException(self::ERROR_MSG_NO_CRITERIA_OR_WEEKS_NUMBER_ITEMS_FOUND);
         }
-
+        $this->logger->critical($this->validateElegibility($configuration['criteria'], $configuration['weeks'], $etaParsedDate));
         return $this->validateElegibility($configuration['criteria'], $configuration['weeks'], $etaParsedDate);
     }
 
