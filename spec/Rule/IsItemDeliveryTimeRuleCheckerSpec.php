@@ -2,8 +2,7 @@
 
 namespace spec\Urbanara\CatalogPromotionPlugin\Rule;
 
-use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsProductType;
-use Urbanara\CatalogPromotionPlugin\Rule\IsItemDeliveryTimeRuleChecker;
+use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsItemDeliveryTimeType;
 use Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ProductVariantInterface;
@@ -11,11 +10,6 @@ use Sylius\Component\Core\Model\ProductInterface;
 
 final class IsItemDeliveryTimeRuleCheckerSpec extends ObjectBehavior
 {
-    function it_is_initializable()
-    {
-        $this->shouldHaveType(IsItemDeliveryTimeRuleChecker::class);
-    }
-
     function it_is_a_rule_checker()
     {
         $this->shouldHaveType(RuleCheckerInterface::class);
@@ -23,7 +17,7 @@ final class IsItemDeliveryTimeRuleCheckerSpec extends ObjectBehavior
 
     function it_has_related_configuration_type()
     {
-        $this->getConfigurationFormType()->shouldReturn(IsProductType::class);
+        $this->getConfigurationFormType()->shouldReturn(IsItemDeliveryTimeType::class);
     }
 
     function it_returns_true_if_promotion_is_eligible(ProductVariantInterface $productVariant, ProductInterface $product)
