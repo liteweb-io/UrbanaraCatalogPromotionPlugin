@@ -138,7 +138,7 @@ final class ManagingCatalogPromotionContext implements Context
     public function iSpecifyThePercentageDiscountWithAmountOf($amount)
     {
         $this->createPage->chooseActionType('Percentage discount');
-        $this->createPage->fillActionAmount('Percentage', $amount);
+        $this->createPage->fillActionPercentage($amount);
     }
 
     /**
