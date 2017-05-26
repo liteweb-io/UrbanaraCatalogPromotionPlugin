@@ -68,6 +68,16 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     /**
      * {@inheritdoc}
      */
+    public function fillActionPercentage($amount)
+    {
+        /** @var NodeElement $element */
+        $element = $this->getDocument()->find('css', '#urbanara_catalog_promotion_discountConfiguration');
+        $element->fillField('Percentage', $amount);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function fillActionForChannel($channelName, $option, $value)
     {
         $channel = $this
