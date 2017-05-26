@@ -15,7 +15,6 @@
         </service>
 
         <service id="urbanara_catalog_promotion.catalog_promotion_rule.is_item_delivery_time" class="Urbanara\CatalogPromotionPlugin\Rule\IsItemDeliveryTimeRuleChecker">
-            <argument type="service" id="logger" />
             <tag name="urbanara_catalog_promotion.catalog_promotion_rule" type="is_item_delivery_time" label="Item delivery time" />
         </service>
     </services>

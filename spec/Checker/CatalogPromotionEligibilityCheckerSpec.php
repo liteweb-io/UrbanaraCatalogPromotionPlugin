@@ -2,26 +2,20 @@
 
 namespace spec\Urbanara\CatalogPromotionPlugin\Checker;
 
-use Urbanara\CatalogPromotionPlugin\Checker\CatalogPromotionEligibilityChecker;
+use PhpSpec\ObjectBehavior;
+use Psr\Log\LoggerInterface;
+use Sylius\Component\Core\Model\ProductVariantInterface;
+use Sylius\Component\Registry\ServiceRegistryInterface;
 use Urbanara\CatalogPromotionPlugin\Checker\EligibilityCheckerInterface;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogRuleInterface;
 use Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface;
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-use Sylius\Component\Core\Model\ProductVariantInterface;
-use Sylius\Component\Registry\ServiceRegistryInterface;
 
 final class CatalogPromotionEligibilityCheckerSpec extends ObjectBehavior
 {
-    function let(ServiceRegistryInterface $ruleRegistry)
+    function let(ServiceRegistryInterface $ruleRegistry, LoggerInterface $logger)
     {
-        $this->beConstructedWith($ruleRegistry);
-    }
-
-    function it_is_initializable()
-    {
-        $this->shouldHaveType(CatalogPromotionEligibilityChecker::class);
+        $this->beConstructedWith($ruleRegistry, $logger);
     }
 
     function it_is_eligibility_checker()

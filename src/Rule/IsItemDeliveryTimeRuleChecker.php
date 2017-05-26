@@ -2,7 +2,6 @@
 
 namespace Urbanara\CatalogPromotionPlugin\Rule;
 
-use Psr\Log\LoggerInterface;
 use Sylius\Component\Attribute\Model\AttributeValueInterface;
 use Urbanara\CatalogPromotionPlugin\Exception\CatalogPromotionRuleException;
 use Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsItemDeliveryTimeType;
@@ -26,20 +25,6 @@ final class IsItemDeliveryTimeRuleChecker implements RuleCheckerInterface
         "Wrong rule configuration. No criteria or weeks number items found";
 
     const REGEX_VALID_ISO_DATETIME = '/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/i';
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
-     * @param LoggerInterface $logger
-     */
-    public function __construct(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-        $this->logger->error(__METHOD__);
-    }
 
     /**
      * {@inheritdoc}
