@@ -27,7 +27,7 @@ final class FixedCatalogDiscountCommand implements CatalogDiscountActionCommandI
 
         $promotionDiscount = $configuration['values'][$channelCode];
 
-        return $promotionDiscount > $currentPrice ? $currentPrice : $promotionDiscount;
+        return min($currentPrice, $promotionDiscount);
     }
 
     /**
