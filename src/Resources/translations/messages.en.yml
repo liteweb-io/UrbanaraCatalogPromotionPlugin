@@ -5,19 +5,20 @@ urbanara_catalog_promotion:
 
     form:
         catalog_promotion:
+            add_decoration: "Add decoration"
+            add_rule: "Add rule"
             amount: "Amount"
+            channels: "Channels"
             code: "Code"
+            decorations: "Decorations"
             description: "Description"
             ends_at: "Ends at"
             exclusive: "Exclusive"
             name: "Name"
-            starts_at: "Starts at"
-            type: "Type"
             percentage: "Percentage"
-            channels: "Channels"
             priority: "Priority"
-            add_rule: "Add rule"
             rules: "Rules"
+            starts_at: "Starts at"
             type: "Type"
 
         catalog_promotion_rule:
@@ -29,6 +30,26 @@ urbanara_catalog_promotion:
                 form_label: "Item delivery time"
                 weeks: "Number of weeks"
                 criteria: "Criteria"
+
+        catalog_promotion_decoration:
+            active_on_checkout_page: "Active on checkout page"
+            active_on_product_display_page: "Active on product display page"
+            active_on_product_listing_page: "Active on product listing page"
+            banner:
+                position:
+                    top_left: "Top-left"
+                    top: "Top"
+                    top_right: "Top-right"
+                    left: "Left"
+                    center: "Center"
+                    right: "Right"
+                    bottom_left: "Bottom-left"
+                    bottom: "Bottom"
+                    bottom_right: "Bottom-right"
+                url: "URL"
+            message:
+                message: "Message"
+            type: "Type"
 
     ui:
         action_configuration: "Action configuration"

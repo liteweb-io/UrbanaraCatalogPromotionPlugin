@@ -71,4 +71,28 @@ interface CreatePageInterface extends BaseCreatePageInterface
      * @param int $numWeeks
      */
     public function setDeliveryTimeRuleCriteria(string $criteria, int $numWeeks);
+
+    /**
+     * @param bool $activeOnProductDisplayPage
+     * @param bool $activeOnProductListingPage
+     * @param bool $activeOnCheckoutPage
+     */
+    public function addStrikethroughDecoration(bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): void;
+
+    /**
+     * @param string $message
+     * @param bool $activeOnProductDisplayPage
+     * @param bool $activeOnProductListingPage
+     * @param bool $activeOnCheckoutPage
+     */
+    public function addMessageDecoration(string $message, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): void;
+
+    /**
+     * @param string $url
+     * @param string $position
+     * @param bool $activeOnProductDisplayPage
+     * @param bool $activeOnProductListingPage
+     * @param bool $activeOnCheckoutPage
+     */
+    public function addBannerDecoration(string $url, string $position, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): void;
 }

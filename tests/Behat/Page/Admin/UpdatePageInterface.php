@@ -56,4 +56,34 @@ interface UpdatePageInterface extends BaseUpdatePageInterface
      * @return bool
      */
     public function hasMatchingIsProductSkuRule(string $sku) : bool;
+
+    /**
+     * @param bool $activeOnProductDisplayPage
+     * @param bool $activeOnProductListingPage
+     * @param bool $activeOnCheckoutPage
+     *
+     * @return bool
+     */
+    public function hasStrikethroughDecoration(bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): bool;
+
+    /**
+     * @param string $message
+     * @param bool $activeOnProductDisplayPage
+     * @param bool $activeOnProductListingPage
+     * @param bool $activeOnCheckoutPage
+     *
+     * @return bool
+     */
+    public function hasMessageDecoration(string $message, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): bool;
+
+    /**
+     * @param string $url
+     * @param string $position
+     * @param bool $activeOnProductDisplayPage
+     * @param bool $activeOnProductListingPage
+     * @param bool $activeOnCheckoutPage
+     *
+     * @return bool
+     */
+    public function hasBannerDecoration(string $url, string $position, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): bool;
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="urbanara_catalog_promotion.catalog_promotion_decoration.strikethrough" class="stdClass">
+            <tag name="urbanara_catalog_promotion.catalog_promotion_decoration" type="strikethrough"
+                 label="Strikethrough" form-type="Urbanara\CatalogPromotionPlugin\Form\Type\Decoration\StrikethroughType" />
+        </service>
+
+        <service id="urbanara_catalog_promotion.catalog_promotion_decoration.message" class="stdClass">
+            <tag name="urbanara_catalog_promotion.catalog_promotion_decoration" type="message"
+                 label="Message" form-type="Urbanara\CatalogPromotionPlugin\Form\Type\Decoration\MessageType" />
+        </service>
+
+        <service id="urbanara_catalog_promotion.catalog_promotion_decoration.banner" class="stdClass">
+            <tag name="urbanara_catalog_promotion.catalog_promotion_decoration" type="banner"
+                 label="Banner" form-type="Urbanara\CatalogPromotionPlugin\Form\Type\Decoration\BannerType" />
+        </service>
+    </services>
+</container>

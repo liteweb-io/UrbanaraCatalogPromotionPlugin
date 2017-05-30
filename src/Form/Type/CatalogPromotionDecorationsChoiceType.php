@@ -6,19 +6,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class CatalogRulesChoiceType extends AbstractType
+final class CatalogPromotionDecorationsChoiceType extends AbstractType
 {
     /**
      * @var array
      */
-    private $rules;
+    private $promotionDecorations;
 
     /**
-     * @param array $rules
+     * @param array $promotionDecorations
      */
-    public function __construct(array $rules)
+    public function __construct(array $promotionDecorations)
     {
-        $this->rules = $rules;
+        $this->promotionDecorations = $promotionDecorations;
     }
 
     /**
@@ -28,7 +28,7 @@ final class CatalogRulesChoiceType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'choices' => array_flip($this->rules),
+                'choices' => array_flip($this->promotionDecorations),
             ])
         ;
     }
@@ -46,6 +46,6 @@ final class CatalogRulesChoiceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'urbanara_catalog_promotion_catalog_promotion_rule_choices';
+        return 'urbanara_catalog_promotion_catalog_promotion_decoration_choices';
     }
 }

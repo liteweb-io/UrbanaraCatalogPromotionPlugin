@@ -57,5 +57,10 @@
                 <cascade-all />
             </cascade>
         </one-to-many>
+        <one-to-many field="decorations" target-entity="Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionDecorationInterface" mapped-by="catalogPromotion" orphan-removal="true">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

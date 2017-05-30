@@ -3,9 +3,12 @@
 namespace Urbanara\CatalogPromotionPlugin\DependencyInjection;
 
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotion;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionDecoration;
+use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionDecorationInterface;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogRule;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogRuleInterface;
+use Urbanara\CatalogPromotionPlugin\Form\Type\CatalogPromotionDecorationType;
 use Urbanara\CatalogPromotionPlugin\Form\Type\CatalogRuleType;
 use Urbanara\CatalogPromotionPlugin\Form\Type\CatalogPromotionType;
 use Urbanara\CatalogPromotionPlugin\Repository\CatalogPromotionRepository;
@@ -65,6 +68,25 @@ final class Configuration implements ConfigurationInterface
                                 ->scalarNode('interface')->defaultValue(CatalogRuleInterface::class)->cannotBeEmpty()->end()
                                 ->scalarNode('form')->defaultValue(CatalogRuleType::class)->cannotBeEmpty()->end()
                                 ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('catalog_promotion_decoration')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('classes')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue(CatalogPromotionDecoration::class)->cannotBeEmpty()->end()
+                                ->scalarNode('interface')->defaultValue(CatalogPromotionDecorationInterface::class)->cannotBeEmpty()->end()
+                                ->scalarNode('form')->defaultValue(CatalogPromotionDecorationType::class)->cannotBeEmpty()->end()
+                                ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
         ;
     }
 }

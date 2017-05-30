@@ -4,6 +4,7 @@
     <imports>
         <import resource="services/actions.xml"/>
         <import resource="services/blocks.xml"/>
+        <import resource="services/decorations.xml"/>
         <import resource="services/forms.xml"/>
         <import resource="services/rules.xml"/>
         <import resource="services/twig.xml"/>
@@ -44,5 +45,7 @@
             <argument>Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface</argument>
             <argument>catalog promotion rule</argument>
         </service>
+
+        <service id="urbanara_catalog_promotion.catalog_promotion_decoration.form_registry" class="Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry" />
     </services>
 </container>
