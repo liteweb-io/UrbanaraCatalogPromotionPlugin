@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Urbanara\CatalogPromotionPlugin\Templating\Helper;
 
 use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;

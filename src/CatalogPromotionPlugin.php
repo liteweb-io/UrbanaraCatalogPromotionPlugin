@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin;
 
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Element;
 
 final class CatalogPromotionElement extends Element implements CatalogPromotionElementInterface

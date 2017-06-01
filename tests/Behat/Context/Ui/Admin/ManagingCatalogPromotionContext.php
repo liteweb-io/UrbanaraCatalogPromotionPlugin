@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Tester\Exception\PendingException;

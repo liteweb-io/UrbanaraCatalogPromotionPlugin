@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Rule;
 
 use Sylius\Component\Core\Model\ProductVariantInterface;

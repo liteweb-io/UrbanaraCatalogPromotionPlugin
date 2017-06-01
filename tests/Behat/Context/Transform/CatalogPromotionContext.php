@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Form\Type\Action;
 
 use Symfony\Component\Form\AbstractType;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\DependencyInjection;
 
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotion;

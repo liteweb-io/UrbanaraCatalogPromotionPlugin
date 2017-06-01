@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Form\Type;
 
 use Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistryInterface;
@@ -23,7 +25,7 @@ final class CatalogPromotionDecorationType extends AbstractConfigurableElementTy
         array $decorationTypeToLabel
     ) {
         parent::__construct($dataClass, $validationGroups, $formTypeRegistry);
-        
+
         $this->decorationsTypeToLabel = $decorationTypeToLabel;
     }
 
@@ -50,11 +52,11 @@ final class CatalogPromotionDecorationType extends AbstractConfigurableElementTy
     protected function getRegistryIdentifier(FormInterface $form, $data = null)
     {
         $registryIdentifier = parent::getRegistryIdentifier($form, $data);
-        
+
         if (null !== $registryIdentifier) {
             return $registryIdentifier;
         }
-        
+
         return key($this->decorationsTypeToLabel);
     }
 
