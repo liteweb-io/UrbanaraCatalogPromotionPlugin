@@ -34,7 +34,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Urbanara\\CatalogPromotionPlugin\\": "src/",
+            "Urbanara\\CatalogPromotionPlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Tests\\Urbanara\\CatalogPromotionPlugin\\": "tests/"
         }
     }
