@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Action;
 
 use Urbanara\CatalogPromotionPlugin\Form\Type\Action\FixedCatalogDiscountType;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Urbanara\CatalogPromotionPlugin\DependencyInjection\Compiler;
 
 use Urbanara\CatalogPromotionPlugin\DependencyInjection\Compiler\RegisterCatalogPromotionActionsPass;

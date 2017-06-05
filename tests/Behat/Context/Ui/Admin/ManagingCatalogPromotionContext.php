@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Tester\Exception\PendingException;
@@ -486,4 +488,57 @@ final class ManagingCatalogPromotionContext implements Context
         throw new PendingException();
     }
 
+    /**
+     * @When I add strikethrough decoration available on all pages
+     */
+    public function iAddStrikethroughDecorationAvailableOnAllPages()
+    {
+        $this->createPage->addStrikethroughDecoration(true, true, true);
+    }
+
+    /**
+     * @Then the :catalogPromotion catalog promotion should be decorated with strikethrough on all pages
+     */
+    public function theCatalogPromotionShouldBeDecoratedWithStrikethroughOnAllPages(CatalogPromotionInterface $catalogPromotion)
+    {
+        $this->iWantToModifyThisPromotion($catalogPromotion);
+
+        Assert::true($this->updatePage->hasStrikethroughDecoration(true, true, true));
+    }
+
+    /**
+     * @When I add :message message decoration available on all pages
+     */
+    public function iAddMessageDecorationAvailableOnAllPages($message)
+    {
+        $this->createPage->addMessageDecoration($message, true, true, true);
+    }
+
+    /**
+     * @Then the :catalogPromotion catalog promotion should be decorated with message :message on all pages
+     */
+    public function theCatalogPromotionShouldBeDecoratedWithMessageOnAllPages(CatalogPromotionInterface $catalogPromotion, $message)
+    {
+        $this->iWantToModifyThisPromotion($catalogPromotion);
+
+        Assert::true($this->updatePage->hasMessageDecoration($message, true, true, true));
+    }
+
+    /**
+     * @When I add top-right :url banner decoration available on all pages
+     */
+    public function iAddTopRightBannerDecorationAvailableOnAllPages($url)
+    {
+        $this->createPage->addBannerDecoration($url, 'Top-right', true, true, true);
+    }
+
+    /**
+     * @Then the :catalogPromotion catalog promotion should be decorated with top-right :url banner on all pages
+     */
+    public function theCatalogPromotionShouldBeDecoratedWithTopRightBannerOnAllPages(CatalogPromotionInterface $catalogPromotion, $url)
+    {
+        $this->iWantToModifyThisPromotion($catalogPromotion);
+
+        Assert::true($this->updatePage->hasBannerDecoration($url, 'Top-right', true, true, true));
+    }
 }

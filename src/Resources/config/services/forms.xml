@@ -6,6 +6,10 @@
             <parameter>sylius</parameter>
         </parameter>
 
+        <parameter key="urbanara_catalog_promotion.form.type.catalog_promotion_decoration.validation_groups" type="collection">
+            <parameter>sylius</parameter>
+        </parameter>
+
         <parameter key="urbanara_catalog_promotion.form.type.catalog_rule.validation_groups" type="collection">
             <parameter>sylius</parameter>
         </parameter>
@@ -59,6 +63,24 @@
         </service>
 
         <service id="urbanara_catalog_promotion.form.type.rule.is_item_delivery_time" class="Urbanara\CatalogPromotionPlugin\Form\Type\Rule\IsItemDeliveryTimeType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="urbanara_catalog_promotion.form.type.catalog_promotion_decoration_collection" class="Urbanara\CatalogPromotionPlugin\Form\Type\CatalogPromotionDecorationCollectionType">
+            <argument>%urbanara_catalog_promotion.catalog_promotion_decorations%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="urbanara_catalog_promotion.form.type.catalog_promotion_decorations_choice" class="Urbanara\CatalogPromotionPlugin\Form\Type\CatalogPromotionDecorationsChoiceType">
+            <argument>%urbanara_catalog_promotion.catalog_promotion_decorations%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="urbanara_catalog_promotion.form.type.catalog_promotion_decoration" class="Urbanara\CatalogPromotionPlugin\Form\Type\CatalogPromotionDecorationType">
+            <argument>%urbanara_catalog_promotion.model.catalog_promotion_decoration.class%</argument>
+            <argument>%urbanara_catalog_promotion.form.type.catalog_promotion_decoration.validation_groups%</argument>
+            <argument type="service" id="urbanara_catalog_promotion.catalog_promotion_decoration.form_registry" />
+            <argument>%urbanara_catalog_promotion.catalog_promotion_decorations%</argument>
             <tag name="form.type" />
         </service>
     </services>

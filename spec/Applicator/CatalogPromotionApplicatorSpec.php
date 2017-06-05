@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Urbanara\CatalogPromotionPlugin\Applicator;
 
 use Urbanara\CatalogPromotionPlugin\Applicator\CatalogPromotionApplicator;

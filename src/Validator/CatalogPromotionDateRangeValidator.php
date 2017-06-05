@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Validator;
 
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;

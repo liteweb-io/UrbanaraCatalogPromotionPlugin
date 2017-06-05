@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Applicator;
 
 use Sylius\Component\Core\Model\OrderItemInterface;

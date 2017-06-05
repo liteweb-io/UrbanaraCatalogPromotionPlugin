@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Twig;
 
 use Symfony\Component\Templating\Helper\Helper;

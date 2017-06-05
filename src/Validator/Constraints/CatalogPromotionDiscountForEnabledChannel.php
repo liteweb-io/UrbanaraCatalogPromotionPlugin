@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;

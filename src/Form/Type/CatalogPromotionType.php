@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Form\Type;
 
 use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
@@ -114,6 +116,15 @@ final class CatalogPromotionType extends AbstractResourceType
                 'error_bubbling' => false,
                 'button_add_label' => 'urbanara_catalog_promotion.form.catalog_promotion.add_rule',
                 'label' => 'urbanara_catalog_promotion.form.catalog_promotion.rules',
+            ])
+            ->add('decorations', CatalogPromotionDecorationCollectionType::class, [
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'error_bubbling' => false,
+                'button_add_label' => 'urbanara_catalog_promotion.form.catalog_promotion.add_decoration',
+                'label' => 'urbanara_catalog_promotion.form.catalog_promotion.decorations',
+                'required' => false,
             ])
             ->addEventSubscriber(new AddCodeFormSubscriber())
         ;

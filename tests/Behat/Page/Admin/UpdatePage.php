@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Page\Admin;
 
 use Sylius\Behat\Behaviour\ChecksCodeImmutability;
@@ -95,6 +97,111 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
      */
     public function hasMatchingIsProductSkuRule(string $sku) : bool
     {
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasStrikethroughDecoration(bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): bool
+    {
+        /** @var NodeElement[] $decorations */
+        $decorations = $this->getDocument()->findAll('css', '#catalog_promotion_decorations [data-form-type="collection"]');
+
+        foreach ($decorations as $decoration) {
+            if ($decoration->findField('Type')->find('css', ':selected')->getText() !== 'Strikethrough') {
+                continue;
+            }
+
+            if ($decoration->findField('Active on product display page')->isChecked() !== $activeOnProductDisplayPage) {
+                continue;
+            }
+
+            if ($decoration->findField('Active on product listing page')->isChecked() !== $activeOnProductListingPage) {
+                continue;
+            }
+
+            if ($decoration->findField('Active on checkout page')->isChecked() !== $activeOnCheckoutPage) {
+                continue;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasMessageDecoration(string $message, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): bool
+    {
+        /** @var NodeElement[] $decorations */
+        $decorations = $this->getDocument()->findAll('css', '#catalog_promotion_decorations [data-form-type="collection"]');
+
+        foreach ($decorations as $decoration) {
+            if ($decoration->findField('Type')->find('css', ':selected')->getText() !== 'Message') {
+                continue;
+            }
+
+            if ($decoration->findField('Message')->getValue() !== $message) {
+                continue;
+            }
+
+            if ($decoration->findField('Active on product display page')->isChecked() !== $activeOnProductDisplayPage) {
+                continue;
+            }
+
+            if ($decoration->findField('Active on product listing page')->isChecked() !== $activeOnProductListingPage) {
+                continue;
+            }
+
+            if ($decoration->findField('Active on checkout page')->isChecked() !== $activeOnCheckoutPage) {
+                continue;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasBannerDecoration(string $url, string $position, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): bool
+    {
+        /** @var NodeElement[] $decorations */
+        $decorations = $this->getDocument()->findAll('css', '#catalog_promotion_decorations [data-form-type="collection"]');
+
+        foreach ($decorations as $decoration) {
+            if ($decoration->findField('Type')->find('css', ':selected')->getText() !== 'Banner') {
+                continue;
+            }
+
+            if ($decoration->findField('URL')->getValue() !== $url) {
+                continue;
+            }
+
+            if ($decoration->findField('Position')->find('css', ':selected')->getText() !== $position) {
+                continue;
+            }
+
+            if ($decoration->findField('Active on product display page')->isChecked() !== $activeOnProductDisplayPage) {
+                continue;
+            }
+
+            if ($decoration->findField('Active on product listing page')->isChecked() !== $activeOnProductListingPage) {
+                continue;
+            }
+
+            if ($decoration->findField('Active on checkout page')->isChecked() !== $activeOnCheckoutPage) {
+                continue;
+            }
+
+            return true;
+        }
+
         return false;
     }
 

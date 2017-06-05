@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Urbanara\CatalogPromotionPlugin\Behat\Page\Admin;
 
 use Behat\Mink\Element\NodeElement;
@@ -146,5 +148,86 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
         );
         $this->getDriver()->selectOption(self::XPATH_DROPDOWN_DELIVERY_TIME_CRITERIA, $criteria);
         $this->getDriver()->setValue(self::XPATH_DROPDOWN_DELIVERY_TIME_WEEKS, $numWeeks);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addStrikethroughDecoration(bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): void
+    {
+        $this->getDocument()->clickLink('Add decoration');
+
+        /** @var NodeElement[] $decorations */
+        $decorations = $this->getDocument()->findAll('css', '#catalog_promotion_decorations [data-form-type="collection"]');
+        $decoration = end($decorations);
+
+        $decoration->selectFieldOption('Type', 'Strikethrough');
+
+        if ($activeOnProductDisplayPage) {
+            $decoration->checkField('Active on product display page');
+        }
+
+        if ($activeOnProductListingPage) {
+            $decoration->checkField('Active on product listing page');
+        }
+
+        if ($activeOnCheckoutPage) {
+            $decoration->checkField('Active on checkout page');
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addMessageDecoration(string $message, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): void
+    {
+        $this->getDocument()->clickLink('Add decoration');
+
+        /** @var NodeElement[] $decorations */
+        $decorations = $this->getDocument()->findAll('css', '#catalog_promotion_decorations [data-form-type="collection"]');
+        $decoration = end($decorations);
+
+        $decoration->selectFieldOption('Type', 'Message');
+        $decoration->fillField('Message', $message);
+
+        if ($activeOnProductDisplayPage) {
+            $decoration->checkField('Active on product display page');
+        }
+
+        if ($activeOnProductListingPage) {
+            $decoration->checkField('Active on product listing page');
+        }
+
+        if ($activeOnCheckoutPage) {
+            $decoration->checkField('Active on checkout page');
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addBannerDecoration(string $url, string $position, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): void
+    {
+        $this->getDocument()->clickLink('Add decoration');
+
+        /** @var NodeElement[] $decorations */
+        $decorations = $this->getDocument()->findAll('css', '#catalog_promotion_decorations [data-form-type="collection"]');
+        $decoration = end($decorations);
+
+        $decoration->selectFieldOption('Type', 'Banner');
+        $decoration->fillField('URL', $url);
+        $decoration->selectFieldOption('Position', $position);
+
+        if ($activeOnProductDisplayPage) {
+            $decoration->checkField('Active on product display page');
+        }
+
+        if ($activeOnProductListingPage) {
+            $decoration->checkField('Active on product listing page');
+        }
+
+        if ($activeOnCheckoutPage) {
+            $decoration->checkField('Active on checkout page');
+        }
     }
 }

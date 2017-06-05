@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -73,10 +75,16 @@ class CatalogPromotion implements CatalogPromotionInterface
      */
     protected $rules;
 
+    /**
+     * @var Collection|CatalogPromotionDecorationInterface[]
+     */
+    protected $decorations;
+
     public function __construct()
     {
         $this->channels = new ArrayCollection();
         $this->rules = new ArrayCollection();
+        $this->decorations = new ArrayCollection();
     }
 
     /**
@@ -309,5 +317,49 @@ class CatalogPromotion implements CatalogPromotionInterface
     {
         $rule->setCatalogPromotion(null);
         $this->rules->removeElement($rule);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDecorations()
+    {
+        return $this->decorations;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasDecorations()
+    {
+        return !$this->decorations->isEmpty();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasDecoration(CatalogPromotionDecorationInterface $decoration)
+    {
+        return $this->decorations->contains($decoration);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addDecoration(CatalogPromotionDecorationInterface $decoration)
+    {
+        if (!$this->hasDecoration($decoration)) {
+            $decoration->setCatalogPromotion($this);
+            $this->decorations->add($decoration);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeDecoration(CatalogPromotionDecorationInterface $decoration)
+    {
+        $decoration->setCatalogPromotion(null);
+        $this->decorations->removeElement($decoration);
     }
 }

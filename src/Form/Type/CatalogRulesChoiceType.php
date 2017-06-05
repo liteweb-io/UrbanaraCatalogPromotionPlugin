@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Urbanara\CatalogPromotionPlugin\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -46,6 +48,6 @@ final class CatalogRulesChoiceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'urbanara_catalog_promotion_catalog_rule';
+        return 'urbanara_catalog_promotion_catalog_promotion_rule_choices';
     }
 }
