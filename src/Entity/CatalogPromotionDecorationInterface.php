@@ -19,7 +19,7 @@ interface CatalogPromotionDecorationInterface extends ResourceInterface
     /**
      * @return string|null
      */
-    public function getType(): ?string;
+    public function getType();
 
     /**
      * @param array $configuration
@@ -34,10 +34,10 @@ interface CatalogPromotionDecorationInterface extends ResourceInterface
     /**
      * @param CatalogPromotionInterface|null $catalogPromotion
      */
-    public function setCatalogPromotion(?CatalogPromotionInterface $catalogPromotion): void;
+    public function setCatalogPromotion(CatalogPromotionInterface $catalogPromotion = null): void;
 
     /**
      * @return CatalogPromotionInterface|null
      */
-    public function getCatalogPromotion(): ?CatalogPromotionInterface;
+    public function getCatalogPromotion();
 }
