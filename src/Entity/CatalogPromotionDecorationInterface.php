@@ -14,7 +14,7 @@ interface CatalogPromotionDecorationInterface extends ResourceInterface
     /**
      * @param string $type
      */
-    public function setType(string $type): void;
+    public function setType(string $type);
 
     /**
      * @return string|null
@@ -24,7 +24,7 @@ interface CatalogPromotionDecorationInterface extends ResourceInterface
     /**
      * @param array $configuration
      */
-    public function setConfiguration(array $configuration): void;
+    public function setConfiguration(array $configuration);
 
     /**
      * @return array
@@ -34,7 +34,7 @@ interface CatalogPromotionDecorationInterface extends ResourceInterface
     /**
      * @param CatalogPromotionInterface|null $catalogPromotion
      */
-    public function setCatalogPromotion(CatalogPromotionInterface $catalogPromotion = null): void;
+    public function setCatalogPromotion(CatalogPromotionInterface $catalogPromotion = null);
 
     /**
      * @return CatalogPromotionInterface|null
