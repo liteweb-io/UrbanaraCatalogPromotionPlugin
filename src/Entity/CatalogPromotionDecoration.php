@@ -40,7 +40,7 @@ class CatalogPromotionDecoration implements CatalogPromotionDecorationInterface
     /**
      * {@inheritdoc}
      */
-    public function setType(string $type): void
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -56,7 +56,7 @@ class CatalogPromotionDecoration implements CatalogPromotionDecorationInterface
     /**
      * {@inheritdoc}
      */
-    public function setConfiguration(array $configuration): void
+    public function setConfiguration(array $configuration)
     {
         $this->configuration = $configuration;
     }
@@ -72,7 +72,7 @@ class CatalogPromotionDecoration implements CatalogPromotionDecorationInterface
     /**
      * {@inheritdoc}
      */
-    public function setCatalogPromotion(CatalogPromotionInterface $catalogPromotion = null): void
+    public function setCatalogPromotion(CatalogPromotionInterface $catalogPromotion = null)
     {
         $this->catalogPromotion = $catalogPromotion;
     }
