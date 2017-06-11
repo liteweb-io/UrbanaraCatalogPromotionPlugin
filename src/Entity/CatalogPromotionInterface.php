@@ -137,4 +137,31 @@ interface CatalogPromotionInterface extends TimestampableInterface, ResourceInte
      * @param CatalogRuleInterface $rule
      */
     public function removeRule(CatalogRuleInterface $rule);
+
+    /**
+     * @return Collection|CatalogPromotionDecorationInterface[]
+     */
+    public function getDecorations();
+
+    /**
+     * @return bool
+     */
+    public function hasDecorations();
+
+    /**
+     * @param CatalogPromotionDecorationInterface $decoration
+     *
+     * @return bool
+     */
+    public function hasDecoration(CatalogPromotionDecorationInterface $decoration);
+
+    /**
+     * @param CatalogPromotionDecorationInterface $decoration
+     */
+    public function addDecoration(CatalogPromotionDecorationInterface $decoration);
+
+    /**
+     * @param CatalogPromotionDecorationInterface $decoration
+     */
+    public function removeDecoration(CatalogPromotionDecorationInterface $decoration);
 }

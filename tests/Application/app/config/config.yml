@@ -8,6 +8,7 @@ imports:
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
     - { resource: "@CatalogPromotionPlugin/Resources/config/app/grid.yml" }
+    - { resource: "@SyliusElasticSearchPlugin/Resources/config/app/config.yml" }
 
     - { resource: "../../../../vendor/sylius/sylius/app/config/security.yml" }
 
@@ -36,3 +37,12 @@ doctrine:
 
 fos_rest:
     exception: ~
+
+ongr_elasticsearch:
+    managers:
+        default:
+            index:
+                index_name: sylius
+            mappings:
+                CatalogPromotionPlugin:
+                    document_dir: ElasticSearch\Document
