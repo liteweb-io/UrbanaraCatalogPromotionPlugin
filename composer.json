@@ -4,7 +4,8 @@
     "description": "Catalog promotion extension for Sylius.",
     "license": "MIT",
     "require": {
-        "php": "^7.0",
+        "php": "^7.1",
+
         "sylius/elastic-search-plugin": "^1.0@alpha",
         "sylius/sylius": "^1.0@dev",
         "symfony/monolog-bundle": "^3.0"

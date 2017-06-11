@@ -2,7 +2,20 @@ language: php
 
 php:
     - 7.1
-    - 7.0
+
+jdk:
+  - oraclejdk8
+
+addons:
+    apt:
+        sources:
+            - elasticsearch-5.x
+        packages:
+            - elasticsearch
+            - oracle-java8-set-default
+
+services:
+    - elasticsearch
 
 cache:
     directories:
@@ -19,6 +32,7 @@ install:
 
 before_script:
     - (cd tests/Application && bin/console doctrine:schema:create --env=test)
+    - (cd tests/Application && bin/console ongr:es:index:create -vvv --no-interaction --env=test)
     - (cd tests/Application && bin/console assets:install --env=test)
     #- (cd tests/Application && yarn run gulp)
 
