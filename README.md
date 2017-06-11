@@ -5,11 +5,15 @@ Plugin provides basic functionality of catalog promotion on a top of [Sylius pla
 ## Installation
 
 1. Add plugin to your vendors:
+
 ```bash
 $ composer require urbanara/catalog-promotion-plugin
 ```
+
 2. Extend config files:
+
     1. Import project config: 
+    
         ```yml
         # app/config/config.yml
 
@@ -17,7 +21,9 @@ $ composer require urbanara/catalog-promotion-plugin
             ...
             - { resource: "@CatalogPromotionPlugin/Resources/config/app/grid.yml" }
         ```
+        
     2. Import project routing: 
+    
         ```yml
         # app/config/routing.yml
         ...
@@ -26,9 +32,10 @@ $ composer require urbanara/catalog-promotion-plugin
             resource: "@CatalogPromotionPlugin/Resources/config/routing.yml"
             prefix: /admin
         ```
+        
     3. Add plugin to AppKernel: 
+    
         ```php
-
         // app/AppKernel.php
 
         $bundles = [
@@ -38,6 +45,7 @@ $ composer require urbanara/catalog-promotion-plugin
 
         ```
     4. Extend gulp file with following script:
+    
         ```js
         // Gulpfile.js
  
@@ -57,7 +65,40 @@ $ composer require urbanara/catalog-promotion-plugin
         gulp.task('default', ['admin', 'shop', 'catalog-promotion']);
         ```
 
-3. If you want to see strikeout prices in your shop you need to customize templates on your own. A sample customization is available under `tests/Application/app/Resources/SyliusShopBundle`
+3. To support `SyliusElasticSearchPlugin` apply the following changes:
+
+    1. Configure ONGR in `app/config/config.yml`:
+    
+        ```yaml
+        # app/config/config.yml
+        
+        ongr_elasticsearch:
+            managers:
+                default:
+                    index:
+                        index_name: sylius
+                    mappings:
+                        CatalogPromotionPlugin:
+                            document_dir: ElasticSearch\Document
+        ```
+        
+    2. Add required bundles to `app/AppKernel.php`:
+    
+        ```php
+        // app/AppKernel.php
+
+        $bundles = [
+            // ...
+            new \Sylius\ElasticSearchPlugin\SyliusElasticSearchPlugin(),
+            new \ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
+            new \ONGR\FilterManagerBundle\ONGRFilterManagerBundle(),
+            new \SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
+            new \SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
+        ];
+
+        ```
+g
+4. If you want to see strikeout prices in your shop you need to customize templates on your own. A sample customization is available under `tests/Application/app/Resources/SyliusShopBundle`
 
 ## Usage
 
