@@ -24,15 +24,15 @@ class ProductDocument extends BaseProductDocument
     /**
      * @var Collection
      *
-     * @ElasticSearch\Embedded(class="Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\DecorationDocument", multiple=true)
+     * @ElasticSearch\Embedded(class="Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\AppliedPromotionDocument", multiple=true)
      */
-    private $decorations;
+    private $appliedPromotions;
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->decorations = new Collection();
+        $this->appliedPromotions = new Collection();
     }
 
     /**
@@ -54,16 +54,16 @@ class ProductDocument extends BaseProductDocument
     /**
      * @return Collection
      */
-    public function getDecorations()
+    public function getAppliedPromotions()
     {
-        return $this->decorations;
+        return $this->appliedPromotions;
     }
 
     /**
-     * @param Collection $decorations
+     * @param Collection $appliedPromotions
      */
-    public function setDecorations(Collection $decorations)
+    public function setAppliedPromotions(Collection $appliedPromotions)
     {
-        $this->decorations = $decorations;
+        $this->appliedPromotions = $appliedPromotions;
     }
 }

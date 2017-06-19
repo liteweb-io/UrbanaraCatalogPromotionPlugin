@@ -7,7 +7,7 @@ namespace Urbanara\CatalogPromotionPlugin\ElasticSearch\Document;
 use ONGR\ElasticsearchBundle\Annotation as ElasticSearch;
 
 /**
- * @ElasticSearch\Object
+ * @ElasticSearch\Object()
  */
 class DecorationDocument
 {

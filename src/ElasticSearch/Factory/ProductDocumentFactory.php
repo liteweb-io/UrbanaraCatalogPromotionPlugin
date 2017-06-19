@@ -15,6 +15,7 @@ use Sylius\ElasticSearchPlugin\Exception\UnsupportedFactoryMethodException;
 use Sylius\ElasticSearchPlugin\Factory\ProductDocumentFactoryInterface;
 use Sylius\ElasticSearchPlugin\Factory\ProductFactoryInterface;
 use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\AppliedPromotionDocument;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\DecorationDocument;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\ProductDocument;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionDecoration;
@@ -37,17 +38,30 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
     /** @var string */
     private $decorationDocumentClass;
 
+    /** @var string */
+    private $appliedPromotionDocumentClass;
+
+    /**
+     * @param ProductDocumentFactoryInterface $decoratedFactory
+     * @param CatalogPromotionProviderInterface $catalogPromotionProvider
+     * @param ServiceRegistryInterface $serviceRegistry
+     * @param string $priceDocumentClass
+     * @param string $appliedPromotionDocumentClass
+     * @param string $decorationDocumentClass
+     */
     public function __construct(
         ProductDocumentFactoryInterface $decoratedFactory,
         CatalogPromotionProviderInterface $catalogPromotionProvider,
         ServiceRegistryInterface $serviceRegistry,
         $priceDocumentClass,
+        $appliedPromotionDocumentClass,
         $decorationDocumentClass
     ) {
         $this->decoratedFactory = $decoratedFactory;
         $this->catalogPromotionProvider = $catalogPromotionProvider;
         $this->serviceRegistry = $serviceRegistry;
         $this->priceDocumentClass = $priceDocumentClass;
+        $this->appliedPromotionDocumentClass = $appliedPromotionDocumentClass;
         $this->decorationDocumentClass = $decorationDocumentClass;
     }
 
@@ -95,10 +109,12 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
         $priceDocument->setCurrency($productDocument->getOriginalPrice()->getCurrency());
         $productDocument->setPrice($priceDocument);
 
-        $decorations = [];
+        $appliedPromotionDocuments = [];
         foreach ($applicableCatalogPromotions as $applicableCatalogPromotion) {
-            $decorations = array_merge(
-                $decorations,
+            /** @var AppliedPromotionDocument $appliedPromotionDocument */
+            $appliedPromotionDocument = new $this->appliedPromotionDocumentClass();
+            $appliedPromotionDocument->setCode($applicableCatalogPromotion->getCode());
+            $appliedPromotionDocument->setDecorations(new Collection(
                 array_map(function (CatalogPromotionDecoration $decoration) {
                     /** @var DecorationDocument $decorationDocument */
                     $decorationDocument = new $this->decorationDocumentClass();
@@ -107,10 +123,12 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
 
                     return $decorationDocument;
                 }, iterator_to_array($applicableCatalogPromotion->getDecorations()))
-            );
+            ));
+
+            $appliedPromotionDocuments[] = $appliedPromotionDocument;
         }
 
-        $productDocument->setDecorations(new Collection($decorations));
+        $productDocument->setAppliedPromotions(new Collection($appliedPromotionDocuments));
 
         return $productDocument;
     }

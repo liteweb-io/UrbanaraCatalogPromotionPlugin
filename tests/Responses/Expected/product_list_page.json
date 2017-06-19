@@ -22,7 +22,7 @@
                         "currency": "GBP"
                     },
                     "images": [],
-                    "decorations": []
+                    "appliedPromotions": []
                 }
             ],
             "attributes": [
@@ -69,7 +69,7 @@
                         "currency": "GBP"
                     },
                     "images": [],
-                    "decorations": []
+                    "appliedPromotions": []
                 }
             ],
             "attributes": [
@@ -117,15 +117,20 @@
                         "original": 1999
                     },
                     "images": [],
-                    "decorations": [
+                    "appliedPromotions": [
                         {
-                            "type": "message",
-                            "configuration": {
-                                "message": "Wololo",
-                                "activeOnProductDisplayPage": true,
-                                "activeOnProductListingPage": true,
-                                "activeOnCheckoutPage": false
-                            }
+                            "code": "cp1",
+                            "decorations": [
+                                {
+                                    "type": "message",
+                                    "configuration": {
+                                        "message": "Wololo",
+                                        "activeOnProductDisplayPage": true,
+                                        "activeOnProductListingPage": true,
+                                        "activeOnCheckoutPage": false
+                                    }
+                                }
+                            ]
                         }
                     ]
                 }
@@ -161,15 +166,20 @@
                         "original": 1999
                     },
                     "images": [],
-                    "decorations": [
+                    "appliedPromotions": [
                         {
-                            "type": "message",
-                            "configuration": {
-                                "message": "Wololo",
-                                "activeOnProductDisplayPage": true,
-                                "activeOnProductListingPage": true,
-                                "activeOnCheckoutPage": false
-                            }
+                            "code": "cp1",
+                            "decorations": [
+                                {
+                                    "type": "message",
+                                    "configuration": {
+                                        "message": "Wololo",
+                                        "activeOnProductDisplayPage": true,
+                                        "activeOnProductListingPage": true,
+                                        "activeOnCheckoutPage": false
+                                    }
+                                }
+                            ]
                         }
                     ]
                 }

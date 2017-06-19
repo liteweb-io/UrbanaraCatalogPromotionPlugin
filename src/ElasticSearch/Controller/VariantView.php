@@ -9,7 +9,7 @@ use Sylius\ElasticSearchPlugin\Controller\VariantView as BaseVariantView;
 class VariantView extends BaseVariantView
 {
     /**
-     * @var DecorationView[]
+     * @var AppliedPromotionView[]
      */
-    public $decorations = [];
+    public $appliedPromotions = [];
 }

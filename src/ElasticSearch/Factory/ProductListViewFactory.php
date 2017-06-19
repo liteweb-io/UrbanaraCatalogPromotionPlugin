@@ -7,9 +7,11 @@ namespace Urbanara\CatalogPromotionPlugin\ElasticSearch\Factory;
 use ONGR\FilterManagerBundle\Search\SearchResponse;
 use Sylius\ElasticSearchPlugin\Controller\ProductListView;
 use Sylius\ElasticSearchPlugin\Factory\ProductListViewFactoryInterface;
+use Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\AppliedPromotionView;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\DecorationView;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\PriceView;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\VariantView;
+use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\AppliedPromotionDocument;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\DecorationDocument;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\ProductDocument;
 
@@ -19,15 +21,23 @@ final class ProductListViewFactory implements ProductListViewFactoryInterface
     private $decoratedFactory;
 
     /** @var string */
-    private $priceViewClass;
+    private $appliedPromotionViewClass;
 
     /** @var string */
     private $decorationViewClass;
 
-    public function __construct(ProductListViewFactoryInterface $decoratedFactory, $priceViewClass, $decorationViewClass)
-    {
+    /**
+     * @param ProductListViewFactoryInterface $decoratedFactory
+     * @param string $appliedPromotionViewClass
+     * @param string $decorationViewClass
+     */
+    public function __construct(
+        ProductListViewFactoryInterface $decoratedFactory,
+        $appliedPromotionViewClass,
+        $decorationViewClass
+    ) {
         $this->decoratedFactory = $decoratedFactory;
-        $this->priceViewClass = $priceViewClass;
+        $this->appliedPromotionViewClass = $appliedPromotionViewClass;
         $this->decorationViewClass = $decorationViewClass;
     }
 
@@ -53,14 +63,21 @@ final class ProductListViewFactory implements ProductListViewFactoryInterface
                 $priceView = $variantView->price;
                 $priceView->original = $productDocument->getOriginalPrice() ? $productDocument->getOriginalPrice()->getAmount() : null;
 
-                $variantView->decorations = array_map(function (DecorationDocument $decorationDocument) {
-                    /** @var DecorationView $decorationView */
-                    $decorationView = new $this->decorationViewClass();
-                    $decorationView->type = $decorationDocument->getType();
-                    $decorationView->configuration = json_decode($decorationDocument->getConfiguration(), true) ?: [];
+                $variantView->appliedPromotions = array_map(function (AppliedPromotionDocument $appliedPromotionDocument) {
+                    /** @var AppliedPromotionView $appliedPromotionView */
+                    $appliedPromotionView = new $this->appliedPromotionViewClass();
+                    $appliedPromotionView->code = $appliedPromotionDocument->getCode();
+                    $appliedPromotionView->decorations = array_map(function (DecorationDocument $decorationDocument) {
+                        /** @var DecorationView $decorationView */
+                        $decorationView = new $this->decorationViewClass();
+                        $decorationView->type = $decorationDocument->getType();
+                        $decorationView->configuration = json_decode($decorationDocument->getConfiguration(), true) ?: [];
 
-                    return $decorationView;
-                }, iterator_to_array($productDocument->getDecorations()));
+                        return $decorationView;
+                    }, iterator_to_array($appliedPromotionDocument->getDecorations()));
+
+                    return $appliedPromotionView;
+                }, iterator_to_array($productDocument->getAppliedPromotions()));
             }
         }
 
