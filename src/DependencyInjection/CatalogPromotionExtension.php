@@ -10,6 +10,9 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\PriceView;
+use Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\VariantView;
+use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\ProductDocument;
 
 final class CatalogPromotionExtension extends AbstractResourceExtension implements PrependExtensionInterface
 {
@@ -33,5 +36,15 @@ final class CatalogPromotionExtension extends AbstractResourceExtension implemen
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $container->getExtensionConfig($this->getAlias()));
         $this->registerResources('urbanara_catalog_promotion', SyliusResourceBundle::DRIVER_DOCTRINE_ORM, $config['resources'], $container);
+
+        $container->prependExtensionConfig('sylius_elastic_search', [
+            'document_classes' => [
+                'product' => ProductDocument::class,
+            ],
+            'view_classes' => [
+                'product_variant' => VariantView::class,
+                'price' => PriceView::class,
+            ],
+        ]);
     }
 }

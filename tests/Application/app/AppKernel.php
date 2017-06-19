@@ -20,6 +20,11 @@ final class AppKernel extends Kernel
             new \Sylius\Bundle\AdminApiBundle\SyliusAdminApiBundle(),
 
             new \Urbanara\CatalogPromotionPlugin\CatalogPromotionPlugin(),
+            new \Sylius\ElasticSearchPlugin\SyliusElasticSearchPlugin(),
+            new \ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
+            new \ONGR\FilterManagerBundle\ONGRFilterManagerBundle(),
+            new \SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
+            new \SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
         ]);
     }
 

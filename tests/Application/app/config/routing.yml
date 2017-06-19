@@ -6,3 +6,7 @@ sylius:
 urbanara_catalog_promotion:
     resource: "@CatalogPromotionPlugin/Resources/config/routing.yml"
     prefix: /admin
+
+sylius_search:
+    resource: "@SyliusElasticSearchPlugin/Resources/config/routing.yml"
+    prefix: /

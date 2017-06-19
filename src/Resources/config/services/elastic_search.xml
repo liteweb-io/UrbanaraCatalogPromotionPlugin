@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="urbanara_catalog_promotion.elastic_search.product_document_factory"
+                 class="Urbanara\CatalogPromotionPlugin\ElasticSearch\Factory\ProductDocumentFactory"
+                 decorates="sylius_elastic_search.factory.product">
+            <argument type="service" id="urbanara_catalog_promotion.elastic_search.product_document_factory.inner" />
+            <argument type="service" id="urbanara_catalog_promotion.provider" />
+            <argument type="service" id="urbanara_catalog_promotion.registry_catalog_promotion_action" />
+            <argument>%sylius_elastic_search.document.price.class%</argument>
+            <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\AppliedPromotionDocument</argument>
+            <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\DecorationDocument</argument>
+        </service>
+
+        <service id="urbanara_catalog_promotion.elastic_search.product_list_view_factory"
+                 class="Urbanara\CatalogPromotionPlugin\ElasticSearch\Factory\ProductListViewFactory"
+                 decorates="sylius_elastic_search.factory.product_list_view">
+            <argument type="service" id="urbanara_catalog_promotion.elastic_search.product_list_view_factory.inner" />
+            <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\AppliedPromotionView</argument>
+            <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\DecorationView</argument>
+        </service>
+    </services>
+</container>
