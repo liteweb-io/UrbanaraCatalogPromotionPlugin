@@ -25,18 +25,7 @@
                     "appliedPromotions": []
                 }
             ],
-            "attributes": [
-                {
-                    "value": "HOLIDAY COLLECTION",
-                    "code": "MUG_COLLECTION_CODE",
-                    "name": "Mug collection"
-                },
-                {
-                    "value": "Wood",
-                    "code": "MUG_MATERIAL_CODE",
-                    "name": "Mug material"
-                }
-            ],
+            "attributes": [],
             "images": [],
             "channelCode": "WEB_GB",
             "localeCode": "en_US",
@@ -72,18 +61,7 @@
                     "appliedPromotions": []
                 }
             ],
-            "attributes": [
-                {
-                    "value": "FEIERTAGSKOLLEKTION",
-                    "code": "MUG_COLLECTION_CODE",
-                    "name": "Mug collection"
-                },
-                {
-                    "value": "Holz",
-                    "code": "MUG_MATERIAL_CODE",
-                    "name": "Mug material"
-                }
-            ],
+            "attributes": [],
             "images": [],
             "channelCode": "WEB_GB",
             "localeCode": "de_DE",
@@ -197,70 +175,57 @@
         }
     ],
     "filters": {
-        "main_taxon": {
+        "channel": {
             "state": {
                 "active": false,
                 "urlParameters": [],
-                "name": "main_taxon",
+                "name": "channel",
                 "options": []
             },
             "tags": [],
             "urlParameters": [],
             "resetUrlParameters": [],
-            "name": "main_taxon",
+            "name": "channel",
             "choices": [
                 {
                     "active": false,
                     "default": false,
                     "urlParameters": {
-                        "mainTaxonCode": "MUG"
+                        "channel": "WEB_GB"
                     },
-                    "label": "MUG",
-                    "count": 2
-                },
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "mainTaxonCode": "T_SHIRTS"
-                    },
-                    "label": "T_SHIRTS",
-                    "count": 2
+                    "label": "WEB_GB",
+                    "count": 4
                 }
             ]
         },
-        "taxon": {
+        "taxon_slug": {
             "state": {
                 "active": false,
                 "urlParameters": [],
-                "name": "taxon",
+                "name": "taxon_slug",
                 "options": []
             },
             "tags": [],
             "urlParameters": [],
             "resetUrlParameters": [],
-            "name": "taxon",
+            "name": "taxon_slug",
             "choices": [
                 {
                     "active": false,
                     "default": false,
                     "urlParameters": {
-                        "taxonCode": [
-                            "MUG"
-                        ]
+                        "taxon_slug": "mugs"
                     },
-                    "label": "MUG",
+                    "label": "mugs",
                     "count": 2
                 },
                 {
                     "active": false,
                     "default": false,
                     "urlParameters": {
-                        "taxonCode": [
-                            "T_SHIRTS"
-                        ]
+                        "taxon_slug": "t-shirts"
                     },
-                    "label": "T_SHIRTS",
+                    "label": "t-shirts",
                     "count": 2
                 }
             ]
@@ -295,7 +260,7 @@
                     "active": false,
                     "default": false,
                     "urlParameters": {
-                        "localeCode": "de_DE"
+                        "locale_code": "de_DE"
                     },
                     "label": "de_DE",
                     "count": 2
@@ -304,7 +269,7 @@
                     "active": false,
                     "default": false,
                     "urlParameters": {
-                        "localeCode": "en_US"
+                        "locale_code": "en_US"
                     },
                     "label": "en_US",
                     "count": 2
@@ -322,52 +287,7 @@
             "urlParameters": [],
             "resetUrlParameters": [],
             "name": "attribute_values",
-            "choices": [
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "attributeValues": [
-                            "FEIERTAGSKOLLEKTION"
-                        ]
-                    },
-                    "label": "FEIERTAGSKOLLEKTION",
-                    "count": 1
-                },
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "attributeValues": [
-                            "HOLIDAY COLLECTION"
-                        ]
-                    },
-                    "label": "HOLIDAY COLLECTION",
-                    "count": 1
-                },
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "attributeValues": [
-                            "Holz"
-                        ]
-                    },
-                    "label": "Holz",
-                    "count": 1
-                },
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "attributeValues": [
-                            "Wood"
-                        ]
-                    },
-                    "label": "Wood",
-                    "count": 1
-                }
-            ]
+            "choices": []
         },
         "paginator": {
             "state": {
@@ -400,5 +320,5 @@
             "resetUrlParameters": [],
             "name": "search"
         }
-    }
+    }   
 }

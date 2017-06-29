@@ -48,6 +48,8 @@ before_script:
 script:
     - composer validate --strict
 
+    - (cd tests/Application && bin/console doctrine:schema:validate --skip-sync)
+
     - vendor/bin/phpspec run
     - vendor/bin/phpunit
 

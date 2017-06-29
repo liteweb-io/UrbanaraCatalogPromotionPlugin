@@ -25,7 +25,7 @@
         <field name="type" type="string" />
         <field name="configuration" type="array" />
 
-        <many-to-one field="catalogPromotion" target-entity="Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface" inversed-by="rules">
+        <many-to-one field="catalogPromotion" target-entity="Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface" inversed-by="decorations">
             <join-column name="catalog_promotion_id" referenced-column-name="id" nullable="true" />
         </many-to-one>
     </entity>
