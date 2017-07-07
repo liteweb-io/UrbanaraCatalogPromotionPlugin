@@ -2,21 +2,13 @@
     "items": [
         {
             "code": "LOGAN_MUG_CODE",
-            "name": "Logan Mug",
-            "slug": "logan-mug",
-            "taxons": [
-                {
-                    "code": "MUG",
-                    "slug": "mugs",
-                    "position": 0,
-                    "images": [],
-                    "description": "@string@"
-                }
-            ],
+            "name": "@string@",
+            "slug": "@string@",
+            "taxons": "@wildcard@",
             "variants": [
                 {
                     "code": "LOGAN_MUG_CODE",
-                    "name": "Logan Mug",
+                    "name": "@string@",
                     "price": {
                         "current": 1999,
                         "currency": "GBP"
@@ -29,30 +21,17 @@
             "images": [],
             "channelCode": "WEB_GB",
             "localeCode": "en_US",
-            "mainTaxon": {
-                "code": "MUG",
-                "slug": "mugs",
-                "images": [],
-                "description": "@string@"
-            }
+            "mainTaxon": "@wildcard@"
         },
         {
             "code": "LOGAN_MUG_CODE",
-            "name": "Logan Becher",
-            "slug": "logan-becher",
-            "taxons": [
-                {
-                    "code": "MUG",
-                    "slug": "mugs",
-                    "position": 0,
-                    "images": [],
-                    "description": "@string@"
-                }
-            ],
+            "name": "@string@",
+            "slug": "@string@",
+            "taxons": "@wildcard@",
             "variants": [
                 {
                     "code": "LOGAN_MUG_CODE",
-                    "name": "Logan Becher",
+                    "name": "@string@",
                     "price": {
                         "current": 1999,
                         "currency": "GBP"
@@ -65,30 +44,17 @@
             "images": [],
             "channelCode": "WEB_GB",
             "localeCode": "de_DE",
-            "mainTaxon": {
-                "code": "MUG",
-                "slug": "mugs",
-                "images": [],
-                "description": "@string@"
-            }
+            "mainTaxon": "@wildcard@"
         },
         {
             "code": "LOGAN_T_SHIRT_CODE",
-            "name": "Logan T-Shirt",
-            "slug": "logan-t-shirt",
-            "taxons": [
-                {
-                    "code": "T_SHIRTS",
-                    "slug": "t-shirts",
-                    "position": 2,
-                    "images": [],
-                    "description": "@string@"
-                }
-            ],
+            "name": "@string@",
+            "slug": "@string@",
+            "taxons": "@wildcard@",
             "variants": [
                 {
                     "code": "LOGAN_T_SHIRT_CODE",
-                    "name": "Logan T-Shirt",
+                    "name": "@string@",
                     "price": {
                         "current": 1500,
                         "currency": "GBP",
@@ -117,24 +83,11 @@
             "images": [],
             "channelCode": "WEB_GB",
             "localeCode": "en_US",
-            "mainTaxon": {
-                "code": "T_SHIRTS",
-                "slug": "t-shirts",
-                "images": [],
-                "description": "@string@"
-            }
+            "mainTaxon": "@wildcard@"
         },
         {
             "code": "LOGAN_T_SHIRT_CODE",
-            "taxons": [
-                {
-                    "code": "T_SHIRTS",
-                    "slug": "t-shirts",
-                    "position": 2,
-                    "images": [],
-                    "description": "@string@"
-                }
-            ],
+            "taxons": "@wildcard@",
             "variants": [
                 {
                     "code": "LOGAN_T_SHIRT_CODE",
@@ -166,159 +119,8 @@
             "images": [],
             "channelCode": "WEB_GB",
             "localeCode": "de_DE",
-            "mainTaxon": {
-                "code": "T_SHIRTS",
-                "slug": "t-shirts",
-                "images": [],
-                "description": "@string@"
-            }
+            "mainTaxon": "@wildcard@"
         }
     ],
-    "filters": {
-        "channel": {
-            "state": {
-                "active": false,
-                "urlParameters": [],
-                "name": "channel",
-                "options": []
-            },
-            "tags": [],
-            "urlParameters": [],
-            "resetUrlParameters": [],
-            "name": "channel",
-            "choices": [
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "channel": "WEB_GB"
-                    },
-                    "label": "WEB_GB",
-                    "count": 4
-                }
-            ]
-        },
-        "taxon_slug": {
-            "state": {
-                "active": false,
-                "urlParameters": [],
-                "name": "taxon_slug",
-                "options": []
-            },
-            "tags": [],
-            "urlParameters": [],
-            "resetUrlParameters": [],
-            "name": "taxon_slug",
-            "choices": [
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "taxon_slug": "mugs"
-                    },
-                    "label": "mugs",
-                    "count": 2
-                },
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "taxon_slug": "t-shirts"
-                    },
-                    "label": "t-shirts",
-                    "count": 2
-                }
-            ]
-        },
-        "price_range": {
-            "state": {
-                "active": false,
-                "urlParameters": [],
-                "name": "price_range",
-                "options": []
-            },
-            "tags": [],
-            "urlParameters": [],
-            "resetUrlParameters": [],
-            "name": "price_range",
-            "minBounds": 1500,
-            "maxBounds": 1999
-        },
-        "locale": {
-            "state": {
-                "active": false,
-                "urlParameters": [],
-                "name": "locale",
-                "options": []
-            },
-            "tags": [],
-            "urlParameters": [],
-            "resetUrlParameters": [],
-            "name": "locale",
-            "choices": [
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "locale_code": "de_DE"
-                    },
-                    "label": "de_DE",
-                    "count": 2
-                },
-                {
-                    "active": false,
-                    "default": false,
-                    "urlParameters": {
-                        "locale_code": "en_US"
-                    },
-                    "label": "en_US",
-                    "count": 2
-                }
-            ]
-        },
-        "attribute_values": {
-            "state": {
-                "active": false,
-                "urlParameters": [],
-                "name": "attribute_values",
-                "options": []
-            },
-            "tags": [],
-            "urlParameters": [],
-            "resetUrlParameters": [],
-            "name": "attribute_values",
-            "choices": []
-        },
-        "paginator": {
-            "state": {
-                "active": false,
-                "value": 1,
-                "urlParameters": [],
-                "name": "paginator",
-                "options": []
-            },
-            "tags": [],
-            "urlParameters": [],
-            "resetUrlParameters": [],
-            "name": "paginator",
-            "currentPage": 1,
-            "totalItems": 4,
-            "maxPages": 10,
-            "itemsPerPage": 10,
-            "numPages": 1,
-            "options": []
-        },
-        "search": {
-            "state": {
-                "active": false,
-                "urlParameters": [],
-                "name": "search",
-                "options": []
-            },
-            "tags": [],
-            "urlParameters": [],
-            "resetUrlParameters": [],
-            "name": "search"
-        }
-    }   
+    "filters": "@wildcard@"
 }
