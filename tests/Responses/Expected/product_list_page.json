@@ -13,12 +13,12 @@
                         "current": 1999,
                         "currency": "GBP"
                     },
-                    "images": [],
-                    "appliedPromotions": []
+                    "images": "@...@",
+                    "appliedPromotions": "@...@"
                 }
             ],
-            "attributes": [],
-            "images": [],
+            "attributes": "@...@",
+            "images": "@...@",
             "channelCode": "WEB_GB",
             "localeCode": "en_US",
             "mainTaxon": "@wildcard@"
@@ -36,12 +36,12 @@
                         "current": 1999,
                         "currency": "GBP"
                     },
-                    "images": [],
-                    "appliedPromotions": []
+                    "images": "@...@",
+                    "appliedPromotions": "@...@"
                 }
             ],
-            "attributes": [],
-            "images": [],
+            "attributes": "@...@",
+            "images": "@...@",
             "channelCode": "WEB_GB",
             "localeCode": "de_DE",
             "mainTaxon": "@wildcard@"
@@ -60,7 +60,7 @@
                         "currency": "GBP",
                         "original": 1999
                     },
-                    "images": [],
+                    "images": "@...@",
                     "appliedPromotions": [
                         {
                             "code": "cp1",
@@ -79,8 +79,8 @@
                     ]
                 }
             ],
-            "attributes": [],
-            "images": [],
+            "attributes": "@...@",
+            "images": "@...@",
             "channelCode": "WEB_GB",
             "localeCode": "en_US",
             "mainTaxon": "@wildcard@"
@@ -96,7 +96,7 @@
                         "currency": "GBP",
                         "original": 1999
                     },
-                    "images": [],
+                    "images": "@...@",
                     "appliedPromotions": [
                         {
                             "code": "cp1",
@@ -115,8 +115,8 @@
                     ]
                 }
             ],
-            "attributes": [],
-            "images": [],
+            "attributes": "@...@",
+            "images": "@...@",
             "channelCode": "WEB_GB",
             "localeCode": "de_DE",
             "mainTaxon": "@wildcard@"

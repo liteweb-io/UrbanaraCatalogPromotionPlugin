@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Sylius\ElasticSearchPlugin\Controller;
+namespace Tests\Sylius\UrbanaraCatalogPromotionPlugin\Controller;
 
 use Lakion\ApiTestCase\JsonApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
