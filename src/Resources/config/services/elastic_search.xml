@@ -17,8 +17,8 @@
                  class="Urbanara\CatalogPromotionPlugin\ElasticSearch\Factory\ProductListViewFactory"
                  decorates="sylius_elastic_search.factory.product_list_view">
             <argument type="service" id="urbanara_catalog_promotion.elastic_search.product_list_view_factory.inner" />
-            <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\AppliedPromotionView</argument>
-            <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\DecorationView</argument>
+            <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\View\AppliedPromotionView</argument>
+            <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\View\DecorationView</argument>
         </service>
     </services>
 </container>
