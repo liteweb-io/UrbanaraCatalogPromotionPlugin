@@ -13,6 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\PriceView;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Controller\VariantView;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\ProductDocument;
+use Urbanara\CatalogPromotionPlugin\ShopApi\View as ShopApiView;
 
 final class CatalogPromotionExtension extends AbstractResourceExtension implements PrependExtensionInterface
 {
@@ -38,6 +39,7 @@ final class CatalogPromotionExtension extends AbstractResourceExtension implemen
         $this->registerResources('urbanara_catalog_promotion', SyliusResourceBundle::DRIVER_DOCTRINE_ORM, $config['resources'], $container);
 
         $this->prependElasticSearchPlugin($container);
+        $this->prependShopApiPlugin($container);
     }
 
     private function prependElasticSearchPlugin(ContainerBuilder $container): void
@@ -49,6 +51,16 @@ final class CatalogPromotionExtension extends AbstractResourceExtension implemen
             'view_classes' => [
                 'product_variant' => VariantView::class,
                 'price' => PriceView::class,
+            ],
+        ]);
+    }
+
+    private function prependShopApiPlugin(ContainerBuilder $container): void
+    {
+        $container->prependExtensionConfig('sylius_shop_api', [
+            'view_classes' => [
+                'price' => ShopApiView\PriceView::class,
+                'product_variant' => ShopApiView\ProductVariantView::class,
             ],
         ]);
     }
