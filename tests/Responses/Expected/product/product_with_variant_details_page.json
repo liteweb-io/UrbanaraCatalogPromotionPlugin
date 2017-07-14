@@ -1,0 +1,69 @@
+{
+    "code": "LOGAN_T_SHIRT_CODE",
+    "name": "Logan T-Shirt",
+    "slug": "logan-t-shirt",
+    "breadcrumb": "categories\/t-shirts\/logan-t-shirt",
+    "averageRating": 0,
+    "taxons": {
+        "main": "T_SHIRTS",
+        "others": [
+            "WOMEN_T_SHIRTS",
+            "BRAND"
+        ]
+    },
+    "variants": {
+        "SMALL_LOGAN_T_SHIRT_CODE": {
+            "code": "SMALL_LOGAN_T_SHIRT_CODE",
+            "name": "Small Logan T-Shirt",
+            "axis": "@...@",
+            "nameAxis": "@...@",
+            "price": {
+                "current": 1999
+            },
+            "images": [
+                {
+                    "code": "thumbnail",
+                    "path": "\/uo\/samll-tshirt.jpg"
+                }
+            ],
+            "appliedPromotions": []
+        },
+        "LARGE_LOGAN_T_SHIRT_CODE": {
+            "code": "LARGE_LOGAN_T_SHIRT_CODE",
+            "name": "Large Logan T-Shirt",
+            "axis": "@...@",
+            "nameAxis": "@...@",
+            "price": {
+                "current": 2999
+            },
+            "images": [
+                {
+                    "code": "thumbnail",
+                    "path": "\/uo\/large-tshirt.jpg"
+                }
+            ],
+            "appliedPromotions": []
+        }
+    },
+    "attributes": "@...@",
+    "associations": "@...@",
+    "images": [
+        {
+            "code": "thumbnail",
+            "path": "\/uo\/tshirt.jpg"
+        },
+        {
+            "code": "thumbnail",
+            "path": "\/uo\/samll-tshirt.jpg"
+        },
+        {
+            "code": "thumbnail",
+            "path": "\/uo\/large-tshirt.jpg"
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "\/shop-api\/products-by-slug\/logan-t-shirt"
+        }
+    }
+}

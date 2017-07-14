@@ -1,0 +1,45 @@
+{
+    "code": "LOGAN_MUG_CODE",
+    "name": "Logan Mug",
+    "slug": "logan-mug",
+    "breadcrumb": "categories\/mugs\/logan-mug",
+    "averageRating": 0,
+    "taxons": {
+        "main": "MUG",
+        "others": [
+            "MUG",
+            "BRAND"
+        ]
+    },
+    "variants": {
+        "LOGAN_MUG_CODE": {
+            "code": "LOGAN_MUG_CODE",
+            "name": "Logan Mug",
+            "axis": "@...@",
+            "nameAxis": "@...@",
+            "price": {
+                "current": 1999
+            },
+            "images": [
+                {
+                    "code": "thumbnail",
+                    "path": "\/uo\/mug.jpg"
+                }
+            ],
+            "appliedPromotions": []
+        }
+    },
+    "attributes": "@...@",
+    "associations": "@...@",
+    "images": [
+        {
+            "code": "thumbnail",
+            "path": "\/uo\/mug.jpg"
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "\/shop-api\/products-by-slug\/logan-mug"
+        }
+    }
+}

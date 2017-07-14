@@ -9,6 +9,7 @@ imports:
     - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
     - { resource: "@CatalogPromotionPlugin/Resources/config/app/grid.yml" }
     - { resource: "@SyliusElasticSearchPlugin/Resources/config/app/config.yml" }
+    - { resource: "@ShopApiPlugin/Resources/config/app/config.yml" }
 
     - { resource: "../../../../vendor/sylius/sylius/app/config/security.yml" }
 
@@ -37,6 +38,11 @@ doctrine:
 
 fos_rest:
     exception: ~
+    format_listener:
+        rules:
+            - { path: '^/shop-api', priorities: ['json'], fallback_format: json, prefer_extension: true }
+            - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
+            - { path: '^/', stop: true }
 
 ongr_elasticsearch:
     managers:
@@ -46,3 +52,7 @@ ongr_elasticsearch:
             mappings:
                 CatalogPromotionPlugin:
                     document_dir: ElasticSearch\Document
+
+sylius_shop:
+    checkout_resolver:
+        pattern: "%sylius.security.shop_regex%/checkout/"
