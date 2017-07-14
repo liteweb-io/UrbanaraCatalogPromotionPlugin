@@ -19,7 +19,7 @@ final class CatalogPromotionExtension extends AbstractResourceExtension implemen
     /**
      * {@inheritdoc}
      */
-    public function load(array $config, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -32,11 +32,16 @@ final class CatalogPromotionExtension extends AbstractResourceExtension implemen
     /**
      * {@inheritdoc}
      */
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $container->getExtensionConfig($this->getAlias()));
         $this->registerResources('urbanara_catalog_promotion', SyliusResourceBundle::DRIVER_DOCTRINE_ORM, $config['resources'], $container);
 
+        $this->prependElasticSearchPlugin($container);
+    }
+
+    private function prependElasticSearchPlugin(ContainerBuilder $container): void
+    {
         $container->prependExtensionConfig('sylius_elastic_search', [
             'document_classes' => [
                 'product' => ProductDocument::class,
