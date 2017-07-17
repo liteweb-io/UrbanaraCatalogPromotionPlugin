@@ -8,6 +8,9 @@ use Sylius\ShopApiPlugin\View\ProductVariantView as BaseProductVariantView;
 
 class ProductVariantView extends BaseProductVariantView
 {
+    /** @var PriceView */
+    public $price;
+
     /** @var AppliedPromotionView[] */
     public $appliedPromotions = [];
 }

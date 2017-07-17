@@ -56,7 +56,7 @@ final class CatalogPromotionExtension extends AbstractResourceExtension implemen
 
     private function prependShopApiPlugin(ContainerBuilder $container): void
     {
-        $container->prependExtensionConfig('sylius_shop_api', [
+        $container->prependExtensionConfig('shop_api', [
             'view_classes' => [
                 'price' => ShopApiView\PriceView::class,
                 'product_variant' => ShopApiView\ProductVariantView::class,

@@ -38,10 +38,21 @@ Urbanara\CatalogPromotionPlugin\Entity\CatalogRule:
     catalog_promotion_rule1:
         type: is_from_taxon
         configuration:
-            taxons: [T_SHIRTS, MUG]
+            taxons: [T_SHIRTS]
+    catalog_promotion_rule2:
+        type: is_from_taxon
+        configuration:
+            taxons: [MUG]
 
 Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionDecoration:
     catalog_promotion_decoration1:
+        type: message
+        configuration:
+            message: "Wololo"
+            activeOnProductDisplayPage: true
+            activeOnProductListingPage: false
+            activeOnCheckoutPage: true
+    catalog_promotion_decoration2:
         type: message
         configuration:
             message: "Wololo"
@@ -61,6 +72,17 @@ Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotion:
             - "@catalog_promotion_rule1"
         decorations:
             - "@catalog_promotion_decoration1"
+    catalog_promotion2:
+        code: cp2
+        name: cp2
+        channels: ["@gb_web_channel"]
+        discountType: percentage_discount
+        discountConfiguration:
+            percentage: 0.25
+        rules:
+            - "@catalog_promotion_rule2"
+        decorations:
+            - "@catalog_promotion_decoration2"
 
 Sylius\Component\Core\Model\Product:
     mug:
@@ -85,7 +107,7 @@ Sylius\Component\Core\Model\Product:
         currentTranslation: "@t_shirt_translation"
         images: ["@t_shirt_thumbnail", "@small_t_shirt_thumbnail", "@large_t_shirt_thumbnail"]
         mainTaxon: "@t_shirt_taxon"
-        productTaxons: ["@women_t_shirt_product_taxon"]
+        productTaxons: ["@t_shirt_product_taxon", "@women_t_shirt_product_taxon"]
     hat:
         code: "LOGAN_HAT_CODE"
         channels: ["@gb_web_channel"]
@@ -548,6 +570,9 @@ Sylius\Component\Core\Model\ProductTaxon:
     mug_product_taxon:
         product: "@mug"
         taxon: "@mug_taxon"
+    t_shirt_product_taxon:
+        product: "@t_shirt"
+        taxon: "@t_shirt_taxon"
     women_t_shirt_product_taxon:
         product: "@t_shirt"
         taxon: "@women_t_shirt_taxon"

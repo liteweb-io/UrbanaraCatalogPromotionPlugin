@@ -7,6 +7,7 @@
     "taxons": {
         "main": "T_SHIRTS",
         "others": [
+            "T_SHIRTS",
             "WOMEN_T_SHIRTS",
             "BRAND"
         ]
@@ -15,10 +16,11 @@
         "SMALL_LOGAN_T_SHIRT_CODE": {
             "code": "SMALL_LOGAN_T_SHIRT_CODE",
             "name": "Small Logan T-Shirt",
-            "axis": "@...@",
-            "nameAxis": "@...@",
+            "axis": "@array@",
+            "nameAxis": "@array@",
             "price": {
-                "current": 1999
+                "current": 1500,
+                "original": 1999
             },
             "images": [
                 {
@@ -26,15 +28,26 @@
                     "path": "\/uo\/samll-tshirt.jpg"
                 }
             ],
-            "appliedPromotions": []
+            "appliedPromotions": [
+                {
+                    "code": "cp1",
+                    "decorations": [
+                        {
+                            "type": "message",
+                            "configuration": "{\"message\":\"Wololo\",\"activeOnProductDisplayPage\":true,\"activeOnProductListingPage\":false,\"activeOnCheckoutPage\":true}"
+                        }
+                    ]
+                }
+            ]
         },
         "LARGE_LOGAN_T_SHIRT_CODE": {
             "code": "LARGE_LOGAN_T_SHIRT_CODE",
             "name": "Large Logan T-Shirt",
-            "axis": "@...@",
-            "nameAxis": "@...@",
+            "axis": "@array@",
+            "nameAxis": "@array@",
             "price": {
-                "current": 2999
+                "current": 2250,
+                "original": 2999
             },
             "images": [
                 {
@@ -42,11 +55,21 @@
                     "path": "\/uo\/large-tshirt.jpg"
                 }
             ],
-            "appliedPromotions": []
+            "appliedPromotions": [
+                {
+                    "code": "cp1",
+                    "decorations": [
+                        {
+                            "type": "message",
+                            "configuration": "{\"message\":\"Wololo\",\"activeOnProductDisplayPage\":true,\"activeOnProductListingPage\":false,\"activeOnCheckoutPage\":true}"
+                        }
+                    ]
+                }
+            ]
         }
     },
-    "attributes": "@...@",
-    "associations": "@...@",
+    "attributes": "@array@",
+    "associations": "@array@",
     "images": [
         {
             "code": "thumbnail",
