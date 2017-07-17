@@ -4,13 +4,7 @@
     "slug": "logan-mug",
     "breadcrumb": "categories\/mugs\/logan-mug",
     "averageRating": 0,
-    "taxons": {
-        "main": "MUG",
-        "others": [
-            "MUG",
-            "BRAND"
-        ]
-    },
+    "taxons": "@array@",
     "variants": {
         "LOGAN_MUG_CODE": {
             "code": "LOGAN_MUG_CODE",

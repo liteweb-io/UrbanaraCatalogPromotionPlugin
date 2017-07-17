@@ -4,14 +4,7 @@
     "slug": "logan-t-shirt",
     "breadcrumb": "categories\/t-shirts\/logan-t-shirt",
     "averageRating": 0,
-    "taxons": {
-        "main": "T_SHIRTS",
-        "others": [
-            "T_SHIRTS",
-            "WOMEN_T_SHIRTS",
-            "BRAND"
-        ]
-    },
+    "taxons": "@array@",
     "variants": {
         "SMALL_LOGAN_T_SHIRT_CODE": {
             "code": "SMALL_LOGAN_T_SHIRT_CODE",
