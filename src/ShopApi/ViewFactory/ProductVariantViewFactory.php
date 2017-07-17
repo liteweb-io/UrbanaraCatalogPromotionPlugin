@@ -83,7 +83,7 @@ final class ProductVariantViewFactory implements ProductVariantViewFactoryInterf
                 /** @var DecorationView $decorationView */
                 $decorationView = new $this->decorationViewClass();
                 $decorationView->type = $decoration->getType();
-                $decorationView->configuration = json_encode($decoration->getConfiguration());
+                $decorationView->configuration = $decoration->getConfiguration();
 
                 return $decorationView;
             }, iterator_to_array($applicableCatalogPromotion->getDecorations()));

@@ -33,7 +33,12 @@
                     "decorations": [
                         {
                             "type": "message",
-                            "configuration": "{\"message\":\"Wololo\",\"activeOnProductDisplayPage\":true,\"activeOnProductListingPage\":false,\"activeOnCheckoutPage\":true}"
+                            "configuration": {
+                                "message": "Wololo",
+                                "activeOnProductDisplayPage": true,
+                                "activeOnProductListingPage": false,
+                                "activeOnCheckoutPage": true
+                            }
                         }
                     ]
                 }
