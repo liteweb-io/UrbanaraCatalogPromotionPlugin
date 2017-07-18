@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="urbanara_catalog_promotion.shop_api.product_variant_view_factory"
+                 class="Urbanara\CatalogPromotionPlugin\ShopApi\ViewFactory\ProductVariantViewFactory"
+                 decorates="sylius.shop_api_plugin.factory.product_variant_view_factory">
+            <argument type="service" id="urbanara_catalog_promotion.shop_api.product_variant_view_factory.inner" />
+            <argument type="service" id="urbanara_catalog_promotion.provider" />
+            <argument type="service" id="urbanara_catalog_promotion.registry_catalog_promotion_action" />
+            <argument>Urbanara\CatalogPromotionPlugin\ShopApi\View\AppliedPromotionView</argument>
+            <argument>Urbanara\CatalogPromotionPlugin\ShopApi\View\DecorationView</argument>
+        </service>
+    </services>
+</container>

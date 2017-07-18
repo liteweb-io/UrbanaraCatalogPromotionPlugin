@@ -20,6 +20,10 @@ final class AppKernel extends Kernel
             new \Sylius\Bundle\AdminApiBundle\SyliusAdminApiBundle(),
 
             new \Urbanara\CatalogPromotionPlugin\CatalogPromotionPlugin(),
+
+            new \Sylius\ShopApiPlugin\ShopApiPlugin(),
+            new \League\Tactician\Bundle\TacticianBundle(),
+
             new \Sylius\ElasticSearchPlugin\SyliusElasticSearchPlugin(),
             new \ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
             new \ONGR\FilterManagerBundle\ONGRFilterManagerBundle(),

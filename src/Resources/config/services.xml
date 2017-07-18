@@ -8,6 +8,7 @@
         <import resource="services/elastic_search.xml"/>
         <import resource="services/forms.xml"/>
         <import resource="services/rules.xml"/>
+        <import resource="services/shop_api.xml"/>
         <import resource="services/twig.xml"/>
         <import resource="services/validators.xml"/>
     </imports>

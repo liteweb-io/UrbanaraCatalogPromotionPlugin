@@ -1,0 +1,95 @@
+{
+    "code": "LOGAN_T_SHIRT_CODE",
+    "name": "Logan T-Shirt",
+    "slug": "logan-t-shirt",
+    "breadcrumb": "categories\/t-shirts\/logan-t-shirt",
+    "averageRating": 0,
+    "taxons": "@array@",
+    "variants": {
+        "SMALL_LOGAN_T_SHIRT_CODE": {
+            "code": "SMALL_LOGAN_T_SHIRT_CODE",
+            "name": "Small Logan T-Shirt",
+            "axis": "@array@",
+            "nameAxis": "@array@",
+            "price": {
+                "current": 1500,
+                "original": 1999
+            },
+            "images": [
+                {
+                    "code": "thumbnail",
+                    "path": "\/uo\/samll-tshirt.jpg"
+                }
+            ],
+            "appliedPromotions": [
+                {
+                    "code": "cp1",
+                    "decorations": [
+                        {
+                            "type": "message",
+                            "configuration": {
+                                "message": "Wololo",
+                                "activeOnProductDisplayPage": true,
+                                "activeOnProductListingPage": false,
+                                "activeOnCheckoutPage": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "LARGE_LOGAN_T_SHIRT_CODE": {
+            "code": "LARGE_LOGAN_T_SHIRT_CODE",
+            "name": "Large Logan T-Shirt",
+            "axis": "@array@",
+            "nameAxis": "@array@",
+            "price": {
+                "current": 2250,
+                "original": 2999
+            },
+            "images": [
+                {
+                    "code": "thumbnail",
+                    "path": "\/uo\/large-tshirt.jpg"
+                }
+            ],
+            "appliedPromotions": [
+                {
+                    "code": "cp1",
+                    "decorations": [
+                        {
+                            "type": "message",
+                            "configuration": {
+                                "message": "Wololo",
+                                "activeOnProductDisplayPage": true,
+                                "activeOnProductListingPage": false,
+                                "activeOnCheckoutPage": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "attributes": "@array@",
+    "associations": "@array@",
+    "images": [
+        {
+            "code": "thumbnail",
+            "path": "\/uo\/tshirt.jpg"
+        },
+        {
+            "code": "thumbnail",
+            "path": "\/uo\/samll-tshirt.jpg"
+        },
+        {
+            "code": "thumbnail",
+            "path": "\/uo\/large-tshirt.jpg"
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "\/shop-api\/products-by-slug\/logan-t-shirt"
+        }
+    }
+}
