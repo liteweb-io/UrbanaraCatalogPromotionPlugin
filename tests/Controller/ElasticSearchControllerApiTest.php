@@ -16,7 +16,7 @@ final class ElasticSearchControllerApiTest extends JsonApiTestCase
     {
         $this->loadFixturesFromFile('search_shop.yml');
 
-        $this->client->request('GET', '/shop-api/products?channel=en_US', [], [], ['ACCEPT' => 'application/json'], '{}');
+        $this->client->request('GET', '/shop-api/products?channel=WEB_GB', [], [], ['ACCEPT' => 'application/json'], '{}');
 
         $response = $this->client->getResponse();
 
