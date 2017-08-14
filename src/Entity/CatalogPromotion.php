@@ -98,7 +98,7 @@ class CatalogPromotion implements CatalogPromotionInterface
     /**
      * {@inheritdoc}
      */
-    public function getCode()
+    public function getCode() : string
     {
         return $this->code;
     }
