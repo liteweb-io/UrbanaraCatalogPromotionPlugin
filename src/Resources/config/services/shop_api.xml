@@ -8,6 +8,7 @@
             <argument type="service" id="urbanara_catalog_promotion.shop_api.product_variant_view_factory.inner" />
             <argument type="service" id="urbanara_catalog_promotion.provider" />
             <argument type="service" id="urbanara_catalog_promotion.registry_catalog_promotion_action" />
+            <argument type="service" id="urbanara_catalog_promotion.decoration_configuration_translator" />
             <argument>Urbanara\CatalogPromotionPlugin\ShopApi\View\AppliedPromotionView</argument>
             <argument>Urbanara\CatalogPromotionPlugin\ShopApi\View\DecorationView</argument>
         </service>

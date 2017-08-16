@@ -8,6 +8,7 @@
             <argument type="service" id="urbanara_catalog_promotion.elastic_search.product_document_factory.inner" />
             <argument type="service" id="urbanara_catalog_promotion.provider" />
             <argument type="service" id="urbanara_catalog_promotion.registry_catalog_promotion_action" />
+            <argument type="service" id="urbanara_catalog_promotion.decoration_configuration_translator" />
             <argument>%sylius_elastic_search.document.price.class%</argument>
             <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\AppliedPromotionDocument</argument>
             <argument>Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\DecorationDocument</argument>

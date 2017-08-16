@@ -1,0 +1,62 @@
+{
+    "page": 1,
+    "limit": 10,
+    "total": 2,
+    "pages": 1,
+    "items": [
+        {
+            "code": "LOGAN_MUG_CODE",
+            "name": "@string@",
+            "slug": "@string@",
+            "taxons": "@array@",
+            "variants": {
+                "LOGAN_MUG_CODE": {
+                    "code": "LOGAN_MUG_CODE",
+                    "name": "@string@",
+                    "price": "@array@",
+                    "images": "@array@",
+                    "appliedPromotions": []
+                }
+            },
+            "attributes": "@array@",
+            "images": "@array@",
+            "channelCode": "WEB_GB",
+            "localeCode": "en_US"
+        },
+        {
+            "code": "LOGAN_T_SHIRT_CODE",
+            "name": "@string@",
+            "slug": "@string@",
+            "taxons": "@array@",
+            "variants": {
+                "LOGAN_T_SHIRT_CODE": {
+                    "code": "LOGAN_T_SHIRT_CODE",
+                    "name": "@string@",
+                    "price": "@array@",
+                    "images": "@array@",
+                    "appliedPromotions": [
+                        {
+                            "code": "cp1",
+                            "decorations": [
+                                {
+                                    "type": "message",
+                                    "configuration": {
+                                        "message": "Wololo (en_US)",
+                                        "activeOnProductDisplayPage": true,
+                                        "activeOnProductListingPage": true,
+                                        "activeOnCheckoutPage": false
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "attributes": "@array@",
+            "images": "@array@",
+            "channelCode": "WEB_GB",
+            "localeCode": "en_US"
+        }
+    ],
+    "filters": "@array@"
+}

@@ -23,7 +23,7 @@ Feature: Adding a new catalog promotion with a decoration
         When I create a new catalog promotion
         And I specify its code as "WEEKEND_SALE_PROMOTION"
         And I name it "Weekend sale!"
-        And I add "Friday!" message decoration available on all pages
+        And I add "Friday!" message decoration in "English (United States)" locale available on all pages
         And I add it
         Then I should be notified that it has been successfully created
         And the "Weekend sale!" catalog promotion should be decorated with message "Friday!" on all pages

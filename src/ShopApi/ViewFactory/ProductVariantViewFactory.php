@@ -10,6 +10,7 @@ use Sylius\Component\Registry\ServiceRegistryInterface;
 use Sylius\ShopApiPlugin\Factory\ProductVariantViewFactoryInterface;
 use Sylius\ShopApiPlugin\View\ProductVariantView as BaseProductVariantView;
 use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Urbanara\CatalogPromotionPlugin\Decoration\DecorationConfigurationTranslatorInterface;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionDecoration;
 use Urbanara\CatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 use Urbanara\CatalogPromotionPlugin\ShopApi\View\AppliedPromotionView;
@@ -28,6 +29,9 @@ final class ProductVariantViewFactory implements ProductVariantViewFactoryInterf
     /** @var ServiceRegistryInterface */
     private $serviceRegistry;
 
+    /** @var DecorationConfigurationTranslatorInterface */
+    private $decorationConfigurationTranslator;
+
     /** @var string */
     private $appliedPromotionViewClass;
 
@@ -38,12 +42,14 @@ final class ProductVariantViewFactory implements ProductVariantViewFactoryInterf
         ProductVariantViewFactoryInterface $decoratedFactory,
         CatalogPromotionProviderInterface $catalogPromotionProvider,
         ServiceRegistryInterface $serviceRegistry,
+        DecorationConfigurationTranslatorInterface $decorationConfigurationTranslator,
         string $appliedPromotionViewClass,
         string $decorationViewClass
     ) {
         $this->decoratedFactory = $decoratedFactory;
         $this->catalogPromotionProvider = $catalogPromotionProvider;
         $this->serviceRegistry = $serviceRegistry;
+        $this->decorationConfigurationTranslator = $decorationConfigurationTranslator;
         $this->appliedPromotionViewClass = $appliedPromotionViewClass;
         $this->decorationViewClass = $decorationViewClass;
     }
@@ -79,11 +85,15 @@ final class ProductVariantViewFactory implements ProductVariantViewFactoryInterf
             /** @var AppliedPromotionView $appliedPromotionView */
             $appliedPromotionView = new $this->appliedPromotionViewClass();
             $appliedPromotionView->code = $applicableCatalogPromotion->getCode();
-            $appliedPromotionView->decorations = array_map(function (CatalogPromotionDecoration $decoration) {
+            $appliedPromotionView->decorations = array_map(function (CatalogPromotionDecoration $decoration) use ($locale) {
                 /** @var DecorationView $decorationView */
                 $decorationView = new $this->decorationViewClass();
                 $decorationView->type = $decoration->getType();
-                $decorationView->configuration = $decoration->getConfiguration();
+                $decorationView->configuration = ($this->decorationConfigurationTranslator)(
+                    $decoration->getType(),
+                    $decoration->getConfiguration(),
+                    $locale
+                );
 
                 return $decorationView;
             }, iterator_to_array($applicableCatalogPromotion->getDecorations()));

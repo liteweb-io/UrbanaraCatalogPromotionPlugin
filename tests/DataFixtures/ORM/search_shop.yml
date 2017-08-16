@@ -44,7 +44,9 @@ Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionDecoration:
     catalog_promotion_decoration1:
         type: message
         configuration:
-            message: "Wololo"
+            message:
+                en_US: "Wololo (en_US)"
+                de_DE: "Wololo (de_DE)"
             activeOnProductDisplayPage: true
             activeOnProductListingPage: true
             activeOnCheckoutPage: false
