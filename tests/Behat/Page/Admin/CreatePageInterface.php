@@ -83,11 +83,12 @@ interface CreatePageInterface extends BaseCreatePageInterface
 
     /**
      * @param string $message
+     * @param string $localeCode
      * @param bool $activeOnProductDisplayPage
      * @param bool $activeOnProductListingPage
      * @param bool $activeOnCheckoutPage
      */
-    public function addMessageDecoration(string $message, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): void;
+    public function addMessageDecoration(string $message, string $localeCode, bool $activeOnProductDisplayPage, bool $activeOnProductListingPage, bool $activeOnCheckoutPage): void;
 
     /**
      * @param string $url

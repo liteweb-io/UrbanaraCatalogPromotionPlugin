@@ -6,7 +6,7 @@
     "require": {
         "php": "^7.1",
 
-        "sylius/elastic-search-plugin": "^1.0@alpha",
+        "sylius/elastic-search-plugin": "^1.0@beta",
         "sylius/shop-api-plugin": "^1.0@beta",
         "sylius/sylius": "^1.0@beta",
         "symfony/monolog-bundle": "^3.0"
@@ -32,10 +32,10 @@
         "lakion/api-test-case": "^1.2",
         "lakion/mink-debug-extension": "^1.2.3",
         "matthiasnoback/symfony-dependency-injection-test": "^1.0",
-        "phpspec/phpspec": "^3.2",
+        "phpspec/phpspec": "^4.0",
         "phpunit/phpunit": "^5.6",
         "se/selenium-server-standalone": "^2.52",
-        "symfony/symfony": "~3.2, <3.3"
+        "doctrine/common": "<2.8"
     },
     "autoload": {
         "psr-4": {
@@ -44,6 +44,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "spec\\Urbanara\\CatalogPromotionPlugin\\": "spec/",
             "Tests\\Urbanara\\CatalogPromotionPlugin\\": "tests/"
         }
     }

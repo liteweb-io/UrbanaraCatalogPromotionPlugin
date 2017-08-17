@@ -15,6 +15,7 @@ use Sylius\ElasticSearchPlugin\Exception\UnsupportedFactoryMethodException;
 use Sylius\ElasticSearchPlugin\Factory\ProductDocumentFactoryInterface;
 use Sylius\ElasticSearchPlugin\Factory\ProductFactoryInterface;
 use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
+use Urbanara\CatalogPromotionPlugin\Decoration\DecorationConfigurationTranslatorInterface;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\AppliedPromotionDocument;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\DecorationDocument;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\ProductDocument;
@@ -32,6 +33,9 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
     /** @var ServiceRegistryInterface */
     private $serviceRegistry;
 
+    /** @var DecorationConfigurationTranslatorInterface */
+    private $decorationConfigurationTranslator;
+
     /** @var string */
     private $priceDocumentClass;
 
@@ -41,25 +45,19 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
     /** @var string */
     private $appliedPromotionDocumentClass;
 
-    /**
-     * @param ProductDocumentFactoryInterface $decoratedFactory
-     * @param CatalogPromotionProviderInterface $catalogPromotionProvider
-     * @param ServiceRegistryInterface $serviceRegistry
-     * @param string $priceDocumentClass
-     * @param string $appliedPromotionDocumentClass
-     * @param string $decorationDocumentClass
-     */
     public function __construct(
         ProductDocumentFactoryInterface $decoratedFactory,
         CatalogPromotionProviderInterface $catalogPromotionProvider,
         ServiceRegistryInterface $serviceRegistry,
-        $priceDocumentClass,
-        $appliedPromotionDocumentClass,
-        $decorationDocumentClass
+        DecorationConfigurationTranslatorInterface $decorationConfigurationTranslator,
+        string $priceDocumentClass,
+        string $appliedPromotionDocumentClass,
+        string $decorationDocumentClass
     ) {
         $this->decoratedFactory = $decoratedFactory;
         $this->catalogPromotionProvider = $catalogPromotionProvider;
         $this->serviceRegistry = $serviceRegistry;
+        $this->decorationConfigurationTranslator = $decorationConfigurationTranslator;
         $this->priceDocumentClass = $priceDocumentClass;
         $this->appliedPromotionDocumentClass = $appliedPromotionDocumentClass;
         $this->decorationDocumentClass = $decorationDocumentClass;
@@ -115,11 +113,15 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
             $appliedPromotionDocument = new $this->appliedPromotionDocumentClass();
             $appliedPromotionDocument->setCode($applicableCatalogPromotion->getCode());
             $appliedPromotionDocument->setDecorations(new Collection(
-                array_map(function (CatalogPromotionDecoration $decoration) {
+                array_map(function (CatalogPromotionDecoration $decoration) use ($locale) {
                     /** @var DecorationDocument $decorationDocument */
                     $decorationDocument = new $this->decorationDocumentClass();
                     $decorationDocument->setType($decoration->getType());
-                    $decorationDocument->setConfiguration(json_encode($decoration->getConfiguration()));
+                    $decorationDocument->setConfiguration(json_encode(($this->decorationConfigurationTranslator)(
+                        $decoration->getType(),
+                        $decoration->getConfiguration(),
+                        $locale->getCode()
+                    )));
 
                     return $decorationDocument;
                 }, iterator_to_array($applicableCatalogPromotion->getDecorations()))

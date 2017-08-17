@@ -1,9 +1,9 @@
 {
     "code": "LOGAN_MUG_CODE",
     "name": "Logan Mug",
-    "slug": "logan-mug",
-    "breadcrumb": "categories\/mugs\/logan-mug",
-    "averageRating": 0,
+    "slug": "@string@",
+    "breadcrumb": "@string@",
+    "averageRating": "@integer@",
     "taxons": "@array@",
     "variants": {
         "LOGAN_MUG_CODE": {
@@ -11,16 +11,8 @@
             "name": "Logan Mug",
             "axis": "@array@",
             "nameAxis": "@array@",
-            "price": {
-                "current": 1500,
-                "original": 1999
-            },
-            "images": [
-                {
-                    "code": "thumbnail",
-                    "path": "\/uo\/mug.jpg"
-                }
-            ],
+            "price": "@array@",
+            "images": "@array@",
             "appliedPromotions": [
                 {
                     "code": "cp2",
@@ -28,7 +20,7 @@
                         {
                             "type": "message",
                             "configuration": {
-                                "message": "Wololo",
+                                "message": "Wololo (en_US)",
                                 "activeOnProductDisplayPage": true,
                                 "activeOnProductListingPage": false,
                                 "activeOnCheckoutPage": true
@@ -41,15 +33,6 @@
     },
     "attributes": "@array@",
     "associations": "@array@",
-    "images": [
-        {
-            "code": "thumbnail",
-            "path": "\/uo\/mug.jpg"
-        }
-    ],
-    "_links": {
-        "self": {
-            "href": "\/shop-api\/products-by-slug\/logan-mug"
-        }
-    }
+    "images": "@array@",
+    "_links": "@array@"
 }

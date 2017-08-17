@@ -507,11 +507,11 @@ final class ManagingCatalogPromotionContext implements Context
     }
 
     /**
-     * @When I add :message message decoration available on all pages
+     * @When I add :message message decoration in :localeCode locale available on all pages
      */
-    public function iAddMessageDecorationAvailableOnAllPages($message)
+    public function iAddMessageDecorationAvailableOnAllPages(string $message, string $localeCode)
     {
-        $this->createPage->addMessageDecoration($message, true, true, true);
+        $this->createPage->addMessageDecoration($message, $localeCode, true, true, true);
     }
 
     /**
