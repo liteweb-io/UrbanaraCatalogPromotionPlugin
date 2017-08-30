@@ -44,7 +44,7 @@ final class ProductListViewFactory implements ProductListViewFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createFromSearchResponse(SearchResponse $response)
+    public function createFromSearchResponse(SearchResponse $response): ProductListView
     {
         /** @var ProductListView $productListView */
         $productListView = $this->decoratedFactory->createFromSearchResponse($response);
