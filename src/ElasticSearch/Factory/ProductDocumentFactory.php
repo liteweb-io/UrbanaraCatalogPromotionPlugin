@@ -11,9 +11,9 @@ use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 use Sylius\ElasticSearchPlugin\Document\PriceDocument;
+use Sylius\ElasticSearchPlugin\Document\ProductDocument as BaseProductDocument;
 use Sylius\ElasticSearchPlugin\Exception\UnsupportedFactoryMethodException;
 use Sylius\ElasticSearchPlugin\Factory\ProductDocumentFactoryInterface;
-use Sylius\ElasticSearchPlugin\Factory\ProductFactoryInterface;
 use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
 use Urbanara\CatalogPromotionPlugin\Decoration\DecorationConfigurationTranslatorInterface;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\AppliedPromotionDocument;
@@ -70,15 +70,12 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
         ProductInterface $product,
         LocaleInterface $locale,
         ChannelInterface $channel
-    ) {
+    ): BaseProductDocument {
         /** @var ProductDocument $productDocument */
         $productDocument = $this->decoratedFactory->createFromSyliusSimpleProductModel($product, $locale, $channel);
 
         if (!$product->isSimple()) {
-            throw new UnsupportedFactoryMethodException(__METHOD__, sprintf(
-                'Cannot create elastic search model from configurable product "%s".',
-                $product->getCode()
-            ));
+            return $productDocument;
         }
 
         /** @var ProductVariantInterface $productVariant */
