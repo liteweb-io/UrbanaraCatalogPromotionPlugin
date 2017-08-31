@@ -25,10 +25,13 @@
         },
         {
             "code": "LOGAN_T_SHIRT_CODE",
+            "name": "@string@",
+            "slug": "@string@",
             "taxons": "@array@",
             "variants": {
                 "LOGAN_T_SHIRT_CODE": {
                     "code": "LOGAN_T_SHIRT_CODE",
+                    "name": "@string@",
                     "price": "@array@",
                     "images": "@array@",
                     "appliedPromotions": [

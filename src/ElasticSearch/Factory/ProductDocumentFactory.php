@@ -75,10 +75,7 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
         $productDocument = $this->decoratedFactory->createFromSyliusSimpleProductModel($product, $locale, $channel);
 
         if (!$product->isSimple()) {
-            throw new UnsupportedFactoryMethodException(__METHOD__, sprintf(
-                'Cannot create elastic search model from configurable product "%s".',
-                $product->getCode()
-            ));
+            return $productDocument;
         }
 
         /** @var ProductVariantInterface $productVariant */
