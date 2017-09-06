@@ -7,6 +7,7 @@ namespace Urbanara\CatalogPromotionPlugin\OrderProcessing;
 use Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface;
 use Urbanara\CatalogPromotionPlugin\Applicator\CatalogPromotionApplicatorInterface;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionInterface;
+use Urbanara\CatalogPromotionPlugin\Model\CatalogAdjustmentInterface;
 use Urbanara\CatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderInterface;
@@ -85,7 +86,7 @@ final class CatalogPromotionProcessor implements OrderProcessorInterface
 
             $discount = $command->calculate($currentPrice, $channel, $catalogPromotion->getDiscountConfiguration());
 
-            $this->catalogPromotionApplicator->apply($item, $discount, $catalogPromotion->getName());
+            $this->catalogPromotionApplicator->apply($item, $catalogPromotion, $discount, $catalogPromotion->getName());
             $currentPrice -= $discount;
         }
     }

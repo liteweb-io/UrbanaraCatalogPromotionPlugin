@@ -70,7 +70,7 @@ final class CatalogPromotionProcessorSpec extends ObjectBehavior
 
         $actionCommand->calculate(1000, $channel, [])->willReturn(100);
 
-        $catalogPromotionApplicator->apply($orderItem, 100, 'Cool discount')->shouldBeCalled();
+        $catalogPromotionApplicator->apply($orderItem, $catalogPromotion, 100, 'Cool discount')->shouldBeCalled();
 
         $this->process($order);
     }
