@@ -21,14 +21,14 @@ final class AppKernel extends Kernel
 
             new \Urbanara\CatalogPromotionPlugin\CatalogPromotionPlugin(),
 
-            new \Sylius\ShopApiPlugin\ShopApiPlugin(),
-            new \League\Tactician\Bundle\TacticianBundle(),
+//            new \Sylius\ShopApiPlugin\ShopApiPlugin(),
+//            new \League\Tactician\Bundle\TacticianBundle(),
 
-            new \Sylius\ElasticSearchPlugin\SyliusElasticSearchPlugin(),
-            new \ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
-            new \ONGR\FilterManagerBundle\ONGRFilterManagerBundle(),
-            new \SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
-            new \SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
+//            new \Sylius\ElasticSearchPlugin\SyliusElasticSearchPlugin(),
+//            new \ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
+//            new \ONGR\FilterManagerBundle\ONGRFilterManagerBundle(),
+//            new \SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
+//            new \SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
         ]);
     }
 

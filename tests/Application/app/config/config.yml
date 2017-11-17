@@ -8,8 +8,8 @@ imports:
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
     - { resource: "@CatalogPromotionPlugin/Resources/config/app/grid.yml" }
-    - { resource: "@SyliusElasticSearchPlugin/Resources/config/app/config.yml" }
-    - { resource: "@ShopApiPlugin/Resources/config/app/config.yml" }
+#    - { resource: "@SyliusElasticSearchPlugin/Resources/config/app/config.yml" }
+#    - { resource: "@ShopApiPlugin/Resources/config/app/config.yml" }
 
     - { resource: "../../../../vendor/sylius/sylius/app/config/security.yml" }
 
@@ -40,18 +40,18 @@ fos_rest:
     exception: ~
     format_listener:
         rules:
-            - { path: '^/shop-api', priorities: ['json'], fallback_format: json, prefer_extension: true }
+#            - { path: '^/shop-api', priorities: ['json'], fallback_format: json, prefer_extension: true }
             - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
             - { path: '^/', stop: true }
 
-ongr_elasticsearch:
-    managers:
-        default:
-            index:
-                index_name: sylius
-            mappings:
-                CatalogPromotionPlugin:
-                    document_dir: ElasticSearch\Document
+#ongr_elasticsearch:
+#    managers:
+#        default:
+#            index:
+#                index_name: sylius
+#            mappings:
+#                CatalogPromotionPlugin:
+#                    document_dir: ElasticSearch\Document
 
 sylius_shop:
     checkout_resolver:

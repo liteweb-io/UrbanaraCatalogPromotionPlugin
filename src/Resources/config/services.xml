@@ -2,13 +2,13 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <imports>
-        <import resource="services/actions.xml"/>
+        <!--<import resource="services/actions.xml"/>-->
         <import resource="services/blocks.xml"/>
         <import resource="services/decorations.xml"/>
-        <import resource="services/elastic_search.xml"/>
+        <!--<import resource="services/elastic_search.xml"/>-->
         <import resource="services/forms.xml"/>
         <import resource="services/rules.xml"/>
-        <import resource="services/shop_api.xml"/>
+        <!--<import resource="services/shop_api.xml"/>-->
         <import resource="services/twig.xml"/>
         <import resource="services/validators.xml"/>
     </imports>
@@ -38,10 +38,10 @@
             <tag name="sylius.order_processor" priority="35" />
         </service>
 
-        <service id="urbanara_catalog_promotion.registry_catalog_promotion_action" class="Sylius\Component\Registry\ServiceRegistry">
-            <argument>Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface</argument>
-            <argument>catalog promotion action</argument>
-        </service>
+        <!--<service id="urbanara_catalog_promotion.registry_catalog_promotion_action" class="Sylius\Component\Registry\ServiceRegistry">-->
+            <!--<argument>Urbanara\CatalogPromotionPlugin\Action\CatalogDiscountActionCommandInterface</argument>-->
+            <!--<argument>catalog promotion action</argument>-->
+        <!--</service>-->
 
         <service id="urbanara_catalog_promotion.registry_catalog_promotion_rule" class="Sylius\Component\Registry\ServiceRegistry">
             <argument>Urbanara\CatalogPromotionPlugin\Rule\RuleCheckerInterface</argument>
