@@ -36,6 +36,6 @@ final class RegisterCatalogPromotionActionsPass implements CompilerPassInterface
         }
 
 //        $container->setParameter('urbanara_catalog_promotion.catalog_promotion_actions', $actions);
-        $container->setParameter('urbanara_catalog_promotion.catalog_promotion_actions', []);
+        $container->setParameter('urbanara_catalog_promotion.catalog_promotion_actions',  ['custom' => 'Label']);
     }
 }
