@@ -35,7 +35,7 @@ final class RegisterCatalogPromotionActionsPass implements CompilerPassInterface
             $registry->addMethodCall('register', [$attributes[0]['type'], new Reference($id)]);
         }
 
-//        $container->setParameter('urbanara_catalog_promotion.catalog_promotion_actions', $actions);
-        $container->setParameter('urbanara_catalog_promotion.catalog_promotion_actions',  ['custom' => 'Label']);
+        $container->setParameter('urbanara_catalog_promotion.catalog_promotion_actions', $actions);
+//        $container->setParameter('urbanara_catalog_promotion.catalog_promotion_actions',  ['custom' => 'Label']);
     }
 }
