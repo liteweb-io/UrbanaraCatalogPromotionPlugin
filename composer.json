@@ -6,9 +6,9 @@
     "require": {
         "php": "^7.1",
 
-        "sylius/elastic-search-plugin": "^1.0@beta",
+        "sylius/shop-api-plugin": "v1.0.0-beta.20",
         "sylius/shop-api-plugin": "^1.0@beta",
-        "sylius/sylius": "^1.0@beta",
+        "sylius/sylius": "^1.0",
         "symfony/monolog-bundle": "^3.0"
     },
     "authors": [
@@ -42,6 +42,12 @@
             "Urbanara\\CatalogPromotionPlugin\\": "src/"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:liteweb-io/SyliusElasticSearchPlugin.git"
+        }
+    ],
     "autoload-dev": {
         "psr-4": {
             "spec\\Urbanara\\CatalogPromotionPlugin\\": "spec/",
