@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Urbanara\CatalogPromotionPlugin\ElasticSearch\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use ONGR\ElasticsearchBundle\Annotation as ElasticSearch;
 use ONGR\ElasticsearchBundle\Collection\Collection;
 use Sylius\ElasticSearchPlugin\Document\PriceDocument;
@@ -62,7 +63,7 @@ class ProductDocument extends BaseProductDocument
     /**
      * @param Collection $appliedPromotions
      */
-    public function setAppliedPromotions(Collection $appliedPromotions)
+    public function setAppliedPromotions($appliedPromotions)
     {
         $this->appliedPromotions = $appliedPromotions;
     }

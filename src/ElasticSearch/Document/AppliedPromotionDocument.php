@@ -58,7 +58,7 @@ class AppliedPromotionDocument
     /**
      * @param Collection $decorations
      */
-    public function setDecorations(Collection $decorations)
+    public function setDecorations($decorations)
     {
         $this->decorations = $decorations;
     }

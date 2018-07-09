@@ -15,7 +15,7 @@ use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\AppliedPromotionDocum
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\DecorationDocument;
 use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\ProductDocument;
 
-final class ProductListViewFactory implements ProductListViewFactoryInterface
+final class ProductListViewFactory
 {
     /** @var ProductListViewFactoryInterface */
     private $decoratedFactory;
@@ -32,7 +32,7 @@ final class ProductListViewFactory implements ProductListViewFactoryInterface
      * @param string $decorationViewClass
      */
     public function __construct(
-        ProductListViewFactoryInterface $decoratedFactory,
+        $decoratedFactory,
         $appliedPromotionViewClass,
         $decorationViewClass
     ) {
@@ -47,6 +47,8 @@ final class ProductListViewFactory implements ProductListViewFactoryInterface
     public function createFromSearchResponse(SearchResponse $response): ProductListView
     {
         /** @var ProductListView $productListView */
+
+
         $productListView = $this->decoratedFactory->createFromSearchResponse($response);
 
         /** @var ProductDocument $productDocument */
@@ -60,10 +62,15 @@ final class ProductListViewFactory implements ProductListViewFactoryInterface
                 $variantView = current($productView->variants);
 
                 /** @var PriceView $priceView */
-                $priceView = $variantView->price;
-                $priceView->original = $productDocument->getOriginalPrice() ? $productDocument->getOriginalPrice()->getAmount() : null;
 
-                $variantView->appliedPromotions = array_map(function (AppliedPromotionDocument $appliedPromotionDocument) {
+
+                $priceView = $variantView[0]->price;
+                $priceView->original = $productDocument->getPrice() ? $productDocument->getPrice()->getAmount() : null;
+
+
+                $variantView[0]->appliedPromotions = array_map(function (AppliedPromotionDocument $appliedPromotionDocument) {
+
+
                     /** @var AppliedPromotionView $appliedPromotionView */
                     $appliedPromotionView = new $this->appliedPromotionViewClass();
                     $appliedPromotionView->code = $appliedPromotionDocument->getCode();
@@ -78,6 +85,8 @@ final class ProductListViewFactory implements ProductListViewFactoryInterface
 
                     return $appliedPromotionView;
                 }, iterator_to_array($productDocument->getAppliedPromotions()));
+
+
             }
         }
 

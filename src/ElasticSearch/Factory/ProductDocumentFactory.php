@@ -22,7 +22,7 @@ use Urbanara\CatalogPromotionPlugin\ElasticSearch\Document\ProductDocument;
 use Urbanara\CatalogPromotionPlugin\Entity\CatalogPromotionDecoration;
 use Urbanara\CatalogPromotionPlugin\Provider\CatalogPromotionProviderInterface;
 
-final class ProductDocumentFactory implements ProductDocumentFactoryInterface
+final class ProductDocumentFactory
 {
     /** @var ProductDocument */
     private $decoratedFactory;
@@ -46,7 +46,7 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
     private $appliedPromotionDocumentClass;
 
     public function __construct(
-        ProductDocumentFactoryInterface $decoratedFactory,
+        $decoratedFactory,
         CatalogPromotionProviderInterface $catalogPromotionProvider,
         ServiceRegistryInterface $serviceRegistry,
         DecorationConfigurationTranslatorInterface $decorationConfigurationTranslator,
@@ -72,7 +72,7 @@ final class ProductDocumentFactory implements ProductDocumentFactoryInterface
         ChannelInterface $channel
     ): BaseProductDocument {
         /** @var ProductDocument $productDocument */
-        $productDocument = $this->decoratedFactory->createFromSyliusSimpleProductModel($product, $locale, $channel);
+        $productDocument = $this->decoratedFactory->create($product, $locale, $channel);
 
         if (!$product->isSimple()) {
             return $productDocument;
